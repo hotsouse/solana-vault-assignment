@@ -1,154 +1,166 @@
-# Simple Vault — практика Anchor
+# Week 8 — Solana Vault и пользовательские карточки
 
-Учебный контракт на Anchor 0.31.1 (Solana). Сейчас он делает две вещи:
+## 1. Описание проекта
 
-1. **Vault создан** — админ создаёт vault для SPL-токена.
-2. **У каждого пользователя своя «карточка»** — пользователь создаёт личный аккаунт (PDA) внутри vault.
+Учебный проект на Solana с использованием Anchor Framework.
 
-Контракт будет дорабатываться (депозиты, вывод и т.д.), поэтому сейчас он намеренно минимальный.
+Цель Week 8 — реализовать основу токенового хранилища (Vault) и систему индивидуальных пользовательских карточек (UserCard).
 
----
+В рамках этой недели реализовано создание аккаунтов и проверка уникальности карточек. Депозиты, вывод средств и операции обмена относятся к последующим заданиям и не входят в текущую реализацию.
 
-## Что делает контракт
+## 2. Реализованная функциональность
 
-```
-initialize_vault    создаёт VaultState PDA, vault token account и share mint
-create_user_card    создаёт UserCard PDA — личную карточку пользователя в vault
-```
+### initialize_vault
 
-### `initialize_vault`
+Инструкция инициализирует Vault для работы с выбранным токеном.
 
-Вызывает админ (платит за аккаунты). Создаёт три аккаунта для выбранного `token_mint`:
+Vault использует Program Derived Address (PDA), что позволяет программе управлять состоянием хранилища.
 
-| Аккаунт | Seeds | Что хранит |
-|---|---|---|
-| `vault_state` | `["vault", token_mint]` | admin, token_mint, адреса token account и share mint, bump |
-| `vault_token_account` | `["vault_tokens", token_mint]` | токен-аккаунт, владелец — vault PDA |
-| `share_mint` | `["share_mint", token_mint]` | mint для shares (6 decimals), authority — vault PDA |
+### create_user_card
 
-### `create_user_card`
+Инструкция создаёт индивидуальную карточку пользователя, связанную с Vault.
 
-Вызывает любой пользователь (платит за свою карточку). Создаёт `UserCard`:
+Карточка используется для хранения информации о пользователе и его участии в хранилище.
 
-| Поле | Описание |
-|---|---|
-| `vault` | к какому vault относится карточка |
-| `owner` | владелец карточки |
-| `bump` | bump PDA |
+### Защита от дублирования
 
-Seeds: `["user_card", vault_state, user]` — поэтому у одного пользователя в одном vault
-может быть **только одна** карточка. Повторный вызов завершится ошибкой.
+Для одного пользователя и одного Vault повторное создание карточки отклоняется.
 
----
+Это поведение проверяется автоматическим тестом.
 
-## Требования
+## 3. Используемые технологии
 
-| Инструмент | Версия | Установка |
-|---|---|---|
-| Rust | stable | https://rustup.rs |
-| Solana CLI | 1.18+ | https://docs.solana.com/cli/install-solana-cli-tools |
-| Anchor CLI | 0.31.1 | `cargo install --git https://github.com/coral-xyz/anchor avm --locked && avm install 0.31.1 && avm use 0.31.1` |
-| Node.js | 18+ | https://nodejs.org |
-| Yarn | any | `npm i -g yarn` |
+- Rust — разработка смарт-контракта.
+- Solana — блокчейн-платформа.
+- Anchor Framework 0.31.1 — разработка и тестирование программы.
+- TypeScript — автоматизированные тесты.
+- Mocha — выполнение тестов.
+- Solana Devnet — тестовая сеть.
 
-Rust-зависимости (`anchor-lang`, `anchor-spl` 0.31.1) подтянутся сами при `anchor build`.
-JS-зависимости (`@coral-xyz/anchor`, `@solana/web3.js`, `@solana/spl-token`, `mocha`, `chai`, `typescript`) — через `yarn install`.
+## 4. Структура проекта
 
----
+- `programs/simple_vault/src/lib.rs` — основная логика смарт-контракта.
+- `tests/vault.ts` — автоматические тесты.
+- `Anchor.toml` — конфигурация Anchor.
+- `Cargo.toml` — конфигурация Rust workspace.
+- `package.json` — зависимости JavaScript/TypeScript.
 
-## Быстрый старт
+## 5. Подготовка окружения
 
-### 1. Установить зависимости
+Для запуска необходимы:
+
+- Rust и Cargo;
+- Solana CLI;
+- Anchor CLI версии 0.31.1;
+- Node.js и npm;
+- настроенный кошелёк Solana Devnet.
+
+Установить JavaScript-зависимости:
 
 ```bash
-cd vault-simple
-yarn install
+npm install
 ```
 
-### 2. Сбилдить контракт
+Проверить версии:
 
 ```bash
-anchor build
+solana --version
+anchor --version
+node --version
 ```
 
-Если билдишь **первый раз** (новый keypair):
+Если Anchor установлен через AVM, можно использовать соответствующую версию напрямую:
 
 ```bash
-anchor keys sync   # обновит declare_id! в lib.rs и Anchor.toml
-anchor build       # пересобрать с правильным ID
+~/.avm/bin/anchor-0.31.1 --version
 ```
 
-Артефакты в `target/deploy/`:
-- `simple_vault.so` — программа
-- `simple_vault-keypair.json` — keypair (не коммитить!)
+## 6. Сборка программы
 
-### 3. Настроить Solana CLI на devnet
+В корневой папке проекта выполнить:
+
+```bash
+~/.avm/bin/anchor-0.31.1 build
+```
+
+Перед развёртыванием необходимо проверить согласованность Program ID в `Anchor.toml`, исходном коде и ключе программы.
+
+## 7. Настройка Devnet
 
 ```bash
 solana config set --url devnet
-solana address     # твой публичный ключ — запомни его
-solana balance
+
+export ANCHOR_PROVIDER_URL="https://api.devnet.solana.com"
+export ANCHOR_WALLET="$HOME/.config/solana/id.json"
 ```
 
-### 4. Пополнить кошелёк
+Для развёртывания программы необходим кошелёк с достаточным количеством Devnet SOL и соответствующий локальный ключ программы.
 
-Для деплоя нужно ~2 SOL.
+При необходимости развернуть программу:
 
 ```bash
-solana airdrop 2   # может не сработать из-за rate limit
+~/.avm/bin/anchor-0.31.1 deploy
 ```
 
-Если rate limit — используй faucet:
-- https://faucet.solana.com (вставь свой адрес)
+## 8. Запуск автоматических тестов
 
-### 5. Задеплоить
+После сборки и развёртывания соответствующей версии программы выполнить:
 
 ```bash
-anchor deploy --provider.cluster devnet
+./node_modules/.bin/ts-mocha -p ./tsconfig.json -t 1000000 tests/vault.ts
 ```
 
-### 6. Запустить тесты
+Тесты взаимодействуют с программой через Solana Devnet.
 
-```bash
-yarn test
-```
+## 9. Результаты тестирования
 
-Ожидаемый вывод:
+В ходе локальной проверки были успешно пройдены три теста:
 
-```
-✔ initialize_vault: vault создан
-✔ create_user_card: у каждого пользователя своя карточка
-✔ create_user_card: вторая карточка для того же пользователя — ошибка
-3 passing
-```
-
----
-
-## Структура проекта
-
-```
-vault-simple/
-├── programs/simple_vault/src/lib.rs   # контракт
-├── tests/vault.ts                     # тесты
-├── Anchor.toml
-├── Cargo.toml
-└── package.json
-```
-
----
-
-## Частые ошибки
-
-| Ошибка | Причина | Решение |
+| № | Тест | Результат |
 |---|---|---|
-| `Insufficient funds` при деплое | мало SOL | пополни кошелёк на devnet |
-| `AccountNotInitialized` в тестах | программа не задеплоена или другой ID | `anchor keys sync` → `anchor build` → `anchor deploy` |
-| `already in use` при `create_user_card` | у пользователя уже есть карточка | это ожидаемо, карточка одна на пользователя |
+| 1 | initialize_vault: создание Vault | PASS |
+| 2 | create_user_card: индивидуальные карточки пользователей | PASS |
+| 3 | create_user_card: запрет повторного создания карточки | PASS |
 
----
+Итог выполнения:
 
-## Задания для практики
+```text
+3 passing (5s)
+0 failing
+```
 
-1. Добавить в `UserCard` поле `created_at` (`Clock::get()?.unix_timestamp`).
-2. Добавить инструкцию `close_user_card`, которая закрывает карточку и возвращает ренту владельцу.
-3. Запретить создание карточек, если vault поставлен админом на паузу (флаг `paused` в `VaultState`).
+Также была успешно выполнена сборка программы с использованием Anchor 0.31.1.
+
+## 10. Program ID
+
+```text
+Ecas7acK9ayt8GEs7VozKdn77SmJGLsxHeE9T4zrDjiS
+```
+
+Сеть тестирования: Solana Devnet.
+
+Проверка адреса через Solana Explorer:
+
+https://explorer.solana.com/address/Ecas7acK9ayt8GEs7VozKdn77SmJGLsxHeE9T4zrDjiS?cluster=devnet
+
+Ссылка позволяет проверить публичные сведения об адресе. Она сама по себе не подтверждает успешность всех тестов.
+
+## 11. Доказательства выполнения
+
+Основными доказательствами являются:
+
+1. Исходный код смарт-контракта.
+2. Автоматические тесты в `tests/vault.ts`.
+3. Успешная сборка Anchor.
+4. Результат выполнения тестов: 3 PASS, 0 FAIL.
+5. История коммитов Git с реализованной функциональностью.
+
+Приватные ключи кошельков и программы не публикуются.
+
+## 12. Заключение
+
+В рамках Week 8 реализована основа Solana Vault и создание индивидуальных пользовательских карточек.
+
+Программа успешно прошла три автоматических теста, включая проверку защиты от повторного создания карточки.
+
+Проект подготовлен для дальнейшего расширения в следующих учебных заданиях.
