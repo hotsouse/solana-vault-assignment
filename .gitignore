@@ -1,0 +1,23 @@
+# Rust / Anchor
+/target/
+.anchor/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# Secrets and wallets
+.env
+.env.*
+!.env.example
+**/*-keypair.json
+**/*.keypair.json
+wallet.json
+id.json
+devnet-wallet.json
+
+# IDE / OS
+.DS_Store
+.vscode/
+.idea/
