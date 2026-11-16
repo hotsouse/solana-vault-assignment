@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 use anchor_spl::token::{Mint, Token, TokenAccount};
 
-declare_id!("EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu");
+declare_id!("Ecas7acK9ayt8GEs7VozKdn77SmJGLsxHeE9T4zrDjiS");
 
 #[program]
 pub mod simple_vault {

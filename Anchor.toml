@@ -2,13 +2,13 @@
 anchor_version = "0.31.1"
 
 [features]
-seeds = false
+resolution = true
 skip-lint = false
 
-[programs.localnet]
-simple_vault = "EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu"
-
 [programs.devnet]
+simple_vault = "Ecas7acK9ayt8GEs7VozKdn77SmJGLsxHeE9T4zrDjiS"
+
+[programs.localnet]
 simple_vault = "EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu"
 
 [registry]
