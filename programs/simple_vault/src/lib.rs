@@ -1,5 +1,5 @@
 use anchor_lang::prelude::*;
-use anchor_spl::token::{self, Mint, MintTo, Token, TokenAccount, Transfer};
+use anchor_spl::token::{self, Burn, Mint, MintTo, Token, TokenAccount, Transfer};
 
 declare_id!("EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu");
 
@@ -117,6 +117,76 @@ pub mod simple_vault {
             "Deposit: {} tokens -> {} shares (total_tokens={}, total_shares={})",
             amount,
             shares,
+            vault.total_tokens,
+            vault.total_shares
+        );
+        Ok(())
+    }
+
+    /// Пользователь возвращает shares и получает соответствующее количество токенов.
+    pub fn withdraw(ctx: Context<Withdraw>, shares_amount: u64) -> Result<()> {
+        require!(shares_amount > 0, VaultError::ZeroAmount);
+
+        let vault = &ctx.accounts.vault_state;
+        require!(vault.total_shares > 0, VaultError::VaultEmpty);
+
+        let tokens_out = tokens_for_shares(shares_amount, vault.total_tokens, vault.total_shares)
+            .ok_or(VaultError::MathOverflow)?;
+        require!(tokens_out > 0, VaultError::WithdrawTooSmall);
+
+        // Сжигаем shares от имени пользователя. Если баланса не хватает, Token Program
+        // отклонит CPI, а Solana откатит всю транзакцию.
+        token::burn(
+            CpiContext::new(
+                ctx.accounts.token_program.to_account_info(),
+                Burn {
+                    mint: ctx.accounts.share_mint.to_account_info(),
+                    from: ctx.accounts.user_share_account.to_account_info(),
+                    authority: ctx.accounts.user.to_account_info(),
+                },
+            ),
+            shares_amount,
+        )?;
+
+        // Vault PDA подписывает перевод из своего токен-аккаунта.
+        let token_mint_key = ctx.accounts.vault_state.token_mint;
+        let bump = [ctx.accounts.vault_state.bump];
+        let seeds: &[&[u8]] = &[b"vault", token_mint_key.as_ref(), &bump];
+        let signer = &[seeds];
+
+        token::transfer(
+            CpiContext::new_with_signer(
+                ctx.accounts.token_program.to_account_info(),
+                Transfer {
+                    from: ctx.accounts.vault_token_account.to_account_info(),
+                    to: ctx.accounts.user_token_account.to_account_info(),
+                    authority: ctx.accounts.vault_state.to_account_info(),
+                },
+                signer,
+            ),
+            tokens_out,
+        )?;
+
+        let vault = &mut ctx.accounts.vault_state;
+        vault.total_tokens = vault
+            .total_tokens
+            .checked_sub(tokens_out)
+            .ok_or(VaultError::MathOverflow)?;
+        vault.total_shares = vault
+            .total_shares
+            .checked_sub(shares_amount)
+            .ok_or(VaultError::MathOverflow)?;
+
+        // Shares можно передать другому пользователю. Карточка хранит историю
+        // участия, поэтому её счётчики не должны переполняться при таком выводе.
+        let card = &mut ctx.accounts.user_card;
+        card.deposited = card.deposited.saturating_sub(tokens_out);
+        card.shares = card.shares.saturating_sub(shares_amount);
+
+        msg!(
+            "Withdraw: {} shares -> {} tokens (total_tokens={}, total_shares={})",
+            shares_amount,
+            tokens_out,
             vault.total_tokens,
             vault.total_shares
         );
@@ -255,6 +325,59 @@ pub struct Deposit<'info> {
     pub token_program: Program<'info, Token>,
 }
 
+#[derive(Accounts)]
+pub struct Withdraw<'info> {
+    #[account(
+        mut,
+        seeds = [b"vault", vault_state.token_mint.as_ref()],
+        bump = vault_state.bump,
+    )]
+    pub vault_state: Account<'info, VaultState>,
+
+    #[account(
+        mut,
+        seeds = [b"user_card", vault_state.key().as_ref(), user.key().as_ref()],
+        bump = user_card.bump,
+    )]
+    pub user_card: Account<'info, UserCard>,
+
+    #[account(
+        mut,
+        seeds = [b"vault_tokens", vault_state.token_mint.as_ref()],
+        bump,
+        token::mint = vault_state.token_mint,
+        token::authority = vault_state,
+    )]
+    pub vault_token_account: Account<'info, TokenAccount>,
+
+    #[account(
+        mut,
+        seeds = [b"share_mint", vault_state.token_mint.as_ref()],
+        bump,
+        mint::authority = vault_state,
+    )]
+    pub share_mint: Account<'info, Mint>,
+
+    #[account(
+        mut,
+        token::mint = vault_state.token_mint,
+        token::authority = user,
+    )]
+    pub user_token_account: Account<'info, TokenAccount>,
+
+    #[account(
+        mut,
+        token::mint = share_mint,
+        token::authority = user,
+    )]
+    pub user_share_account: Account<'info, TokenAccount>,
+
+    #[account(mut)]
+    pub user: Signer<'info>,
+
+    pub token_program: Program<'info, Token>,
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // State
 // ─────────────────────────────────────────────────────────────────────────────
@@ -300,6 +423,37 @@ pub enum VaultError {
     ZeroAmount,
     #[msg("Shares would be zero - deposit too small")]
     SharesTooSmall,
+    #[msg("Vault has no outstanding shares")]
+    VaultEmpty,
+    #[msg("Withdrawal rounds down to zero tokens")]
+    WithdrawTooSmall,
     #[msg("Math overflow")]
     MathOverflow,
+}
+
+fn tokens_for_shares(shares_amount: u64, total_tokens: u64, total_shares: u64) -> Option<u64> {
+    (shares_amount as u128)
+        .checked_mul(total_tokens as u128)
+        .and_then(|value| value.checked_div(total_shares as u128))
+        .and_then(|value| u64::try_from(value).ok())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::tokens_for_shares;
+
+    #[test]
+    fn withdrawal_calculation_uses_integer_rounding_down() {
+        assert_eq!(tokens_for_shares(2, 10, 3), Some(6));
+    }
+
+    #[test]
+    fn withdrawal_calculation_can_round_down_to_zero() {
+        assert_eq!(tokens_for_shares(1, 2, 3), Some(0));
+    }
+
+    #[test]
+    fn withdrawal_calculation_rejects_division_by_zero() {
+        assert_eq!(tokens_for_shares(1, 2, 0), None);
+    }
 }

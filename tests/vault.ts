@@ -6,7 +6,7 @@
  *   2. Пользователи A и B создают свои карточки (create_user_card)
  *   3. Повторное создание карточки A падает
  *   4. A вносит 100 токенов → 100 shares, B вносит 50 → 50 shares
- *   5. Депозит без карточки и депозит 0 — ошибки
+ *   5. Ошибки депозита и вывода не меняют балансы частично
  */
 
 import * as anchor from "@coral-xyz/anchor";
@@ -58,6 +58,21 @@ describe("simple_vault", () => {
   const deposit = (user: Keypair, amount: number) =>
     program.methods
       .deposit(new anchor.BN(amount))
+      .accounts({
+        vaultState: vaultStatePDA,
+        userCard: cardPda(user.publicKey),
+        vaultTokenAccount: vaultTokenAccountPDA,
+        shareMint: shareMintPDA,
+        userTokenAccount: tokenAcc[user.publicKey.toBase58()],
+        userShareAccount: shareAcc[user.publicKey.toBase58()],
+        user: user.publicKey,
+      } as any)
+      .signers([user])
+      .rpc();
+
+  const withdraw = (user: Keypair, sharesAmount: number) =>
+    program.methods
+      .withdraw(new anchor.BN(sharesAmount))
       .accounts({
         vaultState: vaultStatePDA,
         userCard: cardPda(user.publicKey),
@@ -151,15 +166,26 @@ describe("simple_vault", () => {
     assert.isTrue(failed, "повторная карточка должна быть отклонена");
   });
 
-  it("deposit: A вносит 100 токенов → получает 100 shares", async () => {
-    // Токен-аккаунты пользователей и стартовые токены
+  it("подготовка: создаются пользовательские SPL-аккаунты", async () => {
     for (const user of [userA, userB, userC]) {
       const key = user.publicKey.toBase58();
       tokenAcc[key] = await createAccount(provider.connection, admin, tokenMint, user.publicKey);
       shareAcc[key] = await createAccount(provider.connection, admin, shareMintPDA, user.publicKey);
       await mintTo(provider.connection, admin, tokenMint, tokenAcc[key], admin, 1000 * UNIT);
     }
+  });
 
+  it("withdraw: пустой vault отклоняет вывод", async () => {
+    let failed = false;
+    try {
+      await withdraw(userA, UNIT);
+    } catch {
+      failed = true;
+    }
+    assert.isTrue(failed, "из пустого vault нельзя вывести токены");
+  });
+
+  it("deposit: A вносит 100 токенов → получает 100 shares", async () => {
     await deposit(userA, 100 * UNIT);
 
     const shares = await getAccount(provider.connection, shareAcc[userA.publicKey.toBase58()]);
@@ -256,5 +282,222 @@ describe("simple_vault", () => {
       failed = true;
     }
     assert.isTrue(failed, "нулевой депозит должен быть отклонён");
+  });
+
+  it("withdraw: A возвращает половину shares и получает токены", async () => {
+    await withdraw(userA, 50 * UNIT);
+
+    const shares = await getAccount(provider.connection, shareAcc[userA.publicKey.toBase58()]);
+    const userTokens = await getAccount(provider.connection, tokenAcc[userA.publicKey.toBase58()]);
+    const vaultTokens = await getAccount(provider.connection, vaultTokenAccountPDA);
+    const vault = await program.account.vaultState.fetch(vaultStatePDA);
+    const card = await program.account.userCard.fetch(cardPda(userA.publicKey));
+
+    assert.equal(shares.amount, BigInt(50 * UNIT));
+    assert.equal(userTokens.amount, BigInt(950 * UNIT));
+    assert.equal(vaultTokens.amount, BigInt(100 * UNIT));
+    assert.equal(vault.totalTokens.toNumber(), 100 * UNIT);
+    assert.equal(vault.totalShares.toNumber(), 100 * UNIT);
+    assert.equal(card.deposited.toNumber(), 50 * UNIT);
+    assert.equal(card.shares.toNumber(), 50 * UNIT);
+  });
+
+  it("withdraw: B возвращает все shares", async () => {
+    await withdraw(userB, 50 * UNIT);
+
+    const shares = await getAccount(provider.connection, shareAcc[userB.publicKey.toBase58()]);
+    const userTokens = await getAccount(provider.connection, tokenAcc[userB.publicKey.toBase58()]);
+    const vaultTokens = await getAccount(provider.connection, vaultTokenAccountPDA);
+    const vault = await program.account.vaultState.fetch(vaultStatePDA);
+    const card = await program.account.userCard.fetch(cardPda(userB.publicKey));
+
+    assert.equal(shares.amount, BigInt(0));
+    assert.equal(userTokens.amount, BigInt(1000 * UNIT));
+    assert.equal(vaultTokens.amount, BigInt(50 * UNIT));
+    assert.equal(vault.totalTokens.toNumber(), 50 * UNIT);
+    assert.equal(vault.totalShares.toNumber(), 50 * UNIT);
+    assert.equal(card.deposited.toNumber(), 0);
+    assert.equal(card.shares.toNumber(), 0);
+  });
+
+  it("withdraw: нулевое количество shares отклоняется", async () => {
+    let failed = false;
+    try {
+      await withdraw(userA, 0);
+    } catch {
+      failed = true;
+    }
+    assert.isTrue(failed, "нулевой вывод должен быть отклонён");
+  });
+
+  it("withdraw: нехватка shares отклоняется без частичных изменений", async () => {
+    const vaultBefore = await program.account.vaultState.fetch(vaultStatePDA);
+    const cardBefore = await program.account.userCard.fetch(cardPda(userA.publicKey));
+    const sharesBefore = await getAccount(
+      provider.connection,
+      shareAcc[userA.publicKey.toBase58()]
+    );
+    const userTokensBefore = await getAccount(
+      provider.connection,
+      tokenAcc[userA.publicKey.toBase58()]
+    );
+    const vaultTokensBefore = await getAccount(provider.connection, vaultTokenAccountPDA);
+
+    let failed = false;
+    try {
+      await withdraw(userA, 50 * UNIT + 1);
+    } catch {
+      failed = true;
+    }
+    assert.isTrue(failed, "нельзя сжечь больше shares, чем есть на аккаунте");
+
+    const vaultAfter = await program.account.vaultState.fetch(vaultStatePDA);
+    const cardAfter = await program.account.userCard.fetch(cardPda(userA.publicKey));
+    const sharesAfter = await getAccount(provider.connection, shareAcc[userA.publicKey.toBase58()]);
+    const userTokensAfter = await getAccount(
+      provider.connection,
+      tokenAcc[userA.publicKey.toBase58()]
+    );
+    const vaultTokensAfter = await getAccount(provider.connection, vaultTokenAccountPDA);
+
+    assert.equal(vaultAfter.totalTokens.toNumber(), vaultBefore.totalTokens.toNumber());
+    assert.equal(vaultAfter.totalShares.toNumber(), vaultBefore.totalShares.toNumber());
+    assert.equal(cardAfter.deposited.toNumber(), cardBefore.deposited.toNumber());
+    assert.equal(cardAfter.shares.toNumber(), cardBefore.shares.toNumber());
+    assert.equal(sharesAfter.amount, sharesBefore.amount);
+    assert.equal(userTokensAfter.amount, userTokensBefore.amount);
+    assert.equal(vaultTokensAfter.amount, vaultTokensBefore.amount);
+  });
+
+  it("withdraw: без UserCard операция отклоняется", async () => {
+    let failed = false;
+    try {
+      await withdraw(userC, UNIT);
+    } catch {
+      failed = true;
+    }
+    assert.isTrue(failed, "вывод без карточки должен быть отклонён");
+  });
+
+  it("withdraw: подмена UserCard или share mint отклоняется", async () => {
+    let wrongCardFailed = false;
+    try {
+      await program.methods
+        .withdraw(new anchor.BN(UNIT))
+        .accounts({
+          vaultState: vaultStatePDA,
+          userCard: cardPda(userB.publicKey),
+          vaultTokenAccount: vaultTokenAccountPDA,
+          shareMint: shareMintPDA,
+          userTokenAccount: tokenAcc[userA.publicKey.toBase58()],
+          userShareAccount: shareAcc[userA.publicKey.toBase58()],
+          user: userA.publicKey,
+        } as any)
+        .signers([userA])
+        .rpc();
+    } catch {
+      wrongCardFailed = true;
+    }
+    assert.isTrue(wrongCardFailed, "чужая UserCard должна быть отклонена");
+
+    let wrongMintFailed = false;
+    try {
+      await program.methods
+        .withdraw(new anchor.BN(UNIT))
+        .accounts({
+          vaultState: vaultStatePDA,
+          userCard: cardPda(userA.publicKey),
+          vaultTokenAccount: vaultTokenAccountPDA,
+          shareMint: tokenMint,
+          userTokenAccount: tokenAcc[userA.publicKey.toBase58()],
+          userShareAccount: shareAcc[userA.publicKey.toBase58()],
+          user: userA.publicKey,
+        } as any)
+        .signers([userA])
+        .rpc();
+    } catch {
+      wrongMintFailed = true;
+    }
+    assert.isTrue(wrongMintFailed, "неверный share mint должен быть отклонён");
+
+    let wrongVaultFailed = false;
+    try {
+      await program.methods
+        .withdraw(new anchor.BN(UNIT))
+        .accounts({
+          vaultState: cardPda(userA.publicKey),
+          userCard: cardPda(userA.publicKey),
+          vaultTokenAccount: vaultTokenAccountPDA,
+          shareMint: shareMintPDA,
+          userTokenAccount: tokenAcc[userA.publicKey.toBase58()],
+          userShareAccount: shareAcc[userA.publicKey.toBase58()],
+          user: userA.publicKey,
+        } as any)
+        .signers([userA])
+        .rpc();
+    } catch {
+      wrongVaultFailed = true;
+    }
+    assert.isTrue(wrongVaultFailed, "неверный Vault PDA должен быть отклонён");
+
+    let wrongVaultTokenAccountFailed = false;
+    try {
+      await program.methods
+        .withdraw(new anchor.BN(UNIT))
+        .accounts({
+          vaultState: vaultStatePDA,
+          userCard: cardPda(userA.publicKey),
+          vaultTokenAccount: tokenAcc[userA.publicKey.toBase58()],
+          shareMint: shareMintPDA,
+          userTokenAccount: tokenAcc[userA.publicKey.toBase58()],
+          userShareAccount: shareAcc[userA.publicKey.toBase58()],
+          user: userA.publicKey,
+        } as any)
+        .signers([userA])
+        .rpc();
+    } catch {
+      wrongVaultTokenAccountFailed = true;
+    }
+    assert.isTrue(wrongVaultTokenAccountFailed, "неверный token account Vault должен быть отклонён");
+
+    let wrongUserTokenAccountFailed = false;
+    try {
+      await program.methods
+        .withdraw(new anchor.BN(UNIT))
+        .accounts({
+          vaultState: vaultStatePDA,
+          userCard: cardPda(userA.publicKey),
+          vaultTokenAccount: vaultTokenAccountPDA,
+          shareMint: shareMintPDA,
+          userTokenAccount: shareAcc[userA.publicKey.toBase58()],
+          userShareAccount: shareAcc[userA.publicKey.toBase58()],
+          user: userA.publicKey,
+        } as any)
+        .signers([userA])
+        .rpc();
+    } catch {
+      wrongUserTokenAccountFailed = true;
+    }
+    assert.isTrue(wrongUserTokenAccountFailed, "неверный mint пользовательского token account должен быть отклонён");
+
+    let wrongShareTokenAccountFailed = false;
+    try {
+      await program.methods
+        .withdraw(new anchor.BN(UNIT))
+        .accounts({
+          vaultState: vaultStatePDA,
+          userCard: cardPda(userA.publicKey),
+          vaultTokenAccount: vaultTokenAccountPDA,
+          shareMint: shareMintPDA,
+          userTokenAccount: tokenAcc[userA.publicKey.toBase58()],
+          userShareAccount: tokenAcc[userA.publicKey.toBase58()],
+          user: userA.publicKey,
+        } as any)
+        .signers([userA])
+        .rpc();
+    } catch {
+      wrongShareTokenAccountFailed = true;
+    }
+    assert.isTrue(wrongShareTokenAccountFailed, "неверный mint share account должен быть отклонён");
   });
 });
