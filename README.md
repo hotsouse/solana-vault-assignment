@@ -1,100 +1,48 @@
-# Simple Vault — Week 10
+# Simple Vault — Week 11
 
-Учебный проект на Solana и Anchor. Vault принимает SPL-токены и выдаёт shares, которые отражают долю пользователя. В Week 10 добавлен обратный обмен shares на токены.
+В этой неделе к учебному проекту добавлен отдельный TypeScript-скрипт. Он создаёт два SPL-токена и пул Raydium CLMM в Solana Devnet. Код контракта Simple Vault и его Program ID не менялись.
 
-## Что реализовано
+## AMM и CLMM
 
-- `initialize_vault` создаёт состояние Vault, токен-аккаунт и mint для shares.
-- `create_user_card` создаёт PDA-карточку пользователя.
-- `deposit(amount)` переводит токены в Vault через Token Program CPI, выпускает shares и обновляет состояние.
-- `withdraw(shares_amount)` сжигает shares пользователя через CPI и переводит ему токены из Vault через CPI с подписью Vault PDA.
+AMM — это обмен токенов через пул и формулу цены, без биржевого стакана. В CLMM поставщик ликвидности выбирает диапазон цены, в котором его средства участвуют в обменах. На этой неделе создаётся только сам пул: swap, позиции и добавление ликвидности не выполняются.
 
-Обмены, Raydium и CLMM в проект не входят.
+TOKEN_A и TOKEN_B — собственные тестовые SPL-токены для учебной пары. Скрипт создаёт для каждого mint с 6 decimals и выпускает по 1 000 000 токенов на настроенный кошелёк Devnet. Суммы считаются в целых базовых единицах: `1_000_000_000_000` на каждый токен.
 
-## Расчёт и проверки вывода
+## Запуск
 
-Количество выдаваемых токенов рассчитывается так:
-
-```text
-tokens_out = shares_amount × total_tokens / total_shares
-```
-
-Произведение вычисляется в `u128`, деление целочисленное, остаток отбрасывается. Нулевые shares, пустой Vault, нулевой результат и арифметическая ошибка отклоняются. Anchor проверяет PDA Vault, UserCard, token account и share mint, а Token Program проверяет владельцев аккаунтов и достаточность shares.
-
-Транзакция атомарна: если сжигание shares или перевод токенов завершается ошибкой, изменения балансов и состояния откатываются. При переводе из Vault программа подписывает CPI за PDA с seeds `[b"vault", token_mint, bump]`. Этот же PDA является authority токен-аккаунта Vault и mint для shares.
-
-## Структура проекта
-
-- `programs/simple_vault/src/lib.rs` — инструкции, аккаунты и ошибки.
-- `tests/vault.ts` — Anchor integration tests с проверкой SPL- и program-account балансов.
-- `Anchor.toml` — настройки Anchor и Program ID.
-- `Cargo.toml` — Rust workspace.
-- `package.json` — команды и зависимости TypeScript.
-
-## Окружение и запуск
-
-Проект проверялся в Ubuntu WSL с Anchor 0.31.1, Solana CLI 2.3.0, Rust/Cargo и Node.js 18.19.1. При `npm ci` npm предупредил, что несколько транзитивных пакетов предпочитают Node 20; установка завершилась, TypeScript и integration tests прошли на Node 18.
-
-Установка JavaScript-зависимостей:
+Нужны Node.js 18+, npm, Solana CLI и кошелёк с SOL именно в Devnet. Секретный файл кошелька должен быть доступен через `ANCHOR_WALLET` или находиться по адресу `~/.config/solana/id.json`. Для RPC можно задать `DEVNET_RPC`; иначе используется публичный Devnet RPC.
 
 ```bash
-npm ci
+npm install
+npm run typecheck
+npm run create-pool
 ```
 
-Проверка форматирования и сборка:
+`create-pool` запускает `scripts/create-clmm-pool.ts`. Скрипт проверяет mint authority, decimals, supply и баланс токен-аккаунта. Состояние выполнения хранится локально в игнорируемом `.devnet-pool-progress.json`, чтобы продолжить после частичного сбоя. При повторном запуске уже созданные mint’ы и пул переиспользуются.
 
-```bash
-cargo fmt --check
-cargo check --workspace
-/home/aigerim/.avm/bin/anchor-0.31.1 build
-```
+Скрипт запрашивает комиссии из Raydium Devnet API и требует строгое совпадение `tickSpacing = 60` и `tradeFeeRate = 2500`, то есть 0,25%. Если такого конфига нет, скрипт прекращает работу. Для пары с одинаковыми decimals начальная цена задаётся как `1 TOKEN_A = 1 TOKEN_B`. При создании пула используется Raydium CLMM Program ID Devnet `DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH`.
 
-Запуск тестов на Windows-mounted WSL каталоге:
+После подтверждения транзакции скрипт читает аккаунт пула напрямую через RPC и проверяет владельца, пару mint’ов, конфигурацию комиссии и начальную цену. Подтверждённые адреса записываются в локальный `devnet-pool.json`; оба JSON-файла исключены из Git.
 
-```bash
-solana-test-validator \
-  --ledger .anchor/week-10-test-ledger \
-  --mint "$(solana address)" \
-  --bpf-program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu \
-  target/deploy/simple_vault.so
-```
+## Результат Devnet
 
-В другом терминале WSL:
+- Кошелёк: `3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7`
+- TOKEN_A mint: `7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF` — 1 000 000 токенов, 6 decimals.
+- TOKEN_B mint: `CwHVUNisByLqXM7mN47nhtcfG8AkYxeJ3tBdFB66yZAt` — 1 000 000 токенов, 6 decimals.
+- TOKEN_A mint transaction: [Solana Explorer](https://explorer.solana.com/tx/4RRrfDqJ9pPNMTWMbUz1xPcob7Ty4zbdBSoaqjbBri7zge4NbgTFpQB8TgzatrSHQ2YsZ1HHod2tXiTHRpw5MsAF?cluster=devnet); выпуск токенов: [Explorer](https://explorer.solana.com/tx/4Xv9nurdDuyyKiaJxiPJfKG41c9Ui89pd4MsGpD8K3V4WKh5H3JtYpzodEGT8P4TpQ1vHCB6UJ2LUJmXe9EzzMAS?cluster=devnet).
+- TOKEN_B mint transaction: [Solana Explorer](https://explorer.solana.com/tx/4WnHyyzrEFBoys2mtvHf2aBMY3HGdHXbbJRk964sCWf3r4b5zoXwxNFfh3aXUuyscCVkfyNz7664zUfFNBzFztVM?cluster=devnet); выпуск токенов: [Explorer](https://explorer.solana.com/tx/2Xs8CZwutqCaBKErSY4TZed6if64w7x2QTbKLLiCZ2y2WU1rj1vJBSUnnf19UqHmpxseKWsLSuk3tSgDhXoqrXgM?cluster=devnet).
+- CLMM pool: `EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f` — [Solana Explorer](https://explorer.solana.com/address/EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f?cluster=devnet).
+- Создание пула: [подтверждённая транзакция](https://explorer.solana.com/tx/3gbxWcfF3vEKsvYq3pd9pGgPxLVUM992shCRvQKBNiMdCsV9ms6BpwuMDzxHZPm3jBWCrqsHqyfRqrtXqbPYPtQ5?cluster=devnet). `solana confirm` вернул `Finalized`.
+- Fee config: `CD4aJtX11cqTCAc83nxSPkkh5JW2yjD6uwHeovjqQ1qu`; tick spacing 60; комиссия 0,25%; начальная цена 1:1.
+- Проверено через RPC: mint’ы имеют 6 decimals, supply и баланс кошелька равны `1_000_000_000_000` базовых единиц на токен; аккаунт пула существует и принадлежит указанной программе Raydium CLMM. SDK подтвердил mint’ы, fee config и цену пула.
 
-```bash
-export ANCHOR_PROVIDER_URL="http://127.0.0.1:8899"
-export ANCHOR_WALLET="$HOME/.config/solana/id.json"
-./node_modules/.bin/ts-mocha -p ./tsconfig.json -t 1000000 tests/vault.ts
-```
+## Проверки и файлы
 
-Локальный валидатор не требует Devnet SOL. Тесты проверяют создание Vault и карточек, депозиты, частичный и полный вывод, фактическое сжигание shares и перевод SPL-токенов, обновление VaultState/UserCard, неверные аккаунты и откат транзакции при нехватке shares.
+- `npm run typecheck` — успешно для `scripts/create-clmm-pool.ts`.
+- `npm run create-pool` — успешно; повторный запуск нашёл существующие mint’ы и пул, проверил их и не отправлял повторные транзакции.
+- Anchor-контракт на этой неделе не собирался и не развёртывался: он не менялся, а для создания пула это не требуется.
+- Адреса и подписи транзакций также сохранены локально в `devnet-pool.json`.
 
-На WSL, если проект находится под `/mnt/c`, `anchor test` может завершить тесты успешно, но вернуть ошибку `No such file or directory` при очистке validator admin socket: этот Unix socket не создаётся на Windows-mounted файловой системе. Поэтому выше валидатор запускается отдельно, а integration suite вызывается через `ts-mocha`.
+Основные файлы: `scripts/create-clmm-pool.ts` — создание и проверка токенов/пула; `package.json` — команды и зависимости; `tsconfig.json` — настройки TypeScript. `devnet-pool.json` и файл продолжения скрипта не коммитятся.
 
-TypeScript можно проверить отдельно:
-
-```bash
-npx tsc --noEmit
-```
-
-## Результаты проверки
-
-Результаты запуска в WSL:
-
-- `cargo fmt --check` — успешно.
-- `cargo check --workspace` — успешно; остались предупреждения от Anchor macro о `cfg` и deprecated `realloc`.
-- Anchor/SBF build — успешно; те же предупреждения макросов, ошибок сборки нет.
-- `cargo test --workspace` — 4 passed, 0 failed.
-- TypeScript: `npx tsc --noEmit` — успешно.
-- Integration tests: 17 passed, 0 failed на локальном Solana validator.
-- `git diff --check` — успешно.
-
-Devnet-развёртывание не выполнялось. Локальные проверки не подтверждают наличие программы в Devnet.
-
-## Program ID
-
-```text
-EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu
-```
-
-В Week 10 используется тот же Program ID, что и в исходной Week 9. В этой работе проверяется локальная сборка и локальный валидатор; подтверждённого развёртывания Week 10 в Devnet нет.
+В Week 10 остались прежними инструкции `initialize_vault`, `create_user_card`, `deposit`, `withdraw`, структуры состояния и Program ID. История Week 8–10 не изменялась.

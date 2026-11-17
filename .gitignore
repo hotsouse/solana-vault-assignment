@@ -16,6 +16,10 @@ yarn-error.log
 wallet.json
 id.json
 devnet-wallet.json
+devnet-pool.json
+.devnet-pool-progress.json
+.devnet-pool-progress.json.tmp
+devnet-pool.json.tmp
 
 # IDE / OS
 .DS_Store
