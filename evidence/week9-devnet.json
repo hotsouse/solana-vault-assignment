@@ -1,0 +1,1173 @@
+{
+  "schemaVersion": 1,
+  "status": "completed",
+  "cluster": "devnet",
+  "rpc": "https://api.devnet.solana.com",
+  "startedAt": "2026-11-18T22:09:44.880Z",
+  "programId": "EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu",
+  "payer": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+  "decimals": 6,
+  "amountsAre": "Raw integer base units; divide by 1000000 for tokens/shares",
+  "transactions": [
+    {
+      "label": "create_mint",
+      "signature": "2dyrWVj8qG9qkUJtfFbMwhkWvfv39Sbu4ahy7fzLaa4nAiXpQ544syRTBxGr2xeSwz1c97kjUdqKEHps29X6SZ5o",
+      "explorer": "https://explorer.solana.com/tx/2dyrWVj8qG9qkUJtfFbMwhkWvfv39Sbu4ahy7fzLaa4nAiXpQ544syRTBxGr2xeSwz1c97kjUdqKEHps29X6SZ5o?cluster=devnet",
+      "slot": 523775888,
+      "blockTime": 1795039788,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "feeLamports": 10000,
+      "logs": [
+        "Program 11111111111111111111111111111111 invoke [1]",
+        "Program 11111111111111111111111111111111 success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 202 of 202850 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success"
+      ],
+      "preTokenBalances": [],
+      "postTokenBalances": []
+    },
+    {
+      "label": "initialize_vault",
+      "signature": "4e2XPhVCcbGSpwHdKxZQhg6tYGiif12y9dnSkvQPiFomwfcDVmGAe5BKH165mAXmePuYHNsVLcRD59LfHXKNMnsq",
+      "explorer": "https://explorer.solana.com/tx/4e2XPhVCcbGSpwHdKxZQhg6tYGiif12y9dnSkvQPiFomwfcDVmGAe5BKH165mAXmePuYHNsVLcRD59LfHXKNMnsq?cluster=devnet",
+      "slot": 523775895,
+      "blockTime": 1795039789,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "feeLamports": 5000,
+      "logs": [
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu invoke [1]",
+        "Program log: Instruction: InitializeVault",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 233 of 181385 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 202 of 172962 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program log: Vault initialized for mint: 8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu consumed 32665 of 200000 compute units",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu success"
+      ],
+      "preTokenBalances": [],
+      "postTokenBalances": [
+        {
+          "accountIndex": 1,
+          "mint": "8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+          "owner": "HjFxF67AAe4j76Vsj2CyGQM9TxqZtkVLRK3ojYEzcWtK",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "0",
+            "decimals": 6,
+            "uiAmount": null,
+            "uiAmountString": "0"
+          }
+        }
+      ]
+    },
+    {
+      "label": "fund_users",
+      "signature": "52mXx1QGsX3gEo9uxPrRfxBAzQvntrkRuJwviiie9rLJ3EjK9uqPSUSedLu9fCvEocmn3ai9pn3SpKD9V4PTPip9",
+      "explorer": "https://explorer.solana.com/tx/52mXx1QGsX3gEo9uxPrRfxBAzQvntrkRuJwviiie9rLJ3EjK9uqPSUSedLu9fCvEocmn3ai9pn3SpKD9V4PTPip9?cluster=devnet",
+      "slot": 523775903,
+      "blockTime": 1795039791,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "feeLamports": 5000,
+      "logs": [
+        "Program 11111111111111111111111111111111 invoke [1]",
+        "Program 11111111111111111111111111111111 success",
+        "Program 11111111111111111111111111111111 invoke [1]",
+        "Program 11111111111111111111111111111111 success"
+      ],
+      "preTokenBalances": [],
+      "postTokenBalances": []
+    },
+    {
+      "label": "create_card_A",
+      "signature": "3WTQn9gntdpstT5KWSFe11n3ddUsRJ4vWMUAUzA8XcD6Jfw4dvmABjdhtxTs68F4Q6Z8BTAS5RuanxwC3KAJTL1P",
+      "explorer": "https://explorer.solana.com/tx/3WTQn9gntdpstT5KWSFe11n3ddUsRJ4vWMUAUzA8XcD6Jfw4dvmABjdhtxTs68F4Q6Z8BTAS5RuanxwC3KAJTL1P?cluster=devnet",
+      "slot": 523775929,
+      "blockTime": 1795039797,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "feeLamports": 10000,
+      "logs": [
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu invoke [1]",
+        "Program log: Instruction: CreateUserCard",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program log: User card created for: 5k4HRdtwxNyvvtFM2AZToRMWa2MDnm3862kwkXJVLttR",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu consumed 18741 of 200000 compute units",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu success"
+      ],
+      "preTokenBalances": [],
+      "postTokenBalances": []
+    },
+    {
+      "label": "prepare_tokens_A",
+      "signature": "3kFGsRpPcmCbfRqMhQUPi4WzmVdJ82U42RV5fNX8xmMXqADty4wgcPVghNBwq2GD2B14E4CJxBZ1uxF9UiXZCztx",
+      "explorer": "https://explorer.solana.com/tx/3kFGsRpPcmCbfRqMhQUPi4WzmVdJ82U42RV5fNX8xmMXqADty4wgcPVghNBwq2GD2B14E4CJxBZ1uxF9UiXZCztx?cluster=devnet",
+      "slot": 523775938,
+      "blockTime": 1795039799,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "feeLamports": 5000,
+      "logs": [
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [1]",
+        "Program log: Create",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 179 of 593111 compute units",
+        "Program return: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA pQAAAAAAAAA=",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program log: Initialize the associated token account",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 37 of 588022 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 233 of 585560 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 14977 of 600000 compute units",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [1]",
+        "Program log: Create",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 179 of 579632 compute units",
+        "Program return: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA pQAAAAAAAAA=",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program log: Initialize the associated token account",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 37 of 574543 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 233 of 572080 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 13480 of 585023 compute units",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 120 of 571543 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success"
+      ],
+      "preTokenBalances": [],
+      "postTokenBalances": [
+        {
+          "accountIndex": 1,
+          "mint": "HUgizXzrmCiCXpbE4QajXRV2JawBmxeCMZnGzGqd4iGi",
+          "owner": "5k4HRdtwxNyvvtFM2AZToRMWa2MDnm3862kwkXJVLttR",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "0",
+            "decimals": 6,
+            "uiAmount": null,
+            "uiAmountString": "0"
+          }
+        },
+        {
+          "accountIndex": 3,
+          "mint": "8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+          "owner": "5k4HRdtwxNyvvtFM2AZToRMWa2MDnm3862kwkXJVLttR",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "1000000000",
+            "decimals": 6,
+            "uiAmount": 1000,
+            "uiAmountString": "1000"
+          }
+        }
+      ]
+    },
+    {
+      "label": "create_card_B",
+      "signature": "64K27awDzhHFXTMTUGKm9EVkVV8HjXhEQAxXv9LoCnDRrqsYMFjs3RhP7124xumoCLsgh7YuF9LykPvWB71oPEnp",
+      "explorer": "https://explorer.solana.com/tx/64K27awDzhHFXTMTUGKm9EVkVV8HjXhEQAxXv9LoCnDRrqsYMFjs3RhP7124xumoCLsgh7YuF9LykPvWB71oPEnp?cluster=devnet",
+      "slot": 523775944,
+      "blockTime": 1795039801,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "feeLamports": 10000,
+      "logs": [
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu invoke [1]",
+        "Program log: Instruction: CreateUserCard",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program log: User card created for: 23sVgqJHXo2Hw6DBgNz7hPKeBEYNtUZKenR3hJTyqZoz",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu consumed 15741 of 200000 compute units",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu success"
+      ],
+      "preTokenBalances": [],
+      "postTokenBalances": []
+    },
+    {
+      "label": "prepare_tokens_B",
+      "signature": "3hcTq39J6s4DSZqSKPJubTsk4UQERW5r3NVmC2Y3NobTH5WQKFn6xCREe1kkzWwzUE3JkB7V1D44BBCRFwy8dDSc",
+      "explorer": "https://explorer.solana.com/tx/3hcTq39J6s4DSZqSKPJubTsk4UQERW5r3NVmC2Y3NobTH5WQKFn6xCREe1kkzWwzUE3JkB7V1D44BBCRFwy8dDSc?cluster=devnet",
+      "slot": 523775951,
+      "blockTime": 1795039803,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "feeLamports": 5000,
+      "logs": [
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [1]",
+        "Program log: Create",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 179 of 594611 compute units",
+        "Program return: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA pQAAAAAAAAA=",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program log: Initialize the associated token account",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 37 of 589522 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 233 of 587060 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 13477 of 600000 compute units",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [1]",
+        "Program log: Create",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 179 of 576632 compute units",
+        "Program return: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA pQAAAAAAAAA=",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program log: Initialize the associated token account",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 37 of 571543 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 233 of 569080 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 17980 of 586523 compute units",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 120 of 568543 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success"
+      ],
+      "preTokenBalances": [],
+      "postTokenBalances": [
+        {
+          "accountIndex": 1,
+          "mint": "8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+          "owner": "23sVgqJHXo2Hw6DBgNz7hPKeBEYNtUZKenR3hJTyqZoz",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "1000000000",
+            "decimals": 6,
+            "uiAmount": 1000,
+            "uiAmountString": "1000"
+          }
+        },
+        {
+          "accountIndex": 3,
+          "mint": "HUgizXzrmCiCXpbE4QajXRV2JawBmxeCMZnGzGqd4iGi",
+          "owner": "23sVgqJHXo2Hw6DBgNz7hPKeBEYNtUZKenR3hJTyqZoz",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "0",
+            "decimals": 6,
+            "uiAmount": null,
+            "uiAmountString": "0"
+          }
+        }
+      ]
+    },
+    {
+      "label": "deposit_A_100",
+      "signature": "3557xgkaNcQfKPMNpZfVxWSC4z3gydVjbao7coXbFXwrAzgS3CHvHLQXBXqWRCsZLADaHPbBBbtGNWfqNUHacrdx",
+      "explorer": "https://explorer.solana.com/tx/3557xgkaNcQfKPMNpZfVxWSC4z3gydVjbao7coXbFXwrAzgS3CHvHLQXBXqWRCsZLADaHPbBBbtGNWfqNUHacrdx?cluster=devnet",
+      "slot": 523775962,
+      "blockTime": 1795039805,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "feeLamports": 10000,
+      "logs": [
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu invoke [1]",
+        "Program log: Instruction: Deposit",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 76 of 181113 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 120 of 178630 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program log: Deposit: 100000000 tokens -> 100000000 shares (total_tokens=100000000, total_shares=100000000)",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu consumed 24111 of 200000 compute units",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu success"
+      ],
+      "preTokenBalances": [
+        {
+          "accountIndex": 3,
+          "mint": "HUgizXzrmCiCXpbE4QajXRV2JawBmxeCMZnGzGqd4iGi",
+          "owner": "5k4HRdtwxNyvvtFM2AZToRMWa2MDnm3862kwkXJVLttR",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "0",
+            "decimals": 6,
+            "uiAmount": null,
+            "uiAmountString": "0"
+          }
+        },
+        {
+          "accountIndex": 4,
+          "mint": "8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+          "owner": "HjFxF67AAe4j76Vsj2CyGQM9TxqZtkVLRK3ojYEzcWtK",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "0",
+            "decimals": 6,
+            "uiAmount": null,
+            "uiAmountString": "0"
+          }
+        },
+        {
+          "accountIndex": 6,
+          "mint": "8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+          "owner": "5k4HRdtwxNyvvtFM2AZToRMWa2MDnm3862kwkXJVLttR",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "1000000000",
+            "decimals": 6,
+            "uiAmount": 1000,
+            "uiAmountString": "1000"
+          }
+        }
+      ],
+      "postTokenBalances": [
+        {
+          "accountIndex": 3,
+          "mint": "HUgizXzrmCiCXpbE4QajXRV2JawBmxeCMZnGzGqd4iGi",
+          "owner": "5k4HRdtwxNyvvtFM2AZToRMWa2MDnm3862kwkXJVLttR",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "100000000",
+            "decimals": 6,
+            "uiAmount": 100,
+            "uiAmountString": "100"
+          }
+        },
+        {
+          "accountIndex": 4,
+          "mint": "8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+          "owner": "HjFxF67AAe4j76Vsj2CyGQM9TxqZtkVLRK3ojYEzcWtK",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "100000000",
+            "decimals": 6,
+            "uiAmount": 100,
+            "uiAmountString": "100"
+          }
+        },
+        {
+          "accountIndex": 6,
+          "mint": "8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+          "owner": "5k4HRdtwxNyvvtFM2AZToRMWa2MDnm3862kwkXJVLttR",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "900000000",
+            "decimals": 6,
+            "uiAmount": 900,
+            "uiAmountString": "900"
+          }
+        }
+      ]
+    },
+    {
+      "label": "deposit_B_50",
+      "signature": "cT67q4XcdUUuGvWjUDzYBxZ7PV4bmUBPSRhY9zfc3iuCxN9M9j1hpE9J7xcPmR3JxTbSRePXVhEkkD7Y28hcLhq",
+      "explorer": "https://explorer.solana.com/tx/cT67q4XcdUUuGvWjUDzYBxZ7PV4bmUBPSRhY9zfc3iuCxN9M9j1hpE9J7xcPmR3JxTbSRePXVhEkkD7Y28hcLhq?cluster=devnet",
+      "slot": 523775975,
+      "blockTime": 1795039808,
+      "confirmationStatus": "finalized",
+      "err": null,
+      "feeLamports": 10000,
+      "logs": [
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu invoke [1]",
+        "Program log: Instruction: Deposit",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 76 of 180859 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 120 of 178376 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program log: Deposit: 50000000 tokens -> 50000000 shares (total_tokens=150000000, total_shares=150000000)",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu consumed 24333 of 200000 compute units",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu success"
+      ],
+      "preTokenBalances": [
+        {
+          "accountIndex": 2,
+          "mint": "8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+          "owner": "23sVgqJHXo2Hw6DBgNz7hPKeBEYNtUZKenR3hJTyqZoz",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "1000000000",
+            "decimals": 6,
+            "uiAmount": 1000,
+            "uiAmountString": "1000"
+          }
+        },
+        {
+          "accountIndex": 3,
+          "mint": "HUgizXzrmCiCXpbE4QajXRV2JawBmxeCMZnGzGqd4iGi",
+          "owner": "23sVgqJHXo2Hw6DBgNz7hPKeBEYNtUZKenR3hJTyqZoz",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "0",
+            "decimals": 6,
+            "uiAmount": null,
+            "uiAmountString": "0"
+          }
+        },
+        {
+          "accountIndex": 5,
+          "mint": "8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+          "owner": "HjFxF67AAe4j76Vsj2CyGQM9TxqZtkVLRK3ojYEzcWtK",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "100000000",
+            "decimals": 6,
+            "uiAmount": 100,
+            "uiAmountString": "100"
+          }
+        }
+      ],
+      "postTokenBalances": [
+        {
+          "accountIndex": 2,
+          "mint": "8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+          "owner": "23sVgqJHXo2Hw6DBgNz7hPKeBEYNtUZKenR3hJTyqZoz",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "950000000",
+            "decimals": 6,
+            "uiAmount": 950,
+            "uiAmountString": "950"
+          }
+        },
+        {
+          "accountIndex": 3,
+          "mint": "HUgizXzrmCiCXpbE4QajXRV2JawBmxeCMZnGzGqd4iGi",
+          "owner": "23sVgqJHXo2Hw6DBgNz7hPKeBEYNtUZKenR3hJTyqZoz",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "50000000",
+            "decimals": 6,
+            "uiAmount": 50,
+            "uiAmountString": "50"
+          }
+        },
+        {
+          "accountIndex": 5,
+          "mint": "8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+          "owner": "HjFxF67AAe4j76Vsj2CyGQM9TxqZtkVLRK3ojYEzcWtK",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "150000000",
+            "decimals": 6,
+            "uiAmount": 150,
+            "uiAmountString": "150"
+          }
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "Expected upgrade authority",
+      "passed": true
+    },
+    {
+      "name": "Full IDL setup and positive deposit simulation",
+      "passed": true
+    },
+    {
+      "name": "VaultState layout and simulated totals",
+      "passed": true
+    },
+    {
+      "name": "UserCard layout and simulated totals",
+      "passed": true
+    },
+    {
+      "name": "IDL ZeroAmount error 6000 in preflight simulation",
+      "passed": true
+    },
+    {
+      "name": "Payer has sufficient Devnet SOL",
+      "passed": true
+    },
+    {
+      "name": "create_mint finalized, RPC status and meta.err null",
+      "passed": true
+    },
+    {
+      "name": "initialize_vault finalized, RPC status and meta.err null",
+      "passed": true
+    },
+    {
+      "name": "fund_users finalized, RPC status and meta.err null",
+      "passed": true
+    },
+    {
+      "name": "create_card_A finalized, RPC status and meta.err null",
+      "passed": true
+    },
+    {
+      "name": "prepare_tokens_A finalized, RPC status and meta.err null",
+      "passed": true
+    },
+    {
+      "name": "create_card_B finalized, RPC status and meta.err null",
+      "passed": true
+    },
+    {
+      "name": "prepare_tokens_B finalized, RPC status and meta.err null",
+      "passed": true
+    },
+    {
+      "name": "Snapshot slot 523775952: account owners, layout and links",
+      "passed": true
+    },
+    {
+      "name": "Snapshot slot 523775952: mint decimals and authority",
+      "passed": true
+    },
+    {
+      "name": "Before A: userTokensA",
+      "passed": true
+    },
+    {
+      "name": "Before A: userTokensB",
+      "passed": true
+    },
+    {
+      "name": "Before A: vaultTokens",
+      "passed": true
+    },
+    {
+      "name": "Before A: userSharesA",
+      "passed": true
+    },
+    {
+      "name": "Before A: userSharesB",
+      "passed": true
+    },
+    {
+      "name": "Before A: shareSupply",
+      "passed": true
+    },
+    {
+      "name": "Before A: totalTokens",
+      "passed": true
+    },
+    {
+      "name": "Before A: totalShares",
+      "passed": true
+    },
+    {
+      "name": "Before A: UserCard A",
+      "passed": true
+    },
+    {
+      "name": "Before A: UserCard B",
+      "passed": true
+    },
+    {
+      "name": "deposit_A_100 finalized, RPC status and meta.err null",
+      "passed": true
+    },
+    {
+      "name": "Snapshot slot 523775963: account owners, layout and links",
+      "passed": true
+    },
+    {
+      "name": "Snapshot slot 523775963: mint decimals and authority",
+      "passed": true
+    },
+    {
+      "name": "After A / before B: userTokensA",
+      "passed": true
+    },
+    {
+      "name": "After A / before B: userTokensB",
+      "passed": true
+    },
+    {
+      "name": "After A / before B: vaultTokens",
+      "passed": true
+    },
+    {
+      "name": "After A / before B: userSharesA",
+      "passed": true
+    },
+    {
+      "name": "After A / before B: userSharesB",
+      "passed": true
+    },
+    {
+      "name": "After A / before B: shareSupply",
+      "passed": true
+    },
+    {
+      "name": "After A / before B: totalTokens",
+      "passed": true
+    },
+    {
+      "name": "After A / before B: totalShares",
+      "passed": true
+    },
+    {
+      "name": "After A / before B: UserCard A",
+      "passed": true
+    },
+    {
+      "name": "After A / before B: UserCard B",
+      "passed": true
+    },
+    {
+      "name": "B formula: 50000000 * 100000000 / 100000000 = 50000000",
+      "passed": true
+    },
+    {
+      "name": "deposit_B_50 finalized, RPC status and meta.err null",
+      "passed": true
+    },
+    {
+      "name": "Snapshot slot 523775977: account owners, layout and links",
+      "passed": true
+    },
+    {
+      "name": "Snapshot slot 523775977: mint decimals and authority",
+      "passed": true
+    },
+    {
+      "name": "After B: userTokensA",
+      "passed": true
+    },
+    {
+      "name": "After B: userTokensB",
+      "passed": true
+    },
+    {
+      "name": "After B: vaultTokens",
+      "passed": true
+    },
+    {
+      "name": "After B: userSharesA",
+      "passed": true
+    },
+    {
+      "name": "After B: userSharesB",
+      "passed": true
+    },
+    {
+      "name": "After B: shareSupply",
+      "passed": true
+    },
+    {
+      "name": "After B: totalTokens",
+      "passed": true
+    },
+    {
+      "name": "After B: totalShares",
+      "passed": true
+    },
+    {
+      "name": "After B: UserCard A",
+      "passed": true
+    },
+    {
+      "name": "After B: UserCard B",
+      "passed": true
+    },
+    {
+      "name": "Zero deposit rejected with custom error 6000",
+      "passed": true
+    },
+    {
+      "name": "Snapshot slot 523775983: account owners, layout and links",
+      "passed": true
+    },
+    {
+      "name": "Snapshot slot 523775983: mint decimals and authority",
+      "passed": true
+    },
+    {
+      "name": "Zero simulation leaves all balances and counters unchanged",
+      "passed": true
+    },
+    {
+      "name": "Program executable unchanged throughout run",
+      "passed": true
+    }
+  ],
+  "compatibility": {
+    "deployed": {
+      "programData": "DsJEjWhUVM6urN6Yor9ZnnBNv2coQopDLWpJqr9gAFNa",
+      "upgradeAuthority": "38afxYQhjGKgyoWEsKhAZ85xkdCj3z6bj3YU5RY74mR1",
+      "deployedSlot": "518592305",
+      "executableBytes": 445624,
+      "executableSha256": "70b47924839245da06b69eb97e16e82104708137d0193bdf885896d535ecf4a0"
+    },
+    "idlSha256": "dfa13ea93fbfafbffab0ac2c4da778edc0a476cc4924bda4c3fadba2c08a8bd9",
+    "localBinarySha256": "3c9c5c8ef72a37c5e3c766d3f9eeab96f37e13a5be71f888ba00b50f47720359",
+    "scope": "Behavioral compatibility of Week 9 instructions, PDA seeds and decoded account layouts; binary identity is NOT claimed. Devnet also contains Withdraw. Published IDL account is absent.",
+    "positiveSimulation": {
+      "accounts": [
+        {
+          "data": [
+            "5MRSpWLS65goqJO3lMoau9HpH/kgHWzCtIDMeN310avz6KeZ+i2BLnSD+pqnFnRUt//Kz2yWCbsh2zPrQtFzW7iqACgR6wvu5hf3QHamsZ4LYg7Y0259eEttxT9e8pWDo3ut+TxNE7D00pa3aUykhCBX3lFhLMAUMxInYBoeCwumaGfxZ3W2SwDh9QUAAAAAAOH1BQAAAAD/",
+            "base64"
+          ],
+          "executable": false,
+          "lamports": 1427480,
+          "owner": "EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu",
+          "rentEpoch": 18446744073709552000,
+          "space": 153
+        },
+        {
+          "data": [
+            "Y5yFVcA6ygr4jkqmyRq7//zZKGgToj1WSdSvgSw2ST9KIKR9S/OynCiok7eUyhq70ekf+SAdbMK0gMx43fXRq/Pop5n6LYEuAOH1BQAAAAAA4fUFAAAAAP4=",
+            "base64"
+          ],
+          "executable": false,
+          "lamports": 1102360,
+          "owner": "EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu",
+          "rentEpoch": 18446744073709552000,
+          "space": 89
+        }
+      ],
+      "err": null,
+      "fee": 10000,
+      "innerInstructions": null,
+      "loadedAccountsDataSize": 660047,
+      "loadedAddresses": {
+        "readonly": [],
+        "writable": []
+      },
+      "logs": [
+        "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+        "Program ComputeBudget111111111111111111111111111111 success",
+        "Program 11111111111111111111111111111111 invoke [1]",
+        "Program 11111111111111111111111111111111 success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 202 of 999700 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu invoke [1]",
+        "Program log: Instruction: InitializeVault",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 233 of 980886 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 202 of 972463 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program log: Vault initialized for mint: 8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu consumed 32662 of 999498 compute units",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu success",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu invoke [1]",
+        "Program log: Instruction: CreateUserCard",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program log: User card created for: 3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu consumed 14239 of 966836 compute units",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [1]",
+        "Program log: Create",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 179 of 947288 compute units",
+        "Program return: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA pQAAAAAAAAA=",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program log: Initialize the associated token account",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 37 of 942199 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 233 of 939740 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 13373 of 952597 compute units",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [1]",
+        "Program log: Create",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 179 of 930913 compute units",
+        "Program return: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA pQAAAAAAAAA=",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program log: Initialize the associated token account",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 37 of 925824 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 233 of 923364 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 16376 of 939224 compute units",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 120 of 922848 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu invoke [1]",
+        "Program log: Instruction: Deposit",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 76 of 903841 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 120 of 901358 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program log: Deposit: 100000000 tokens -> 100000000 shares (total_tokens=100000000, total_shares=100000000)",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu consumed 24111 of 922728 compute units",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu success"
+      ],
+      "postBalances": [
+        3375163415,
+        1066800,
+        1427480,
+        1488440,
+        1066800,
+        1102360,
+        1488440,
+        1488440,
+        1,
+        1,
+        20508277856,
+        1141440,
+        1009200,
+        5938070540
+      ],
+      "postTokenBalances": [
+        {
+          "accountIndex": 3,
+          "mint": "8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+          "owner": "HjFxF67AAe4j76Vsj2CyGQM9TxqZtkVLRK3ojYEzcWtK",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "100000000",
+            "decimals": 6,
+            "uiAmount": 100,
+            "uiAmountString": "100"
+          }
+        },
+        {
+          "accountIndex": 6,
+          "mint": "8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+          "owner": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "0",
+            "decimals": 6,
+            "uiAmount": 0,
+            "uiAmountString": "0"
+          }
+        },
+        {
+          "accountIndex": 7,
+          "mint": "HUgizXzrmCiCXpbE4QajXRV2JawBmxeCMZnGzGqd4iGi",
+          "owner": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+          "programId": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "uiTokenAmount": {
+            "amount": "100000000",
+            "decimals": 6,
+            "uiAmount": 100,
+            "uiAmountString": "100"
+          }
+        }
+      ],
+      "preBalances": [
+        3384302175,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        20508277856,
+        1141440,
+        1009200,
+        5938070540
+      ],
+      "preTokenBalances": [],
+      "replacementBlockhash": null,
+      "returnData": null,
+      "unitsConsumed": 101383
+    },
+    "zeroSimulation": {
+      "accounts": [],
+      "err": {
+        "InstructionError": [
+          8,
+          {
+            "Custom": 6000
+          }
+        ]
+      },
+      "fee": 10000,
+      "innerInstructions": null,
+      "loadedAccountsDataSize": 660047,
+      "loadedAddresses": {
+        "readonly": [],
+        "writable": []
+      },
+      "logs": [
+        "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+        "Program ComputeBudget111111111111111111111111111111 success",
+        "Program 11111111111111111111111111111111 invoke [1]",
+        "Program 11111111111111111111111111111111 success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 202 of 999700 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu invoke [1]",
+        "Program log: Instruction: InitializeVault",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 233 of 980886 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 202 of 972463 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program log: Vault initialized for mint: 8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu consumed 32662 of 999498 compute units",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu success",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu invoke [1]",
+        "Program log: Instruction: CreateUserCard",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program log: User card created for: 3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu consumed 14239 of 966836 compute units",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [1]",
+        "Program log: Create",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 179 of 947288 compute units",
+        "Program return: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA pQAAAAAAAAA=",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program log: Initialize the associated token account",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 37 of 942199 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 233 of 939740 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 13373 of 952597 compute units",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [1]",
+        "Program log: Create",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 179 of 930913 compute units",
+        "Program return: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA pQAAAAAAAAA=",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program log: Initialize the associated token account",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 37 of 925824 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 233 of 923364 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 16376 of 939224 compute units",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 120 of 922848 compute units",
+        "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu invoke [1]",
+        "Program log: Instruction: Deposit",
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:44. Error Code: ZeroAmount. Error Number: 6000. Error Message: Amount must be greater than zero.",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu consumed 18541 of 922728 compute units",
+        "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu failed: custom program error: 0x1770"
+      ],
+      "postBalances": [
+        3384292175,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        20508277856,
+        1141440,
+        1009200,
+        5938070540
+      ],
+      "postTokenBalances": [],
+      "preBalances": [
+        3384302175,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        20508277856,
+        1141440,
+        1009200,
+        5938070540
+      ],
+      "preTokenBalances": [],
+      "replacementBlockhash": null,
+      "returnData": null,
+      "unitsConsumed": 95813
+    }
+  },
+  "addresses": {
+    "tokenMint": "8qq1v3aLFXv1JjEMmnPyZKbm8ohGvUJMs7LcpQatNXBT",
+    "vaultState": "HjFxF67AAe4j76Vsj2CyGQM9TxqZtkVLRK3ojYEzcWtK",
+    "vaultTokenAccount": "GVBy2a8ft7WDKUWxVvtUstp15efuq52SvNE9M77KMaxP",
+    "shareMint": "HUgizXzrmCiCXpbE4QajXRV2JawBmxeCMZnGzGqd4iGi",
+    "userA": "5k4HRdtwxNyvvtFM2AZToRMWa2MDnm3862kwkXJVLttR",
+    "userB": "23sVgqJHXo2Hw6DBgNz7hPKeBEYNtUZKenR3hJTyqZoz",
+    "userCardA": "2FBfQSpxcNN8jXLrGuSyAycntwPAsfRuySDSw9wC5W6E",
+    "userCardB": "GjyMFwka581zH5gxX7229BkCycv9UCdn1K3DJgDp3TgL",
+    "tokenAccountA": "Hto5T3YiHf48Vex5BLUXdfzDT9pxnfAZNDW3EnLkw8XP",
+    "tokenAccountB": "2XeCXb6DhbEYtqKLe2C2aCggF4MrZbCZLDtmyLB1CzyC",
+    "shareAccountA": "2HVX46exUiZrSNHFbmPgnYrkeHCUt2V6rzm8AuDpDEWY",
+    "shareAccountB": "BQCm1XZKnpsZeofkS7hbMUag2kWS6jgicwGAfh2b87SW"
+  },
+  "payerLamportsBefore": 3384302175,
+  "passedChecks": 57,
+  "before": {
+    "slot": 523775952,
+    "userTokensA": "1000000000",
+    "userTokensB": "1000000000",
+    "vaultTokens": "0",
+    "userSharesA": "0",
+    "userSharesB": "0",
+    "shareSupply": "0",
+    "totalTokens": "0",
+    "totalShares": "0",
+    "cardA": {
+      "deposited": "0",
+      "shares": "0"
+    },
+    "cardB": {
+      "deposited": "0",
+      "shares": "0"
+    }
+  },
+  "afterA": {
+    "slot": 523775963,
+    "userTokensA": "900000000",
+    "userTokensB": "1000000000",
+    "vaultTokens": "100000000",
+    "userSharesA": "100000000",
+    "userSharesB": "0",
+    "shareSupply": "100000000",
+    "totalTokens": "100000000",
+    "totalShares": "100000000",
+    "cardA": {
+      "deposited": "100000000",
+      "shares": "100000000"
+    },
+    "cardB": {
+      "deposited": "0",
+      "shares": "0"
+    }
+  },
+  "afterB": {
+    "slot": 523775977,
+    "userTokensA": "900000000",
+    "userTokensB": "950000000",
+    "vaultTokens": "150000000",
+    "userSharesA": "100000000",
+    "userSharesB": "50000000",
+    "shareSupply": "150000000",
+    "totalTokens": "150000000",
+    "totalShares": "150000000",
+    "cardA": {
+      "deposited": "100000000",
+      "shares": "100000000"
+    },
+    "cardB": {
+      "deposited": "50000000",
+      "shares": "50000000"
+    }
+  },
+  "zeroDeposit": {
+    "kind": "simulation_only",
+    "broadcast": false,
+    "signature": null,
+    "err": {
+      "InstructionError": [
+        0,
+        {
+          "Custom": 6000
+        }
+      ]
+    },
+    "logs": [
+      "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu invoke [1]",
+      "Program log: Instruction: Deposit",
+      "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:44. Error Code: ZeroAmount. Error Number: 6000. Error Message: Amount must be greater than zero.",
+      "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu consumed 18541 of 200000 compute units",
+      "Program EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu failed: custom program error: 0x1770"
+    ],
+    "unitsConsumed": 18541
+  },
+  "afterZeroSimulation": {
+    "slot": 523775983,
+    "userTokensA": "900000000",
+    "userTokensB": "950000000",
+    "vaultTokens": "150000000",
+    "userSharesA": "100000000",
+    "userSharesB": "50000000",
+    "shareSupply": "150000000",
+    "totalTokens": "150000000",
+    "totalShares": "150000000",
+    "cardA": {
+      "deposited": "100000000",
+      "shares": "100000000"
+    },
+    "cardB": {
+      "deposited": "50000000",
+      "shares": "50000000"
+    }
+  },
+  "payerLamportsAfter": 3367228895,
+  "finalAccountData": {
+    "vaultState": "5MRSpWLS65goqJO3lMoau9HpH/kgHWzCtIDMeN310avz6KeZ+i2BLnSD+pqnFnRUt//Kz2yWCbsh2zPrQtFzW7iqACgR6wvu5hf3QHamsZ4LYg7Y0259eEttxT9e8pWDo3ut+TxNE7D00pa3aUykhCBX3lFhLMAUMxInYBoeCwumaGfxZ3W2S4DR8AgAAAAAgNHwCAAAAAD/",
+    "vaultTokenAccount": "dIP6mqcWdFS3/8rPbJYJuyHbM+tC0XNbuKoAKBHrC+74jkqmyRq7//zZKGgToj1WSdSvgSw2ST9KIKR9S/OynIDR8AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "shareMint": "AQAAAPiOSqbJGrv//NkoaBOiPVZJ1K+BLDZJP0ogpH1L87KcgNHwCAAAAAAGAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+    "userCardA": "Y5yFVcA6ygr4jkqmyRq7//zZKGgToj1WSdSvgSw2ST9KIKR9S/OynEZ2b09nU4/gVpRkVA5M3w9SmCY7KS++GB17ciGMZ+cqAOH1BQAAAAAA4fUFAAAAAPs=",
+    "userCardB": "Y5yFVcA6ygr4jkqmyRq7//zZKGgToj1WSdSvgSw2ST9KIKR9S/OynA+X8WZ+YRzFmcILXC2Y3yF28A9IBXUNVsL4WlSudMClgPD6AgAAAACA8PoCAAAAAP0=",
+    "tokenAccountA": "dIP6mqcWdFS3/8rPbJYJuyHbM+tC0XNbuKoAKBHrC+5Gdm9PZ1OP4FaUZFQOTN8PUpgmOykvvhgde3IhjGfnKgDppDUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "tokenAccountB": "dIP6mqcWdFS3/8rPbJYJuyHbM+tC0XNbuKoAKBHrC+4Pl/FmfmEcxZnCC1wtmN8hdvAPSAV1DVbC+FpUrnTApYDZnzgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "shareAccountA": "9NKWt2lMpIQgV95RYSzAFDMSJ2AaHgsLpmhn8Wd1tktGdm9PZ1OP4FaUZFQOTN8PUpgmOykvvhgde3IhjGfnKgDh9QUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "shareAccountB": "9NKWt2lMpIQgV95RYSzAFDMSJ2AaHgsLpmhn8Wd1tksPl/FmfmEcxZnCC1wtmN8hdvAPSAV1DVbC+FpUrnTApYDw+gIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+  },
+  "completedAt": "2026-11-18T22:10:13.377Z"
+}
