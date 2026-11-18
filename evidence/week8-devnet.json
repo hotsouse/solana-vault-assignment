@@ -1,0 +1,216 @@
+{
+  "schemaVersion": 1,
+  "cluster": "devnet",
+  "status": "complete",
+  "program": {
+    "address": "Ecas7acK9ayt8GEs7VozKdn77SmJGLsxHeE9T4zrDjiS",
+    "explorer": "https://explorer.solana.com/address/Ecas7acK9ayt8GEs7VozKdn77SmJGLsxHeE9T4zrDjiS?cluster=devnet"
+  },
+  "admin": {
+    "address": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+    "explorer": "https://explorer.solana.com/address/3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7?cluster=devnet"
+  },
+  "accounts": {
+    "userA": {
+      "address": "7TvMCVdy5F67wskvYkwTQbFzE7Upb4ypm47c3z1Vgx5E",
+      "explorer": "https://explorer.solana.com/address/7TvMCVdy5F67wskvYkwTQbFzE7Upb4ypm47c3z1Vgx5E?cluster=devnet"
+    },
+    "userB": {
+      "address": "8fFok11jiD8ng39Lt9q2NsA7147RYmtT7cQKZRQAt23B",
+      "explorer": "https://explorer.solana.com/address/8fFok11jiD8ng39Lt9q2NsA7147RYmtT7cQKZRQAt23B?cluster=devnet"
+    },
+    "tokenMint": {
+      "address": "9JumWPvwcmgWcsvaFUbkoEbMiMygfMfCzs1BEMf6yhc",
+      "explorer": "https://explorer.solana.com/address/9JumWPvwcmgWcsvaFUbkoEbMiMygfMfCzs1BEMf6yhc?cluster=devnet"
+    },
+    "vaultState": {
+      "address": "EcD24AmtSfBnRrxngCKASh3g78shZtbsWh7Ua27pxxSf",
+      "explorer": "https://explorer.solana.com/address/EcD24AmtSfBnRrxngCKASh3g78shZtbsWh7Ua27pxxSf?cluster=devnet",
+      "decoded": {
+        "admin": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+        "tokenMint": "9JumWPvwcmgWcsvaFUbkoEbMiMygfMfCzs1BEMf6yhc",
+        "vaultTokenAccount": "2fkqekwhrBeREa4tYEBBv2QF64KHZtgw2CjePZLdJQvR",
+        "shareMint": "EUhuheCuRpaX1ugBHmLqhWCs7JNzs6PN5RJPVCaw9yxa"
+      }
+    },
+    "vaultTokenAccount": {
+      "address": "2fkqekwhrBeREa4tYEBBv2QF64KHZtgw2CjePZLdJQvR",
+      "explorer": "https://explorer.solana.com/address/2fkqekwhrBeREa4tYEBBv2QF64KHZtgw2CjePZLdJQvR?cluster=devnet"
+    },
+    "shareMint": {
+      "address": "EUhuheCuRpaX1ugBHmLqhWCs7JNzs6PN5RJPVCaw9yxa",
+      "explorer": "https://explorer.solana.com/address/EUhuheCuRpaX1ugBHmLqhWCs7JNzs6PN5RJPVCaw9yxa?cluster=devnet"
+    },
+    "userCardA": {
+      "address": "E7yX8fZsKYctHXdAnPSKTawjZmgeJ1cTHHW6spmjTxhJ",
+      "explorer": "https://explorer.solana.com/address/E7yX8fZsKYctHXdAnPSKTawjZmgeJ1cTHHW6spmjTxhJ?cluster=devnet",
+      "decoded": {
+        "owner": "7TvMCVdy5F67wskvYkwTQbFzE7Upb4ypm47c3z1Vgx5E",
+        "vault": "EcD24AmtSfBnRrxngCKASh3g78shZtbsWh7Ua27pxxSf"
+      }
+    },
+    "userCardB": {
+      "address": "BdAhCtm1vhWS1Ej88XRHh1HwX5n25vNMvZUGBw7YUB3A",
+      "explorer": "https://explorer.solana.com/address/BdAhCtm1vhWS1Ej88XRHh1HwX5n25vNMvZUGBw7YUB3A?cluster=devnet",
+      "decoded": {
+        "owner": "8fFok11jiD8ng39Lt9q2NsA7147RYmtT7cQKZRQAt23B",
+        "vault": "EcD24AmtSfBnRrxngCKASh3g78shZtbsWh7Ua27pxxSf"
+      }
+    }
+  },
+  "transactions": {
+    "fundUserA": {
+      "signature": "3YHsft7FLMMs11BZX1FR7RyhfTNBn9dDf1TUPyUaH47VRUCsvFX22o51J272AK5mEYAqHU6sHyk8B28WRw9V3BEQ",
+      "explorer": "https://explorer.solana.com/tx/3YHsft7FLMMs11BZX1FR7RyhfTNBn9dDf1TUPyUaH47VRUCsvFX22o51J272AK5mEYAqHU6sHyk8B28WRw9V3BEQ?cluster=devnet"
+    },
+    "fundUserB": {
+      "signature": "6EF3MCwa22m3iS8KeZ5ua8FFHwHQhC7xkrPhsmcsph8eLiSdAsbXeySE6NXK7LawvmhYMdBGY4mVASWLwGnt2Wb",
+      "explorer": "https://explorer.solana.com/tx/6EF3MCwa22m3iS8KeZ5ua8FFHwHQhC7xkrPhsmcsph8eLiSdAsbXeySE6NXK7LawvmhYMdBGY4mVASWLwGnt2Wb?cluster=devnet"
+    },
+    "initializeVault": {
+      "signature": "TxijGZGjKrDkwmyNzrtYRQuDenyVeTmzR15JzMUrGd6jCLUaiv6tFPwrQ3TJ6iuX6mWCq2qEMQVp9hV3N9Bj9Zs",
+      "explorer": "https://explorer.solana.com/tx/TxijGZGjKrDkwmyNzrtYRQuDenyVeTmzR15JzMUrGd6jCLUaiv6tFPwrQ3TJ6iuX6mWCq2qEMQVp9hV3N9Bj9Zs?cluster=devnet",
+      "verified": true,
+      "slot": 523768395,
+      "err": null
+    },
+    "createUserCardA": {
+      "signature": "5t7yemE6c2cjCEg1T9c4DYierCLDM8qbUJngdSbMciminPYmkaynVkWM9AuYaQDMiV6CiXmTTpCh44wP4xp9tETz",
+      "explorer": "https://explorer.solana.com/tx/5t7yemE6c2cjCEg1T9c4DYierCLDM8qbUJngdSbMciminPYmkaynVkWM9AuYaQDMiV6CiXmTTpCh44wP4xp9tETz?cluster=devnet",
+      "verified": true,
+      "slot": 523768400,
+      "err": null
+    },
+    "createUserCardB": {
+      "signature": "2jYWqcJSutgE1dPvZVbD51Ru57X2LRr38N6SDrZXZXTWQLvVFKoyDSLs7t6gWmDN6X747CSo7T4CmCQVponF2Crz",
+      "explorer": "https://explorer.solana.com/tx/2jYWqcJSutgE1dPvZVbD51Ru57X2LRr38N6SDrZXZXTWQLvVFKoyDSLs7t6gWmDN6X747CSo7T4CmCQVponF2Crz?cluster=devnet",
+      "verified": true,
+      "slot": 523768405,
+      "err": null
+    }
+  },
+  "tests": [
+    {
+      "name": "initialize_vault: creates the vault",
+      "result": "passed"
+    },
+    {
+      "name": "create_user_card: creates distinct cards for A and B",
+      "result": "passed"
+    },
+    {
+      "name": "create_user_card: rejects duplicate card A",
+      "result": "passed"
+    }
+  ],
+  "previousRuns": [
+    {
+      "schemaVersion": 1,
+      "cluster": "devnet",
+      "status": "incomplete",
+      "program": {
+        "address": "Ecas7acK9ayt8GEs7VozKdn77SmJGLsxHeE9T4zrDjiS",
+        "explorer": "https://explorer.solana.com/address/Ecas7acK9ayt8GEs7VozKdn77SmJGLsxHeE9T4zrDjiS?cluster=devnet"
+      },
+      "admin": {
+        "address": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+        "explorer": "https://explorer.solana.com/address/3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7?cluster=devnet"
+      },
+      "accounts": {
+        "userA": {
+          "address": "5GdHiZbRdPPVkyPaLkpD1GpYfUNuaBeLG2fLnMVv8ywJ",
+          "explorer": "https://explorer.solana.com/address/5GdHiZbRdPPVkyPaLkpD1GpYfUNuaBeLG2fLnMVv8ywJ?cluster=devnet"
+        },
+        "userB": {
+          "address": "5G3MuAZpSzvjqjKBPAGGYPQsetayxbUEP1Lj1LD5uTEh",
+          "explorer": "https://explorer.solana.com/address/5G3MuAZpSzvjqjKBPAGGYPQsetayxbUEP1Lj1LD5uTEh?cluster=devnet"
+        },
+        "tokenMint": {
+          "address": "CdJGgKMSGrdyA5x5QHuQtUy7GDMNZVQzGoMx8zcAaPYR",
+          "explorer": "https://explorer.solana.com/address/CdJGgKMSGrdyA5x5QHuQtUy7GDMNZVQzGoMx8zcAaPYR?cluster=devnet"
+        },
+        "vaultState": {
+          "address": "HosTpKRSMdyQZWLp1iAW54Mqk5q9PAu8JuxQeKrMk3Q6",
+          "explorer": "https://explorer.solana.com/address/HosTpKRSMdyQZWLp1iAW54Mqk5q9PAu8JuxQeKrMk3Q6?cluster=devnet"
+        },
+        "vaultTokenAccount": {
+          "address": "9LdL2bxA6EtTRTa58bdWhYbmnZhjvXms6FQgLQiLsqYC",
+          "explorer": "https://explorer.solana.com/address/9LdL2bxA6EtTRTa58bdWhYbmnZhjvXms6FQgLQiLsqYC?cluster=devnet"
+        },
+        "shareMint": {
+          "address": "95BKJ1KqS4r9SeKUvY3uDct7j12ghKQbhGT9fj8Z2wrh",
+          "explorer": "https://explorer.solana.com/address/95BKJ1KqS4r9SeKUvY3uDct7j12ghKQbhGT9fj8Z2wrh?cluster=devnet"
+        },
+        "userCardA": {
+          "address": "DHWqarsx12WKBMzCBY2xx2Y2iQwWE7w9NutCGoMTXcz1",
+          "explorer": "https://explorer.solana.com/address/DHWqarsx12WKBMzCBY2xx2Y2iQwWE7w9NutCGoMTXcz1?cluster=devnet"
+        },
+        "userCardB": {
+          "address": "CZswetCRGPv9R4Hb8fb8LWtaDkWddVkkeqzKG6pBgr2q",
+          "explorer": "https://explorer.solana.com/address/CZswetCRGPv9R4Hb8fb8LWtaDkWddVkkeqzKG6pBgr2q?cluster=devnet"
+        }
+      },
+      "transactions": {
+        "fundUserA": {
+          "signature": "4tAZootsu1oW548qsTUnKpUTFyYTQZQdm7GkwEFo4itsPykxYeuADokSUqVxvyyiMkCUPRsJnWkHxVSXLU2k9jUo",
+          "explorer": "https://explorer.solana.com/tx/4tAZootsu1oW548qsTUnKpUTFyYTQZQdm7GkwEFo4itsPykxYeuADokSUqVxvyyiMkCUPRsJnWkHxVSXLU2k9jUo?cluster=devnet"
+        },
+        "fundUserB": {
+          "signature": "3Anhwutc3MqLNxdJKttATpRJevpZGbzBrMQrzEmjyfQEAnqJW9rvkZB1mUWsbdjJqYNccUeXmCZeJuCSSab4QXvE",
+          "explorer": "https://explorer.solana.com/tx/3Anhwutc3MqLNxdJKttATpRJevpZGbzBrMQrzEmjyfQEAnqJW9rvkZB1mUWsbdjJqYNccUeXmCZeJuCSSab4QXvE?cluster=devnet"
+        }
+      },
+      "tests": [
+        {
+          "name": "initialize_vault: creates the vault",
+          "result": "failed"
+        },
+        {
+          "name": "create_user_card: creates distinct cards for A and B",
+          "result": "failed"
+        },
+        {
+          "name": "create_user_card: rejects duplicate card A",
+          "result": "failed"
+        }
+      ],
+      "preflight": {
+        "checkedAt": "2026-11-18T21:38:39.569Z",
+        "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+        "programExecutable": true,
+        "balanceLamports": 3590402215,
+        "requiredLamports": 114968240
+      },
+      "failureSummary": "Initial run: 0 passing, 3 failing. initialize_vault and create_user_card failed preflight with Blockhash not found; duplicate test correctly did not treat this unrelated error as duplicate rejection. Only user funding and token mint creation succeeded; other account addresses in this incomplete run are derived PDAs, not created accounts."
+    }
+  ],
+  "preflight": {
+    "checkedAt": "2026-11-18T21:39:55.663Z",
+    "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+    "programExecutable": true,
+    "balanceLamports": 3489315415,
+    "requiredLamports": 114968240
+  },
+  "duplicateRejection": {
+    "userCard": "E7yX8fZsKYctHXdAnPSKTawjZmgeJ1cTHHW6spmjTxhJ",
+    "stage": "preflight simulation",
+    "reason": "Allocate: account Address { address: E7yX8fZsKYctHXdAnPSKTawjZmgeJ1cTHHW6spmjTxhJ, base: None } already in use",
+    "logs": [
+      "Program Ecas7acK9ayt8GEs7VozKdn77SmJGLsxHeE9T4zrDjiS invoke [1]",
+      "Program log: Instruction: CreateUserCard",
+      "Program 11111111111111111111111111111111 invoke [2]",
+      "Allocate: account Address { address: E7yX8fZsKYctHXdAnPSKTawjZmgeJ1cTHHW6spmjTxhJ, base: None } already in use",
+      "Program 11111111111111111111111111111111 failed: custom program error: 0x0",
+      "Program Ecas7acK9ayt8GEs7VozKdn77SmJGLsxHeE9T4zrDjiS consumed 5936 of 200000 compute units",
+      "Program Ecas7acK9ayt8GEs7VozKdn77SmJGLsxHeE9T4zrDjiS failed: custom program error: 0x0"
+    ],
+    "existingCardUnchanged": true
+  },
+  "rpcVerification": {
+    "checkedAt": "2026-11-18T21:40:06.739Z",
+    "commitment": "confirmed",
+    "vaultTokenAuthority": "EcD24AmtSfBnRrxngCKASh3g78shZtbsWh7Ua27pxxSf",
+    "shareMintAuthority": "EcD24AmtSfBnRrxngCKASh3g78shZtbsWh7Ua27pxxSf"
+  },
+  "completedAt": "2026-11-18T21:40:06.739Z"
+}
