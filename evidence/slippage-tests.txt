@@ -1,0 +1,12 @@
+
+
+  integer slippage
+    ✔ floors 1% below the expected amount
+    ✔ preserves precision above Number.MAX_SAFE_INTEGER
+    ✔ rejects zero expected output
+    ✔ rejects a zero minimum
+    ✔ rejects invalid basis points
+    ✔ accepts exact output with zero slippage
+
+
+  6 passing (169ms)

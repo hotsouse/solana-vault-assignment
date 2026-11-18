@@ -1,0 +1,465 @@
+{
+  "passed": 27,
+  "failed": 0,
+  "results": [
+    {
+      "name": "initialize vault",
+      "status": "passed",
+      "detail": {
+        "vault": "Dvu4UMUWYfLVbtkvHxhQLbXk6jPL8Mc4vh5ej2J95eCw"
+      }
+    },
+    {
+      "name": "first token account authority and mint",
+      "status": "passed"
+    },
+    {
+      "name": "only admin can initialize second storage",
+      "status": "passed",
+      "detail": {
+        "error": {
+          "InstructionError": [
+            2,
+            {
+              "Custom": 6000
+            }
+          ]
+        },
+        "logs": [
+          "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+          "Program ComputeBudget111111111111111111111111111111 success",
+          "Program 11111111111111111111111111111111 invoke [1]",
+          "Program 11111111111111111111111111111111 success",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF invoke [1]",
+          "Program log: Instruction: InitializeSwap",
+          "Program 11111111111111111111111111111111 invoke [2]",
+          "Program 11111111111111111111111111111111 success",
+          "Program 11111111111111111111111111111111 invoke [2]",
+          "Program 11111111111111111111111111111111 success",
+          "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+          "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 233 of 579550 compute units",
+          "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+          "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6000. Error Message: Only the vault administrator may swap.",
+          "Program log: Left:",
+          "Program log: 3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+          "Program log: Right:",
+          "Program log: Dw5p2ARo3VRXyDdmvxBqSWkxy8txsqJst3gMYgUqWQ3Y",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF consumed 25245 of 599700 compute units",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF failed: custom program error: 0x1770"
+        ]
+      }
+    },
+    {
+      "name": "second mint must match pool",
+      "status": "passed",
+      "detail": {
+        "error": {
+          "InstructionError": [
+            1,
+            {
+              "Custom": 6002
+            }
+          ]
+        },
+        "logs": [
+          "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+          "Program ComputeBudget111111111111111111111111111111 success",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF invoke [1]",
+          "Program log: Instruction: InitializeSwap",
+          "Program 11111111111111111111111111111111 invoke [2]",
+          "Program 11111111111111111111111111111111 success",
+          "Program 11111111111111111111111111111111 invoke [2]",
+          "Program 11111111111111111111111111111111 success",
+          "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+          "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 233 of 579700 compute units",
+          "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+          "Program log: AnchorError thrown in programs/simple_vault/src/swap.rs:45. Error Code: InvalidMint. Error Number: 6002. Error Message: Wrong swap mint pair.",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF consumed 25001 of 599850 compute units",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF failed: custom program error: 0x1772"
+        ]
+      }
+    },
+    {
+      "name": "second token account controlled by Vault PDA",
+      "status": "passed",
+      "detail": {
+        "tx": "3d27Co7QogQLXT4EQ7ARRUTL4rKNaPxqc9v4g4PqXKVXcRnGJsDm8HTkbF6FsvVj2byA62RP4fF9z5fWHK8RuZTW",
+        "account": "9ErqWmy5DMY9Cx5ebv2hbWDkYD7tydKL4udGRzBRYDF1"
+      }
+    },
+    {
+      "name": "deposit transfers A and mints PDA shares",
+      "status": "passed",
+      "detail": {
+        "tx": "UaquCeC4y8MAUQ9dNHZmyAKNV2of8PTwaMxbTitcnpmC2aeLnLGPL2dqG7BBkXMSaU5rCJ5uDtmaFYiz3fanNhe"
+      }
+    },
+    {
+      "name": "withdraw burns shares and transfers from PDA",
+      "status": "passed",
+      "detail": {
+        "tx": "VsrzDVCySjE5Vmi7B6NRQn4N7q4S1YdepstRDCq3eLy9HApQkf5S83FwAjUNR5xJwjYQUPQPF6T85bZReQVU7op"
+      }
+    },
+    {
+      "name": "non-admin cannot swap even with minimum 1",
+      "status": "passed",
+      "detail": {
+        "error": {
+          "InstructionError": [
+            2,
+            {
+              "Custom": 6000
+            }
+          ]
+        },
+        "logs": [
+          "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+          "Program ComputeBudget111111111111111111111111111111 success",
+          "Program 11111111111111111111111111111111 invoke [1]",
+          "Program 11111111111111111111111111111111 success",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF invoke [1]",
+          "Program log: Instruction: SwapViaRaydium",
+          "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6000. Error Message: Only the vault administrator may swap.",
+          "Program log: Left:",
+          "Program log: 3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+          "Program log: Right:",
+          "Program log: Dw5p2ARo3VRXyDdmvxBqSWkxy8txsqJst3gMYgUqWQ3Y",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF consumed 12479 of 599700 compute units",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF failed: custom program error: 0x1770"
+        ]
+      }
+    },
+    {
+      "name": "zero amount is rejected",
+      "status": "passed",
+      "detail": {
+        "error": {
+          "InstructionError": [
+            1,
+            {
+              "Custom": 6010
+            }
+          ]
+        },
+        "logs": [
+          "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+          "Program ComputeBudget111111111111111111111111111111 success",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF invoke [1]",
+          "Program log: Instruction: SwapViaRaydium",
+          "Program log: AnchorError thrown in programs/simple_vault/src/swap.rs:99. Error Code: ZeroAmount. Error Number: 6010. Error Message: Amount must be greater than zero.",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF consumed 22419 of 599850 compute units",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF failed: custom program error: 0x177a"
+        ]
+      }
+    },
+    {
+      "name": "zero minimum is rejected",
+      "status": "passed",
+      "detail": {
+        "error": {
+          "InstructionError": [
+            1,
+            {
+              "Custom": 6004
+            }
+          ]
+        },
+        "logs": [
+          "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+          "Program ComputeBudget111111111111111111111111111111 success",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF invoke [1]",
+          "Program log: Instruction: SwapViaRaydium",
+          "Program log: AnchorError thrown in programs/simple_vault/src/swap.rs:100. Error Code: InvalidMinimum. Error Number: 6004. Error Message: Minimum output must be positive.",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF consumed 22438 of 599850 compute units",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF failed: custom program error: 0x1774"
+        ]
+      }
+    },
+    {
+      "name": "insufficient input balance is rejected",
+      "status": "passed",
+      "detail": {
+        "error": {
+          "InstructionError": [
+            1,
+            {
+              "Custom": 6003
+            }
+          ]
+        },
+        "logs": [
+          "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+          "Program ComputeBudget111111111111111111111111111111 success",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF invoke [1]",
+          "Program log: Instruction: SwapViaRaydium",
+          "Program log: AnchorError thrown in programs/simple_vault/src/swap.rs:101. Error Code: InsufficientBalance. Error Number: 6003. Error Message: Input balance is insufficient.",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF consumed 22445 of 599850 compute units",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF failed: custom program error: 0x1773"
+        ]
+      }
+    },
+    {
+      "name": "wrong input mint is rejected",
+      "status": "passed",
+      "detail": {
+        "error": {
+          "InstructionError": [
+            1,
+            {
+              "Custom": 2014
+            }
+          ]
+        },
+        "logs": [
+          "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+          "Program ComputeBudget111111111111111111111111111111 success",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF invoke [1]",
+          "Program log: Instruction: SwapViaRaydium",
+          "Program log: AnchorError occurred. Error Code: ConstraintTokenMint. Error Number: 2014. Error Message: A token mint constraint was violated.",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF consumed 18095 of 599850 compute units",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF failed: custom program error: 0x7de"
+        ]
+      }
+    },
+    {
+      "name": "wrong output mint is rejected",
+      "status": "passed",
+      "detail": {
+        "error": {
+          "InstructionError": [
+            1,
+            {
+              "Custom": 2014
+            }
+          ]
+        },
+        "logs": [
+          "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+          "Program ComputeBudget111111111111111111111111111111 success",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF invoke [1]",
+          "Program log: Instruction: SwapViaRaydium",
+          "Program log: AnchorError occurred. Error Code: ConstraintTokenMint. Error Number: 2014. Error Message: A token mint constraint was violated.",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF consumed 21270 of 599850 compute units",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF failed: custom program error: 0x7de"
+        ]
+      }
+    },
+    {
+      "name": "wrong Vault PDA is rejected",
+      "status": "passed",
+      "detail": {
+        "error": {
+          "InstructionError": [
+            1,
+            {
+              "Custom": 3002
+            }
+          ]
+        },
+        "logs": [
+          "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+          "Program ComputeBudget111111111111111111111111111111 success",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF invoke [1]",
+          "Program log: Instruction: SwapViaRaydium",
+          "Program log: AnchorError caused by account: vault_state. Error Code: AccountDiscriminatorMismatch. Error Number: 3002. Error Message: Account discriminator did not match what was expected.",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF consumed 6500 of 599850 compute units",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF failed: custom program error: 0xbba"
+        ]
+      }
+    },
+    {
+      "name": "wrong token authority/account is rejected",
+      "status": "passed",
+      "detail": {
+        "error": {
+          "InstructionError": [
+            1,
+            {
+              "Custom": 2006
+            }
+          ]
+        },
+        "logs": [
+          "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+          "Program ComputeBudget111111111111111111111111111111 success",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF invoke [1]",
+          "Program log: Instruction: SwapViaRaydium",
+          "Program log: AnchorError caused by account: input_token_account. Error Code: ConstraintSeeds. Error Number: 2006. Error Message: A seeds constraint was violated.",
+          "Program log: Left:",
+          "Program log: 6tpkbuK3nh62XXhULqEaBrX584WjdES6XuaNPzVJQ8Je",
+          "Program log: Right:",
+          "Program log: 7KrhsfnCqW7UrsoHiFYFaiUeFKsZ2PZNScWEnKhmPPrh",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF consumed 18870 of 599850 compute units",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF failed: custom program error: 0x7d6"
+        ]
+      }
+    },
+    {
+      "name": "wrong Raydium program is rejected",
+      "status": "passed",
+      "detail": {
+        "error": {
+          "InstructionError": [
+            1,
+            {
+              "Custom": 3008
+            }
+          ]
+        },
+        "logs": [
+          "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+          "Program ComputeBudget111111111111111111111111111111 success",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF invoke [1]",
+          "Program log: Instruction: SwapViaRaydium",
+          "Program log: AnchorError caused by account: clmm_program. Error Code: InvalidProgramId. Error Number: 3008. Error Message: Program ID was not as expected.",
+          "Program log: Left:",
+          "Program log: 11111111111111111111111111111111",
+          "Program log: Right:",
+          "Program log: DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF consumed 10713 of 599850 compute units",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF failed: custom program error: 0xbc0"
+        ]
+      }
+    },
+    {
+      "name": "foreign pool is rejected",
+      "status": "passed",
+      "detail": {
+        "error": {
+          "InstructionError": [
+            1,
+            {
+              "Custom": 6001
+            }
+          ]
+        },
+        "logs": [
+          "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+          "Program ComputeBudget111111111111111111111111111111 success",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF invoke [1]",
+          "Program log: Instruction: SwapViaRaydium",
+          "Program log: AnchorError caused by account: pool_state. Error Code: InvalidPool. Error Number: 6001. Error Message: Pool is not bound to this vault.",
+          "Program log: Left:",
+          "Program log: 1TiVJpjBKELfwByfTJDFbFigHqWiD5TYiVfq1L8rQEm",
+          "Program log: Right:",
+          "Program log: EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF consumed 14195 of 599850 compute units",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF failed: custom program error: 0x1771"
+        ]
+      }
+    },
+    {
+      "name": "invalid tick array is rejected",
+      "status": "passed",
+      "detail": {
+        "error": {
+          "InstructionError": [
+            1,
+            {
+              "Custom": 6005
+            }
+          ]
+        },
+        "logs": [
+          "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+          "Program ComputeBudget111111111111111111111111111111 success",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF invoke [1]",
+          "Program log: Instruction: SwapViaRaydium",
+          "Program log: AnchorError thrown in programs/simple_vault/src/swap.rs:143. Error Code: InvalidTickArray. Error Number: 6005. Error Message: Invalid CLMM tick array or bitmap.",
+          "Program log: Left:",
+          "Program log: NativeLoader1111111111111111111111111111111",
+          "Program log: Right:",
+          "Program log: DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF consumed 26317 of 599850 compute units",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF failed: custom program error: 0x1775"
+        ]
+      }
+    },
+    {
+      "name": "real Raydium CPI confirmed on Devnet",
+      "status": "passed",
+      "detail": {
+        "signature": "5NmUQaxbpKULNNADsfpFGDqDqNyvttw4ZMMz5DP7gX5PhKbGb3yJYzE3xa5i7KDh3SqpNkihYfzKc4FEuTGXmbox"
+      }
+    },
+    {
+      "name": "exact input A debited from Vault",
+      "status": "passed"
+    },
+    {
+      "name": "output B credited above minimum",
+      "status": "passed"
+    },
+    {
+      "name": "PDA signer accepted by Raydium/SPL",
+      "status": "passed"
+    },
+    {
+      "name": "pool price changed inside this swap",
+      "status": "passed"
+    },
+    {
+      "name": "impossible minimum rejected by Raydium on-chain",
+      "status": "passed",
+      "detail": {
+        "signature": "55yX7vGsc5Uros4qkS9WZjaGsyRK6XNHrXSLYMiLKtuy4Vrvq8cHjZ3EMmp8JEVXStjeZyQ4cns5FDQdAmFjNCiE",
+        "error": {
+          "InstructionError": [
+            1,
+            {
+              "Custom": 6018
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "failed swap atomically preserves Vault and pool accounts",
+      "status": "passed"
+    },
+    {
+      "name": "single-token deposit cannot dilute a two-asset vault",
+      "status": "passed",
+      "detail": {
+        "error": {
+          "InstructionError": [
+            0,
+            {
+              "Custom": 6009
+            }
+          ]
+        },
+        "logs": [
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF invoke [1]",
+          "Program log: Instruction: Deposit",
+          "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:57. Error Code: StrategyActive. Error Number: 6009. Error Message: Single-token deposits and withdrawals are disabled after rebalancing.",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF consumed 16766 of 200000 compute units",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF failed: custom program error: 0x1779"
+        ]
+      }
+    },
+    {
+      "name": "single-token withdraw cannot strand the second asset",
+      "status": "passed",
+      "detail": {
+        "error": {
+          "InstructionError": [
+            0,
+            {
+              "Custom": 6009
+            }
+          ]
+        },
+        "logs": [
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF invoke [1]",
+          "Program log: Instruction: Withdraw",
+          "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:145. Error Code: StrategyActive. Error Number: 6009. Error Message: Single-token deposits and withdrawals are disabled after rebalancing.",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF consumed 16782 of 200000 compute units",
+          "Program HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF failed: custom program error: 0x1779"
+        ]
+      }
+    }
+  ],
+  "executionCompleted": true
+}

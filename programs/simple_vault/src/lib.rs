@@ -1,11 +1,24 @@
+pub mod swap;
 use anchor_lang::prelude::*;
 use anchor_spl::token::{self, Burn, Mint, MintTo, Token, TokenAccount, Transfer};
+use swap::*;
 
-declare_id!("EbojNUfh9Jk6dyZaaQAJWofbdnkvdxfQbeAPq6iWoHAu");
+declare_id!("HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF");
 
 #[program]
 pub mod simple_vault {
     use super::*;
+
+    pub fn initialize_swap(ctx: Context<InitializeSwap>) -> Result<()> {
+        swap::initialize(ctx)
+    }
+    pub fn swap_via_raydium<'a, 'b, 'c: 'info, 'info>(
+        ctx: Context<'a, 'b, 'c, 'info, SwapViaRaydium<'info>>,
+        amount_in: u64,
+        minimum_amount_out: u64,
+    ) -> Result<()> {
+        swap::swap(ctx, amount_in, minimum_amount_out)
+    }
 
     /// Создать vault для конкретного SPL-токена.
     /// Создаёт: VaultState PDA, vault_token_account PDA, share_mint PDA.
@@ -41,6 +54,10 @@ pub mod simple_vault {
     ///   Первый депозит:       shares = amount  (1:1)
     ///   Последующие депозиты: shares = amount * total_shares / total_tokens
     pub fn deposit(ctx: Context<Deposit>, amount: u64) -> Result<()> {
+        require!(
+            !ctx.accounts.vault_state.strategy_active,
+            VaultError::StrategyActive
+        );
         require!(amount > 0, VaultError::ZeroAmount);
 
         let vault = &ctx.accounts.vault_state;
@@ -125,6 +142,10 @@ pub mod simple_vault {
 
     /// Пользователь возвращает shares и получает соответствующее количество токенов.
     pub fn withdraw(ctx: Context<Withdraw>, shares_amount: u64) -> Result<()> {
+        require!(
+            !ctx.accounts.vault_state.strategy_active,
+            VaultError::StrategyActive
+        );
         require!(shares_amount > 0, VaultError::ZeroAmount);
 
         let vault = &ctx.accounts.vault_state;
@@ -391,11 +412,12 @@ pub struct VaultState {
     pub share_mint: Pubkey,          // 32 — mint для shares
     pub total_tokens: u64,           // 8  — всего токенов в vault
     pub total_shares: u64,           // 8  — всего выпущено shares
-    pub bump: u8,                    // 1
+    pub strategy_active: bool,
+    pub bump: u8, // 1
 }
 
 impl VaultState {
-    pub const LEN: usize = 8 + 32 + 32 + 32 + 32 + 8 + 8 + 1;
+    pub const LEN: usize = 8 + 32 + 32 + 32 + 32 + 8 + 8 + 1 + 1;
 }
 
 /// Карточка пользователя в vault.
@@ -419,6 +441,26 @@ impl UserCard {
 
 #[error_code]
 pub enum VaultError {
+    #[msg("Only the vault administrator may swap")]
+    Unauthorized,
+    #[msg("Pool is not bound to this vault")]
+    InvalidPool,
+    #[msg("Wrong swap mint pair")]
+    InvalidMint,
+    #[msg("Input balance is insufficient")]
+    InsufficientBalance,
+    #[msg("Minimum output must be positive")]
+    InvalidMinimum,
+    #[msg("Invalid CLMM tick array or bitmap")]
+    InvalidTickArray,
+    #[msg("Pool has no active liquidity")]
+    NoLiquidity,
+    #[msg("Exact input swap was only partially filled")]
+    PartialFill,
+    #[msg("Received less than minimum output")]
+    SlippageExceeded,
+    #[msg("Single-token deposits and withdrawals are disabled after rebalancing")]
+    StrategyActive,
     #[msg("Amount must be greater than zero")]
     ZeroAmount,
     #[msg("Shares would be zero - deposit too small")]

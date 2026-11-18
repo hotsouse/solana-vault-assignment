@@ -1,0 +1,11 @@
+{
+  "cluster": "devnet",
+  "pool": "EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f",
+  "tx": "3HDBYwjDxHqXAaEDtvmSXi3SFSsRSe2MqdkAsCosR3XUbmz8JeWTFx9P4bJFg3pj7H1pk8LM67tR2E2YXjBKKZbf",
+  "nft": "5KaXEEVvC8r8ZaufV4Rbzz8K8rhufhEKdM1PNK3qherQ",
+  "personalPosition": "HKHZxpzeJ7hUDgubN3wWtqhJG6kNgCUBmrBdcunGYVD8",
+  "owner": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+  "tickLower": -6000,
+  "tickUpper": 6000,
+  "note": "Wallet-owned prerequisite liquidity; no Vault position instruction."
+}

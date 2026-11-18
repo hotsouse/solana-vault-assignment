@@ -1,0 +1,13 @@
+running 4 tests
+test tests::withdrawal_calculation_can_round_down_to_zero ... ok
+test test_id ... ok
+test tests::withdrawal_calculation_rejects_division_by_zero ... ok
+test tests::withdrawal_calculation_uses_integer_rounding_down ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+   Doc-tests simple_vault
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s

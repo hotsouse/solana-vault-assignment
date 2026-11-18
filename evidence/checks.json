@@ -1,0 +1,124 @@
+{
+  "slippage-tests": {
+    "command": [
+      "node",
+      "--no-experimental-strip-types",
+      "-r",
+      "ts-node/register",
+      "node_modules/mocha/bin/mocha.js",
+      "tests/slippage.ts"
+    ],
+    "exitCode": 0,
+    "utc": "2026-11-18T06:36:02.238222+00:00"
+  },
+  "sbf-rebuild": {
+    "command": [
+      "cargo",
+      "build-sbf",
+      "--manifest-path",
+      "programs/simple_vault/Cargo.toml"
+    ],
+    "exitCode": 0,
+    "utc": "2026-11-18T06:38:39.545585+00:00"
+  },
+  "typecheck": {
+    "command": [
+      "node",
+      "node_modules/typescript/bin/tsc",
+      "--noEmit"
+    ],
+    "exitCode": 0,
+    "utc": "2026-11-18T11:54:53.898302+00:00"
+  },
+  "anchor-build-final": {
+    "command": [
+      "/home/aigerim/.avm/bin/anchor-0.31.1",
+      "build",
+      "--no-idl"
+    ],
+    "exitCode": 0,
+    "utc": "2026-11-18T06:53:09.728089+00:00"
+  },
+  "deploy-tpu": {
+    "command": [
+      "solana",
+      "program",
+      "deploy",
+      "--url",
+      "https://api.devnet.solana.com",
+      "--program-id",
+      "target/deploy/simple_vault-keypair.json",
+      "--buffer",
+      "target/deploy/week12-buffer-keypair.json",
+      "--max-sign-attempts",
+      "5",
+      "--with-compute-unit-price",
+      "1",
+      "target/deploy/simple_vault.so"
+    ],
+    "exitCode": 0,
+    "utc": "2026-11-18T06:54:42.295807+00:00"
+  },
+  "rust-check": {
+    "command": [
+      "cargo",
+      "check",
+      "--workspace"
+    ],
+    "exitCode": 0,
+    "utc": "2026-11-18T07:04:14.509133+00:00"
+  },
+  "rust-format": {
+    "command": [
+      "cargo",
+      "fmt",
+      "--check"
+    ],
+    "exitCode": 0,
+    "utc": "2026-11-18T06:57:20.352731+00:00"
+  },
+  "local-tests": {
+    "command": [
+      "node",
+      "--no-experimental-strip-types",
+      "-r",
+      "ts-node/register",
+      "node_modules/mocha/bin/mocha.js",
+      "-t",
+      "1000000",
+      "tests/vault.ts"
+    ],
+    "exitCode": 0,
+    "utc": "2026-11-18T06:57:30.659688+00:00"
+  },
+  "devnet-tests": {
+    "command": [
+      "node",
+      "--no-experimental-strip-types",
+      "-r",
+      "ts-node/register",
+      "scripts/devnet-demo.ts"
+    ],
+    "exitCode": 1,
+    "utc": "2026-11-18T07:00:30.102516+00:00"
+  },
+  "devnet-tests-final": {
+    "command": [
+      "node",
+      "--no-experimental-strip-types",
+      "-r",
+      "ts-node/register",
+      "scripts/verify-rejection.ts"
+    ],
+    "exitCode": 0,
+    "utc": "2026-11-18T07:03:57.616661+00:00"
+  },
+  "anchor-build-complete": {
+    "command": [
+      "/home/aigerim/.avm/bin/anchor-0.31.1",
+      "build"
+    ],
+    "exitCode": 0,
+    "utc": "2026-11-18T07:07:29.447799+00:00"
+  }
+}

@@ -1,34 +1,42 @@
 {
-    "name":  "vault-simple",
-    "version":  "0.1.0",
-    "scripts":  {
-                    "build":  "anchor build",
-                    "test":  "anchor test",
-                    "deploy":  "anchor deploy --provider.cluster devnet",
-                    "ts-mocha":  "ts-mocha",
-                    "create-pool":  "ts-node scripts/create-clmm-pool.ts",
-                    "typecheck":  "tsc --noEmit"
-                },
-    "dependencies":  {
-                         "@coral-xyz/anchor":  "^0.31.1",
-                         "bn.js":  "^5.2.3"
-                     },
-    "devDependencies":  {
-                            "@raydium-io/raydium-sdk-v2": "0.2.41-alpha",
-                            "@solana/spl-token":  "^0.4.9",
-                            "@solana/web3.js":  "^1.95.4",
-                            "@types/chai":  "^4.3.12",
-                            "@types/mocha":  "^10.0.7",
-                            "chai":  "^4.3.10",
-                            "decimal.js":  "^10.6.0",
-                            "mocha":  "^10.4.0",
-                            "ts-mocha":  "^10.0.0",
-                            "ts-node":  "^10.9.2",
-                            "typescript":  "^5.3.3"
-                        },
-    "overrides": {
-        "rpc-websockets": {
-            "uuid": "11.1.0"
-        }
+  "name": "liquidity-vault-week-12",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "anchor build",
+    "test": "anchor test",
+    "deploy": "anchor deploy --provider.cluster devnet",
+    "ts-mocha": "ts-mocha",
+    "create-pool": "ts-node scripts/create-clmm-pool.ts",
+    "typecheck": "tsc --noEmit",
+    "preflight": "ts-node scripts/preflight.ts",
+    "prepare-liquidity": "ts-node scripts/prepare-liquidity.ts",
+    "demo": "ts-node scripts/devnet-demo.ts",
+    "test:unit": "node --no-experimental-strip-types -r ts-node/register node_modules/mocha/bin/mocha.js tests/slippage.ts",
+    "test:devnet": "ts-node scripts/devnet-demo.ts",
+    "test:local": "node --no-experimental-strip-types -r ts-node/register node_modules/mocha/bin/mocha.js -t 1000000 tests/vault.ts",
+    "verify-rejection": "node --no-experimental-strip-types -r ts-node/register scripts/verify-rejection.ts"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.31.1",
+    "bn.js": "^5.2.3"
+  },
+  "devDependencies": {
+    "@raydium-io/raydium-sdk-v2": "0.2.41-alpha",
+    "@solana/spl-token": "^0.4.9",
+    "@solana/web3.js": "^1.95.4",
+    "@types/chai": "^4.3.12",
+    "@types/mocha": "^10.0.7",
+    "chai": "^4.3.10",
+    "decimal.js": "^10.6.0",
+    "mocha": "^10.4.0",
+    "ts-mocha": "^10.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "overrides": {
+    "rpc-websockets": {
+      "uuid": "11.1.0"
     }
+  },
+  "type": "commonjs"
 }

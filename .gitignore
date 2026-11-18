@@ -25,3 +25,7 @@ devnet-pool.json.tmp
 .DS_Store
 .vscode/
 .idea/
+
+.tools/
+.logs/
+.devnet-*.json

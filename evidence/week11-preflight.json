@@ -1,0 +1,54 @@
+{
+  "cluster": "devnet",
+  "wallet": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+  "sol": 6.026121,
+  "clmm": "DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH",
+  "pool": "EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f",
+  "tokens": [
+    {
+      "mint": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+      "decimals": 6,
+      "supply": "1000000000000",
+      "balance": "1000000000000",
+      "authority": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7"
+    },
+    {
+      "mint": "CwHVUNisByLqXM7mN47nhtcfG8AkYxeJ3tBdFB66yZAt",
+      "decimals": 6,
+      "supply": "1000000000000",
+      "balance": "1000000000000",
+      "authority": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7"
+    }
+  ],
+  "liquidity": "0",
+  "tick": 0,
+  "sqrtPriceX64": "18446744073709551616",
+  "price": 1,
+  "config": {
+    "bump": 251,
+    "index": 0,
+    "": [
+      "9c40",
+      "4248713a7d9798b8",
+      "b58e2f5985f717db",
+      "d6a39910c6a53b3f",
+      "797a26930d0f34e9",
+      "00",
+      "00",
+      "00"
+    ],
+    "protocolFeeRate": 120000,
+    "tradeFeeRate": 2500,
+    "tickSpacing": 60,
+    "id": "CD4aJtX11cqTCAc83nxSPkkh5JW2yjD6uwHeovjqQ1qu",
+    "fundFeeRate": 0,
+    "description": "",
+    "defaultRange": 0,
+    "defaultRangePoint": [],
+    "fundOwner": ""
+  },
+  "positions": [],
+  "quote": {
+    "error": "Error: No enough initialized tickArray"
+  }
+}
