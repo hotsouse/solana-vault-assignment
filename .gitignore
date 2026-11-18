@@ -25,3 +25,8 @@ devnet-pool.json.tmp
 .DS_Store
 .vscode/
 .idea/
+
+# Week 11 transaction recovery (public data, local only)
+.week11-position-pending.json
+.week11-position-pending.json.tmp
+evidence/*.tmp

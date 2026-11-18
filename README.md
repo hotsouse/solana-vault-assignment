@@ -1,48 +1,137 @@
 # Simple Vault — Week 11
 
-В этой неделе к учебному проекту добавлен отдельный TypeScript-скрипт. Он создаёт два SPL-токена и пул Raydium CLMM в Solana Devnet. Код контракта Simple Vault и его Program ID не менялись.
+Цель Week 11 — предоставить ликвидность в Raydium CLMM в Solana Devnet: два SPL-токена, существующий пул, диапазон цены и принадлежащая учебному кошельку LP-позиция с ненулевой ликвидностью.
+
+**Результат:** реальная позиция найдена и независимо подтверждена через Devnet RPC. Она открыта 18 ноября 2026 года в 06:03:50 UTC (11:03:50 Asia/Qyzylorda). При доработке задания 19 ноября новая позиция не открывалась: скрипт обнаружил существующую и восстановил публичные доказательства. Транзакция открытия имеет статус `finalized`, `meta.err = null`.
+
+**Ограничение доказательств:** исходный журнал симуляции перед этой ранее отправленной транзакцией отсутствует. Наличие такой симуляции не заявляется. Повторная симуляция уже выполненного открытия не восстановит прежнее состояние. Поэтому требование подтвердить историческую симуляцию остаётся документально неподтверждённым; on-chain результат подтверждён отдельно.
 
 ## AMM и CLMM
 
-AMM — это обмен токенов через пул и формулу цены, без биржевого стакана. В CLMM поставщик ликвидности выбирает диапазон цены, в котором его средства участвуют в обменах. На этой неделе создаётся только сам пул: swap, позиции и добавление ликвидности не выполняются.
+AMM (автоматизированный маркетмейкер) использует резервы пула и математические правила для обмена токенов без биржевого стакана. CLMM (маркетмейкер с концентрированной ликвидностью) позволяет поставщику выбрать диапазон цены. Внутри диапазона его ликвидность участвует в обменах и может приносить комиссии.
 
-TOKEN_A и TOKEN_B — собственные тестовые SPL-токены для учебной пары. Скрипт создаёт для каждого mint с 6 decimals и выпускает по 1 000 000 токенов на настроенный кошелёк Devnet. Суммы считаются в целых базовых единицах: `1_000_000_000_000` на каждый токен.
+За пределами диапазона позиция перестаёт предоставлять активную ликвидность и оказывается преимущественно в одном токене. Более узкий диапазон повышает концентрацию капитала, но увеличивает вероятность выхода цены за границы. Широкий диапазон требует меньше перенастроек, однако распределяет капитал по большему интервалу. Это учебные токены Devnet; экономическая доходность на реальном рынке здесь не проверяется.
 
-## Запуск
+## Адреса и подтверждённая транзакция
 
-Нужны Node.js 18+, npm, Solana CLI и кошелёк с SOL именно в Devnet. Секретный файл кошелька должен быть доступен через `ANCHOR_WALLET` или находиться по адресу `~/.config/solana/id.json`. Для RPC можно задать `DEVNET_RPC`; иначе используется публичный Devnet RPC.
+| Объект | Адрес |
+| --- | --- |
+| Кошелёк / владелец позиции | `3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7` |
+| TOKEN_A / token0, SPL Token, 6 decimals | `7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF` |
+| TOKEN_B / token1, SPL Token, 6 decimals | `CwHVUNisByLqXM7mN47nhtcfG8AkYxeJ3tBdFB66yZAt` |
+| Существующий Raydium CLMM pool | `EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f` |
+| Raydium CLMM Devnet Program | `DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH` |
+| Fee config | `CD4aJtX11cqTCAc83nxSPkkh5JW2yjD6uwHeovjqQ1qu` |
+| Personal position PDA | `HKHZxpzeJ7hUDgubN3wWtqhJG6kNgCUBmrBdcunGYVD8` |
+| Position NFT mint, Token-2022 | `5KaXEEVvC8r8ZaufV4Rbzz8K8rhufhEKdM1PNK3qherQ` |
+| NFT ATA кошелька | `AH43FuDvEBXiC4q7wenT6A9xdthYPvgwxS4vE7rQrZNi` |
+
+LP position NFT — уникальный токен, подтверждающий право управления конкретной позицией. Здесь mint использует Token-2022, имеет 0 decimals, supply = 1 и отключённую mint authority. В ATA кошелька находится ровно 1 NFT; владельцем позиции является указанный кошелёк.
+
+- [Транзакция открытия позиции](https://explorer.solana.com/tx/3HDBYwjDxHqXAaEDtvmSXi3SFSsRSe2MqdkAsCosR3XUbmz8JeWTFx9P4bJFg3pj7H1pk8LM67tR2E2YXjBKKZbf?cluster=devnet).
+- Подпись: `3HDBYwjDxHqXAaEDtvmSXi3SFSsRSe2MqdkAsCosR3XUbmz8JeWTFx9P4bJFg3pj7H1pk8LM67tR2E2YXjBKKZbf`.
+- Slot открытия: `523533604`; комиссия транзакции: `10000` lamports; исполнение: `109701` compute units.
+- [Пул](https://explorer.solana.com/address/EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f?cluster=devnet), [позиция](https://explorer.solana.com/address/HKHZxpzeJ7hUDgubN3wWtqhJG6kNgCUBmrBdcunGYVD8?cluster=devnet), [NFT mint](https://explorer.solana.com/address/5KaXEEVvC8r8ZaufV4Rbzz8K8rhufhEKdM1PNK3qherQ?cluster=devnet).
+- [Предшествующее создание пула](https://explorer.solana.com/tx/3gbxWcfF3vEKsvYq3pd9pGgPxLVUM992shCRvQKBNiMdCsV9ms6BpwuMDzxHZPm3jBWCrqsHqyfRqrtXqbPYPtQ5?cluster=devnet).
+
+## Цена, ticks и диапазон
+
+Все цены ниже выражены в TOKEN_B за 1 TOKEN_A. Порядок mint’ов проверен в аккаунте пула, а decimals обоих mint’ов прочитаны непосредственно через RPC.
+
+Цена вычисляется из `sqrtPriceX64`: `P = (sqrtPriceX64 / 2^64)^2 × 10^(decimalsA - decimalsB)`. Используется `SqrtPriceMath.sqrtPriceX64ToPrice` установленного Raydium SDK.
+
+При открытии `sqrtPriceX64 = 18446744073709551616`, tick = `0`, цена = `1`. Это исторические значения из `LiquidityCalculateEvent` финализированной транзакции. Они не подменяются текущим состоянием пула. Формат события сопоставлен с [исходным кодом Raydium](https://github.com/raydium-io/raydium-clmm/blob/master/programs/amm/src/instructions/open_position.rs).
+
+| Параметр | Значение |
+| --- | --- |
+| TickLower / TickUpper | `-6000 / 6000` |
+| PriceLower | `0.54882809959260829861` |
+| PriceUpper | `1.8220641412899481832` |
+| Tick spacing | `60` |
+| Комиссия пула | `2500 / 1000000 = 0,25%` |
+| Liquidity позиции | `38584613330` |
+
+Tick — дискретная координата логарифмической цены: примерно `P = 1.0001^tick` при одинаковых decimals. Tick spacing = 60 означает, что границы позиции должны быть кратны 60; текущий tick при этом может не быть кратным 60. Обе границы удовлетворяют этому условию: `-6000 <= 0 < 6000`.
+
+Диапазон симметричен по ticks вокруг цены открытия 1: примерно от −45,12% до +82,21% по обычной цене. Такой широкий учебный диапазон даёт запас для движения цены и снижает риск быстрого выхода из диапазона относительно узкой позиции. Первоначальное намерение автора прежней транзакции неизвестно; здесь объясняется проверенный диапазон и его свойства.
+
+На момент проверки 19 ноября 2026 года: цена `0.9948495264917161464`, текущий tick `-52`, `sqrtPriceX64 = 18399178014378143518`. Цена остаётся внутри диапазона. Свежие значения и время чтения выводит verifier; опубликованный JSON является снимком.
+
+## Депозит, расчёт ликвидности и slippage
+
+Фактически внесено по **10 000 TOKEN_A и TOKEN_B**, то есть по `10000000000` базовых единиц при 6 decimals. До открытия у кошелька было по 1 000 000 токенов: депозит составил ровно **1%** каждого исходного баланса.
+
+| Баланс в транзакции открытия | До, базовые единицы | После, базовые единицы | Изменение |
+| --- | --- | --- | --- |
+| TOKEN_A кошелька | 1000000000000 | 990000000000 | −10000000000 |
+| TOKEN_B кошелька | 1000000000000 | 990000000000 | −10000000000 |
+| TOKEN_A vault пула | 0 | 10000000000 | +10000000000 |
+| TOKEN_B vault пула | 0 | 10000000000 | +10000000000 |
+
+Это данные `getTransaction.preTokenBalances/postTokenBalances`. Текущие балансы кошелька позднее изменились; verifier не выдаёт их за балансы сразу после открытия.
+
+В терминах нормализованных квадратных корней цены `s, sL, sU`, внутри диапазона суммы пропорциональны `A = L × (sU-s)/(s×sU)` и `B = L × (s-sL)`. В коде используются целочисленные Q64.64-операции `LiquidityMath` и округление депозитов вверх. Независимый пересчёт для исторической цены, ticks и liquidity позиции совпал с обоими реальными депозитами.
+
+В прежней инструкции `OpenPositionWithToken22Nft` указаны:
+
+- `amountMaxA = 10000000000` — 10 000 TOKEN_A.
+- `amountMaxB = 10100000000` — 10 100 TOKEN_B.
+- Запас к фактической сумме: 0 bps для A и **100 bps = 1%** для B.
+- `liquidity = 0`, `baseFlag = true`: исходная инструкция задавала базовую сумму A, а программа рассчитала ненулевую ликвидность. Нулевой входной параметр не означает нулевую ликвидность созданной позиции.
+
+Запас 1% для B восстановлен из фактических max amounts и депозитов; исходные пользовательские настройки slippage отдельно не сохранились.
+
+Добавленный скрипт для нового открытия использует установленный `@raydium-io/raydium-sdk-v2 0.2.41-alpha`, метод `openPositionFromLiquidity` и явно рассчитанную ненулевую ликвидность. Он ограничивает максимальный расход каждого токена 1% текущего баланса, оставляя внутри этого бюджета 1% slippage для обеих сумм. При уже существующей позиции эта ветка не выполняется.
+
+## Повторная проверка
+
+Нужны Node.js 18+ и зависимости проекта. Команды используют Node напрямую, чтобы не зависеть от наличия Windows-обёрток в `node_modules/.bin`.
 
 ```bash
-npm install
+npm ci
 npm run typecheck
-npm run create-pool
+npm run week11:verify
 ```
 
-`create-pool` запускает `scripts/create-clmm-pool.ts`. Скрипт проверяет mint authority, decimals, supply и баланс токен-аккаунта. Состояние выполнения хранится локально в игнорируемом `.devnet-pool-progress.json`, чтобы продолжить после частичного сбоя. При повторном запуске уже созданные mint’ы и пул переиспользуются.
+`week11:verify` читает опубликованный JSON, заново запрашивает аккаунты и транзакцию через Devnet RPC, сравнивает неизменные доказательства с сетью и выводит свежий JSON в stdout. Приватный ключ, Solana CLI и WSL для проверки не нужны. Скрипт не пишет файлы, не подписывает и не отправляет транзакции; сетевые обращения — только чтение через RPC.
 
-Скрипт запрашивает комиссии из Raydium Devnet API и требует строгое совпадение `tickSpacing = 60` и `tradeFeeRate = 2500`, то есть 0,25%. Если такого конфига нет, скрипт прекращает работу. Для пары с одинаковыми decimals начальная цена задаётся как `1 TOKEN_A = 1 TOKEN_B`. При создании пула используется Raydium CLMM Program ID Devnet `DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH`.
+По умолчанию используется `https://api.devnet.solana.com`. Другой Devnet RPC задаётся через `DEVNET_RPC`; genesis hash обязательно проверяется. Для публичного evidence используйте RPC без секретных токенов в URL.
 
-После подтверждения транзакции скрипт читает аккаунт пула напрямую через RPC и проверяет владельца, пару mint’ов, конфигурацию комиссии и начальную цену. Подтверждённые адреса записываются в локальный `devnet-pool.json`; оба JSON-файла исключены из Git.
+Повторная проверка существующей позиции с обновлением локального evidence:
 
-## Результат Devnet
+```bash
+npm run week11:open
+```
 
-- Кошелёк: `3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7`
-- TOKEN_A mint: `7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF` — 1 000 000 токенов, 6 decimals.
-- TOKEN_B mint: `CwHVUNisByLqXM7mN47nhtcfG8AkYxeJ3tBdFB66yZAt` — 1 000 000 токенов, 6 decimals.
-- TOKEN_A mint transaction: [Solana Explorer](https://explorer.solana.com/tx/4RRrfDqJ9pPNMTWMbUz1xPcob7Ty4zbdBSoaqjbBri7zge4NbgTFpQB8TgzatrSHQ2YsZ1HHod2tXiTHRpw5MsAF?cluster=devnet); выпуск токенов: [Explorer](https://explorer.solana.com/tx/4Xv9nurdDuyyKiaJxiPJfKG41c9Ui89pd4MsGpD8K3V4WKh5H3JtYpzodEGT8P4TpQ1vHCB6UJ2LUJmXe9EzzMAS?cluster=devnet).
-- TOKEN_B mint transaction: [Solana Explorer](https://explorer.solana.com/tx/4WnHyyzrEFBoys2mtvHf2aBMY3HGdHXbbJRk964sCWf3r4b5zoXwxNFfh3aXUuyscCVkfyNz7664zUfFNBzFztVM?cluster=devnet); выпуск токенов: [Explorer](https://explorer.solana.com/tx/2Xs8CZwutqCaBKErSY4TZed6if64w7x2QTbKLLiCZ2y2WU1rj1vJBSUnnf19UqHmpxseKWsLSuk3tSgDhXoqrXgM?cluster=devnet).
-- CLMM pool: `EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f` — [Solana Explorer](https://explorer.solana.com/address/EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f?cluster=devnet).
-- Создание пула: [подтверждённая транзакция](https://explorer.solana.com/tx/3gbxWcfF3vEKsvYq3pd9pGgPxLVUM992shCRvQKBNiMdCsV9ms6BpwuMDzxHZPm3jBWCrqsHqyfRqrtXqbPYPtQ5?cluster=devnet). `solana confirm` вернул `Finalized`.
-- Fee config: `CD4aJtX11cqTCAc83nxSPkkh5JW2yjD6uwHeovjqQ1qu`; tick spacing 60; комиссия 0,25%; начальная цена 1:1.
-- Проверено через RPC: mint’ы имеют 6 decimals, supply и баланс кошелька равны `1_000_000_000_000` базовых единиц на токен; аккаунт пула существует и принадлежит указанной программе Raydium CLMM. SDK подтвердил mint’ы, fee config и цену пула.
+Сначала скрипт ищет принадлежащие кошельку NFT в SPL Token и Token-2022 и проверяет соответствующие personal position PDA. Если найдена одна позиция нужного пула, он проверяет её и сохраняет доказательства без чтения ключа и отправки транзакции. Если позиций несколько, RPC недоступен либо существующий evidence противоречит найденной позиции, выполнение прекращается.
+
+Только если позиции и evidence ещё нет, разрешена ветка открытия: ключ читается из `ANCHOR_WALLET` либо `~/.config/solana/id.json`, проверяется адрес кошелька, SOL и токены. Границы округляются наружу к tick spacing вокруг актуального tick. Строится транзакция с Token-2022 NFT; выполняется симуляция с `sigVerify = true`. При ошибке отправки нет. После успешной симуляции отправляются те же подписанные байты; затем ожидается `finalized` и проверяется `meta.err`.
+
+Файл `.week11-position-pending.json` создаётся эксклюзивно до построения транзакции и блокирует повторную попытку после частичного сбоя. Перед отправкой в нём сохраняются публичные адреса, подпись, blockhash и результат симуляции. Секретные ключи туда не записываются. Файл не удаляется автоматически: при неопределённом результате сначала нужно проверить сохранённую подпись и NFT через RPC. Нельзя удалять защитный файл и слепо открывать ещё одну позицию.
 
 ## Проверки и файлы
 
-- `npm run typecheck` — успешно для `scripts/create-clmm-pool.ts`.
-- `npm run create-pool` — успешно; повторный запуск нашёл существующие mint’ы и пул, проверил их и не отправлял повторные транзакции.
-- Anchor-контракт на этой неделе не собирался и не развёртывался: он не менялся, а для создания пула это не требуется.
-- Адреса и подписи транзакций также сохранены локально в `devnet-pool.json`.
+Запущены и прошли:
 
-Основные файлы: `scripts/create-clmm-pool.ts` — создание и проверка токенов/пула; `package.json` — команды и зависимости; `tsconfig.json` — настройки TypeScript. `devnet-pool.json` и файл продолжения скрипта не коммитятся.
+- `npm run typecheck` — все TypeScript-скрипты в `scripts/`.
+- `week11:open` — повторный запуск переиспользовал существующую позицию, транзакции не отправлялись.
+- Read-only RPC-проверка — **33 контрольных условия**: Devnet genesis, owner и mint order пула, decimals, fee config, vault/observation PDA, personal position, NFT/ATA, tick arrays, диапазон, историческая цена, CLMM math, max amounts, исходный депозит 1%, балансы обоих токенов, отсутствие swap в открытии, `finalized` и `meta.err = null`.
+- Синтаксис JSON, UTF-8 и наличие кириллицы в README, отсутствие последовательностей вопросительных знаков, `git diff --check`.
+- Формат Explorer-ссылок и соответствующие адреса/подписи проверены через RPC. HTTP-доступ к Explorer ограничен ответом 429; успешное открытие страниц не подтверждено.
 
-В Week 10 остались прежними инструкции `initialize_vault`, `create_user_card`, `deposit`, `withdraw`, структуры состояния и Program ID. История Week 8–10 не изменялась.
+`verifiedAt` в evidence — общее время проверки набора; каждый результат находится в `checks`. Повторный запуск получает новое время и текущий снимок. Историческая симуляция отмечена `unavailable` и не засчитывается в успешные проверки.
+
+| Файл | Назначение |
+| --- | --- |
+| `scripts/week11-common.ts` | Общие адреса, чтение состояния, поиск позиции, проверка аккаунтов, инструкции, событий и балансов |
+| `scripts/week11-open-position.ts` | Переиспользование позиции, защита от повторного открытия, симуляция и отправка при первом открытии |
+| `scripts/week11-verify.ts` | Read-only сверка опубликованных доказательств с Devnet |
+| `evidence/week11-devnet.json` | Публичный RPC-снимок и подтверждения транзакции |
+| `package.json` | Команды Week 11 и переносимый запуск typecheck |
+| `.gitignore` | Исключение локального файла восстановления и временного evidence |
+
+Исходный `scripts/create-clmm-pool.ts` оставлен для истории создания пула. Для проверки LP-позиции его запускать не нужно: он проверяет первоначальные полные балансы и цену 1:1, что после добавления ликвидности и последующих операций уже не соответствует состоянию сети. `devnet-pool.json` остаётся локальным игнорируемым файлом; сдаваемые доказательства находятся в `evidence/`.
+
+При проверке обнаружены следующие особенности: HTTP 429 от Explorer (страницы не удалось проверить), отсутствие Windows-обёртки `tsc` (команда исправлена), предупреждение о JS fallback для bigint (не мешает проверкам), Token-2022 NFT, устаревший protocol position PDA без отдельного аккаунта в текущей программе. PDA проверяется в инструкции открытия, но существование deprecated-аккаунта не требуется. Требования методички в самом репозитории не найдены; проверка выполнена по предоставленному заданию.
+
+Новая ветка отправки реализована и прошла typecheck, но в этой доработке не запускалась: существующая позиция уже удовлетворяет on-chain требованиям. Историческую симуляцию прежнего открытия подтвердить не удалось. Anchor-сборка и тесты контракта не запускались: контракт Simple Vault, его Program ID и материалы Week 8–10 не изменялись.
