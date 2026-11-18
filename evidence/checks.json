@@ -120,5 +120,59 @@
     ],
     "exitCode": 0,
     "utc": "2026-11-18T07:07:29.447799+00:00"
+  },
+  "audit-verifier": {
+    "command": [
+      "node",
+      "--no-experimental-strip-types",
+      "-r",
+      "ts-node/register",
+      "scripts/week12-verify.ts"
+    ],
+    "exitCode": 0,
+    "utc": "2026-11-18T23:16:19.210195+00:00"
+  },
+  "audit-typecheck": {
+    "command": [
+      "node",
+      "node_modules/typescript/bin/tsc",
+      "--noEmit"
+    ],
+    "exitCode": 0,
+    "utc": "2026-11-18T23:16:36.064276+00:00"
+  },
+  "audit-unit": {
+    "command": [
+      "node",
+      "--no-experimental-strip-types",
+      "-r",
+      "ts-node/register",
+      "node_modules/mocha/bin/mocha.js",
+      "tests/slippage.ts"
+    ],
+    "exitCode": 0,
+    "utc": "2026-11-18T23:16:51.858142+00:00"
+  },
+  "audit-integration": {
+    "command": [
+      "node",
+      "--no-experimental-strip-types",
+      "-r",
+      "ts-node/register",
+      "node_modules/mocha/bin/mocha.js",
+      "-t",
+      "1000000",
+      "tests/vault.ts"
+    ],
+    "exitCode": 0,
+    "utc": "2026-11-18T23:18:05.085511+00:00"
+  },
+  "audit-build": {
+    "command": [
+      "/home/aigerim/.avm/bin/anchor-0.31.1",
+      "build"
+    ],
+    "exitCode": 0,
+    "utc": "2026-11-18T23:18:54.220716+00:00"
   }
 }

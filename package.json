@@ -14,7 +14,8 @@
     "test:unit": "node --no-experimental-strip-types -r ts-node/register node_modules/mocha/bin/mocha.js tests/slippage.ts",
     "test:devnet": "ts-node scripts/devnet-demo.ts",
     "test:local": "node --no-experimental-strip-types -r ts-node/register node_modules/mocha/bin/mocha.js -t 1000000 tests/vault.ts",
-    "verify-rejection": "node --no-experimental-strip-types -r ts-node/register scripts/verify-rejection.ts"
+    "verify-rejection": "node --no-experimental-strip-types -r ts-node/register scripts/verify-rejection.ts",
+    "verify:week12": "node --no-experimental-strip-types -r ts-node/register scripts/week12-verify.ts"
   },
   "dependencies": {
     "@coral-xyz/anchor": "^0.31.1",
