@@ -1,0 +1,17 @@
+{
+  "program": "8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa",
+  "bytes": 604864,
+  "sha256": "e6712608e22f254b87a2c48f881ce0502cc6cde62a79bd507d6eae9dd112f666",
+  "toolchain": {
+    "rust": "rustc 1.99.0 (b940084d7 2026-09-28)",
+    "solana": "solana-cli 2.3.0 (src:a2e21dda; feat:3640012085, client:Agave)",
+    "anchor": "anchor-cli 0.31.1",
+    "node": "v22.23.4"
+  },
+  "sourceHashes": {
+    "programs/simple_vault/src/lib.rs": "0b9577644238a838276671635c4a8fb3b364be8300095ab3297fd45636359421",
+    "programs/simple_vault/src/position.rs": "1ab736bac0dc6520bb2e6f85141ff2acb6871c0620cf738bd708789683c0d831",
+    "programs/simple_vault/src/swap.rs": "8700e042b67ffceaf87d48fa3aaa930c68e860c185fddc87c3f878d0c81c358a"
+  },
+  "publicIdlSha256": "29a8e92bb22f4433816d46ec9aec9fc87db5bbedd71b0bf083b5e7aef18a86f1"
+}

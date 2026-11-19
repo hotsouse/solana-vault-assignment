@@ -1,13 +1,38 @@
+pub mod position;
+use position::*;
 pub mod swap;
 use anchor_lang::prelude::*;
 use anchor_spl::token::{self, Burn, Mint, MintTo, Token, TokenAccount, Transfer};
 use swap::*;
 
-declare_id!("HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF");
+declare_id!("8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa");
 
 #[program]
 pub mod simple_vault {
     use super::*;
+
+    pub fn open_position<'info>(
+        ctx: Context<'_, '_, '_, 'info, PositionOperation<'info>>,
+        lower: i32,
+        upper: i32,
+        liquidity: u128,
+        max_0: u64,
+        max_1: u64,
+    ) -> Result<()> {
+        position::open(ctx, lower, upper, liquidity, max_0, max_1)
+    }
+    pub fn collect_position_fees<'info>(
+        ctx: Context<'_, '_, '_, 'info, PositionOperation<'info>>,
+    ) -> Result<()> {
+        position::manage(ctx, false, 0, 0)
+    }
+    pub fn close_position<'info>(
+        ctx: Context<'_, '_, '_, 'info, PositionOperation<'info>>,
+        min_0: u64,
+        min_1: u64,
+    ) -> Result<()> {
+        position::manage(ctx, true, min_0, min_1)
+    }
 
     pub fn initialize_swap(ctx: Context<InitializeSwap>) -> Result<()> {
         swap::initialize(ctx)
@@ -441,6 +466,16 @@ impl UserCard {
 
 #[error_code]
 pub enum VaultError {
+    #[msg("Position is already active")]
+    PositionActive,
+    #[msg("No active position")]
+    NoPosition,
+    #[msg("Invalid position or NFT custody")]
+    InvalidPosition,
+    #[msg("Invalid tick range or alignment")]
+    InvalidTicks,
+    #[msg("Reward-bearing pools are unsupported")]
+    UnsupportedRewards,
     #[msg("Only the vault administrator may swap")]
     Unauthorized,
     #[msg("Pool is not bound to this vault")]

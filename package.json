@@ -1,21 +1,26 @@
 {
-  "name": "liquidity-vault-week-12",
+  "name": "liquidity-vault-week-13",
   "version": "0.1.0",
   "scripts": {
     "build": "anchor build",
-    "test": "anchor test",
+    "test": "npm run test:unit && npm run test:week13",
     "deploy": "anchor deploy --provider.cluster devnet",
     "ts-mocha": "ts-mocha",
     "create-pool": "ts-node scripts/create-clmm-pool.ts",
-    "typecheck": "tsc --noEmit",
-    "preflight": "ts-node scripts/preflight.ts",
+    "typecheck": "node node_modules/typescript/bin/tsc --noEmit",
+    "preflight": "node --no-experimental-strip-types -r ts-node/register scripts/week13-preflight.ts",
     "prepare-liquidity": "ts-node scripts/prepare-liquidity.ts",
-    "demo": "ts-node scripts/devnet-demo.ts",
+    "demo": "npm run test:devnet",
     "test:unit": "node --no-experimental-strip-types -r ts-node/register node_modules/mocha/bin/mocha.js tests/slippage.ts",
-    "test:devnet": "ts-node scripts/devnet-demo.ts",
+    "test:devnet": "npm run week13:run -- setup && npm run week13:run -- normal && npm run week13:run -- rebalance && npm run week13:run -- cleanup",
     "test:local": "node --no-experimental-strip-types -r ts-node/register node_modules/mocha/bin/mocha.js -t 1000000 tests/vault.ts",
     "verify-rejection": "node --no-experimental-strip-types -r ts-node/register scripts/verify-rejection.ts",
-    "verify:week12": "node --no-experimental-strip-types -r ts-node/register scripts/week12-verify.ts"
+    "verify:week12": "node --no-experimental-strip-types -r ts-node/register scripts/week12-verify.ts",
+    "preflight:week13": "node --no-experimental-strip-types -r ts-node/register scripts/week13-preflight.ts",
+    "verify:week13": "node --no-experimental-strip-types -r ts-node/register scripts/week13-verify.ts",
+    "week13:run": "node --no-experimental-strip-types -r ts-node/register scripts/week13-run.ts",
+    "test:week13": "node --no-experimental-strip-types -r ts-node/register node_modules/mocha/bin/mocha.js tests/week13.ts",
+    "test:week13:local": "node --no-experimental-strip-types -r ts-node/register node_modules/mocha/bin/mocha.js -t 180000 tests/week13-local.ts"
   },
   "dependencies": {
     "@coral-xyz/anchor": "^0.31.1",

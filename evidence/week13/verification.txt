@@ -1,0 +1,234 @@
+
+> liquidity-vault-week-13@0.1.0 verify:week13
+> node --no-experimental-strip-types -r ts-node/register scripts/week13-verify.ts
+
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+PASS finalized initialize-vault 5ZzZHiiWuuKdFsYXyz6RNxGjqUpjj4HduWhtdSuBqnxXEnZMVvB9gCyGvazxcRrEvTBN1HDAywKUfXAfz86sMJ9w
+PASS finalized initialize-swap 3Wt7hjkTN6LjExthmd8Uo2VooYRRzAHKeWgwEoEcKAB2WfJU8pCyqJZcbGf2przcqh5esFGoLBYJPeMxxDJmn3XD
+PASS finalized fund-trader 3MYqsWrU52zu6ehUDnnpBYwgQRHgtzmxbJbSrybqanEmN5FsUYj4jfZFeAYJzgqRXydzipJKnL6kBA8os1MTCPYS
+PASS finalized deposit 5cS53piuxwzoNp8RK5ZEb4iWiNwtdRy8s6DsC1wFmAuBqSSyfGWCyZoY5BQtbiYGq4t1vL8NMe2mLsbZjnqegN2j
+PASS finalized prepare-vault-token-b 51QEF3rJHMEKP76R1PYJoX6QSLchDGTEYPtRherzVZjPZWMNheC7RDJNVjH8JfSd49CABsVXq8ZEf4gE4PSMoMmv
+PASS finalized normal-open 5EKaaMGb8WZQP9X39qzSU4zxXXHpGkSUHh7wMRCaSb2gbWAuBd4unxZ5tjv4f192gmRNgjxqh7MrTcnGQZXqT6cV
+PASS finalized normal-swap-1 4iw3QkQ9fQ9LLuwPpCr7FCyNJuFcp2wyq2PLFvGkfDzmJ3xq5Te7L59zNv8uHP2Asvw6LApoGKUUcjR9bD1rZxYt
+PASS finalized normal-swap-2 5bimyKi4TkFFYaLPnjmtuRBGwy6ZoLsqeQc6a7gnmv9qSVfmgu3QgGhi52pVbMbpKWipDRbiSagQCvtArNtDpYDv
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 1000ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 2000ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 4000ms delay...
+PASS finalized normal-swap-3 4XZAcYrGooJexfGkLRsVRQHkCtN1a1UpQBNN5ggF6S1Tgo5QNzM742vyRAve1US8kdrQjAGL454cFYHYWCWjHbHU
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 1000ms delay...
+PASS finalized normal-collect 5PMwYAdNNzFj8KNjbDcLoxjsk6QpifT3Y5MJC4tEya4baqhnSaQbQrtpppU24xjq4CY9p96s3ggR2vAec8fHfnbK
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 1000ms delay...
+PASS finalized normal-close 3LX5jAqgy7aqNSjptmUTcJb3dNvybeBTPgFJi27JqmQp1zDbrQwngcAWQavukBETunAasFmAp8moxNxBTcv8U7fE
+PASS finalized rebalance-old-open 4T6QHDWSKyuRBaUenXeMWXhr36E3cN6NZ7JYbqep2diNhkUi77UhRqYisf42SXXVhrwaQtxFg5bonViKeMDnp6rN
+PASS finalized rebalance-move-0 328XJc5ZtAJPLzeFpBZ5nBkRVBftzZ1diRvbMHfkH27AvivPTFmoEwDqdVmLKaSo7eS6cETDgqLiJokiKs8TUMLz
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+PASS finalized rebalance-move-1 55PBkx2EnGjD4wRTXe1jUeMm216pRKVzVsrGkDFnbfoGS49LtqSUvQeDGeoT51qmF4mz6VKMXKN93BS5BbK8Jchp
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 1000ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 2000ms delay...
+PASS finalized rebalance-move-2 3nq3hkNGzmcmFEg2xDHYthbfmsnkwXJQaBLqXNK2JgP9ECwL5iNHmNacncJxRRJabBYCaMwXLKEhaNk6bzTjTXf7
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 1000ms delay...
+PASS finalized rebalance-move-3 2QxQWVK83Zg3t78JpRJMjYzTAKeS9oKK5FBeV4LTBC3vPEqe6jY3c81LxLLzHSnCJqp3PsGr9B7HrS744uoAxzCe
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 1000ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 2000ms delay...
+PASS finalized rebalance-move-4 3a341aUke4jtrLGH9wG5GQfXFdPJdUT7TsY3mRPSxzRRHJoC2zTE7RrHQAppkaF7E1sVas3pi8BH4YCShR51YNj
+PASS finalized rebalance-move-5 4kn63cSKWb3YsEiZKwnnBP16wXbyLvhCckEwUFMh8CJi6jfihNcJr93wqBDudVxMsWGzFnB2KbjxC76eNbSWYpYa
+PASS finalized rebalance-move-6 5FMG3h2Ag3s1YL59tcLMZwMCryoyJuvE2iTGMAwokVRn8LecpbYfrbRmfWNoHrUgmrHheMj13xSXYnUXzxCJFvKY
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 1000ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 2000ms delay...
+PASS finalized rebalance-move-7 J5WMzdz5svwvCfgWrmzuxC5yy6WsCFCzEVskxEAGuwRWWqCqh9J13LK3CcuPMtfhTTMdqkW7yBjY7zP1M2CJFmf
+PASS finalized rebalance-move-8 25xWVBnVzPRLWkhbW2BETEEGktSZ6uNi1ppCkQwbfLmtZgzsR1MJQ317CAy21SphDJj6NHxbiTvZAdqd2b8WgmM6
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 1000ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 1000ms delay...
+PASS finalized rebalance-old-close 3EKyy91a98fXnxbFNuGaWhs66nwyDi4Hn9khnbQT4FdHFTrKsHMUygnqj5177YLqDaQBcG26U6V5f4Wa4n6Vt3r9
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 1000ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 1000ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 2000ms delay...
+PASS finalized rebalance-new-open 63rFT7FahY3eJgTJsRZZgqJ5ZZRf3Tu9gRE6cewAunjTw259vRxBzJxpAAVskq2FJBvFJHnQLodYKc3S2Da3vgEP
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 1000ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 2000ms delay...
+PASS finalized rebalance-new-close 4A2AiSBY9wLRn5U9DLV8ETJbRLEjS9UvUEM4raBLoaWiFhSPEGVBibpAYYC2qBidFJTf8h8kzygpidJkb7mCcd8v
+{
+  "status": "passed",
+  "verifiedAt": "2026-11-19T17:11:29.505Z",
+  "deployment": "31oM1gN5Wjzxqd3CaPKpftoLEfXq5xEsEEwPj7NDMrN3SD24W8Cyn9Ypz36vP58NtrepPuCPpMCTYee9uLKJmqZW",
+  "checks": [
+    {
+      "label": "normal-open",
+      "slot": 523897041,
+      "signature": "5EKaaMGb8WZQP9X39qzSU4zxXXHpGkSUHh7wMRCaSb2gbWAuBd4unxZ5tjv4f192gmRNgjxqh7MrTcnGQZXqT6cV",
+      "event": {
+        "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+        "nft": "BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy",
+        "action": 0,
+        "lower": -720,
+        "upper": 480,
+        "liquidity": "661942349",
+        "amount0": "19119261",
+        "amount1": "20000000",
+        "tick": -104,
+        "sqrtPriceX64": "18351856628136355229",
+        "principal0": "19119261",
+        "principal1": "20000000",
+        "fee0": "0",
+        "fee1": "0"
+      },
+      "deltaA": "-19119261",
+      "deltaB": "-20000000"
+    },
+    {
+      "label": "normal-collect",
+      "slot": 523897122,
+      "signature": "5PMwYAdNNzFj8KNjbDcLoxjsk6QpifT3Y5MJC4tEya4baqhnSaQbQrtpppU24xjq4CY9p96s3ggR2vAec8fHfnbK",
+      "event": {
+        "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+        "nft": "BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy",
+        "action": 1,
+        "lower": -720,
+        "upper": 480,
+        "liquidity": "0",
+        "amount0": "70",
+        "amount1": "35",
+        "tick": -104,
+        "sqrtPriceX64": "18351397426345686957",
+        "principal0": "0",
+        "principal1": "0",
+        "fee0": "70",
+        "fee1": "35"
+      },
+      "deltaA": "70",
+      "deltaB": "35"
+    },
+    {
+      "label": "normal-close",
+      "slot": 523897144,
+      "signature": "3LX5jAqgy7aqNSjptmUTcJb3dNvybeBTPgFJi27JqmQp1zDbrQwngcAWQavukBETunAasFmAp8moxNxBTcv8U7fE",
+      "event": {
+        "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+        "nft": "BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy",
+        "action": 2,
+        "lower": -720,
+        "upper": 480,
+        "liquidity": "661942349",
+        "amount0": "19135909",
+        "amount1": "19983521",
+        "tick": -104,
+        "sqrtPriceX64": "18351397426345686957",
+        "principal0": "19135909",
+        "principal1": "19983521",
+        "fee0": "0",
+        "fee1": "0"
+      },
+      "deltaA": "19135909",
+      "deltaB": "19983521"
+    },
+    {
+      "label": "rebalance-old-open",
+      "slot": 523897287,
+      "signature": "4T6QHDWSKyuRBaUenXeMWXhr36E3cN6NZ7JYbqep2diNhkUi77UhRqYisf42SXXVhrwaQtxFg5bonViKeMDnp6rN",
+      "event": {
+        "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+        "nft": "EVfhb1eYwmP8YAstSFUTmNMSSvFfzS58H6iSERrWVijd",
+        "action": 0,
+        "lower": -180,
+        "upper": -60,
+        "liquidity": "5276455704",
+        "amount0": "11562049",
+        "amount1": "20000000",
+        "tick": -104,
+        "sqrtPriceX64": "18351397426345686957",
+        "principal0": "11562049",
+        "principal1": "20000000",
+        "fee0": "0",
+        "fee1": "0"
+      },
+      "deltaA": "-11562049",
+      "deltaB": "-20000000"
+    },
+    {
+      "label": "rebalance-old-close",
+      "slot": 523897500,
+      "signature": "3EKyy91a98fXnxbFNuGaWhs66nwyDi4Hn9khnbQT4FdHFTrKsHMUygnqj5177YLqDaQBcG26U6V5f4Wa4n6Vt3r9",
+      "event": {
+        "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+        "nft": "EVfhb1eYwmP8YAstSFUTmNMSSvFfzS58H6iSERrWVijd",
+        "action": 2,
+        "lower": -180,
+        "upper": -60,
+        "liquidity": "5276455704",
+        "amount0": "31890409",
+        "amount1": "0",
+        "tick": -186,
+        "sqrtPriceX64": "18276348711820134206",
+        "principal0": "31847703",
+        "principal1": "0",
+        "fee0": "42706",
+        "fee1": "0"
+      },
+      "deltaA": "31890409",
+      "deltaB": "0"
+    },
+    {
+      "label": "rebalance-new-open",
+      "slot": 523897531,
+      "signature": "63rFT7FahY3eJgTJsRZZgqJ5ZZRf3Tu9gRE6cewAunjTw259vRxBzJxpAAVskq2FJBvFJHnQLodYKc3S2Da3vgEP",
+      "event": {
+        "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+        "nft": "2wkmWUqhUHXqqsRxHHSYjXstS9DgD2fgi3qM7H5tWpUc",
+        "action": 0,
+        "lower": -840,
+        "upper": 360,
+        "liquidity": "627135103",
+        "amount0": "17033840",
+        "amount1": "20000000",
+        "tick": -186,
+        "sqrtPriceX64": "18276348711820134206",
+        "principal0": "17033840",
+        "principal1": "20000000",
+        "fee0": "0",
+        "fee1": "0"
+      },
+      "deltaA": "-17033840",
+      "deltaB": "-20000000"
+    },
+    {
+      "label": "rebalance-new-close",
+      "slot": 523897643,
+      "signature": "4A2AiSBY9wLRn5U9DLV8ETJbRLEjS9UvUEM4raBLoaWiFhSPEGVBibpAYYC2qBidFJTf8h8kzygpidJkb7mCcd8v",
+      "event": {
+        "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+        "nft": "2wkmWUqhUHXqqsRxHHSYjXstS9DgD2fgi3qM7H5tWpUc",
+        "action": 2,
+        "lower": -840,
+        "upper": 360,
+        "liquidity": "627135103",
+        "amount0": "17033839",
+        "amount1": "19999999",
+        "tick": -186,
+        "sqrtPriceX64": "18276348711820134206",
+        "principal0": "17033839",
+        "principal1": "19999999",
+        "fee0": "0",
+        "fee1": "0"
+      },
+      "deltaA": "17033839",
+      "deltaB": "19999999"
+    }
+  ],
+  "limitations": [
+    "RPC provides transaction token balances and instruction logs; arbitrary historical account bytes cannot be retrieved.",
+    "Historical NFT custody is proven by token initialization, minting and Vault-authorized CPI; current accounts are labeled separately.",
+    "Stored preflight balances are observations, not archival account proofs."
+  ]
+}

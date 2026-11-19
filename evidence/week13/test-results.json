@@ -1,0 +1,78 @@
+{
+  "checks": [
+    {
+      "command": "cargo fmt --check",
+      "exitCode": 0,
+      "passed": null,
+      "log": "format.txt"
+    },
+    {
+      "command": "cargo check --workspace",
+      "exitCode": 0,
+      "passed": null,
+      "log": "cargo-check.txt"
+    },
+    {
+      "command": "cargo test --workspace",
+      "exitCode": 0,
+      "passed": 5,
+      "log": "rust-tests.txt"
+    },
+    {
+      "command": "anchor build",
+      "exitCode": 0,
+      "passed": null,
+      "log": "anchor-build-recovered.txt"
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "passed": null,
+      "log": "typecheck.txt"
+    },
+    {
+      "command": "npm run test:unit",
+      "exitCode": 0,
+      "passed": 6,
+      "log": "slippage-unit.txt"
+    },
+    {
+      "command": "npm run test:week13",
+      "exitCode": 0,
+      "passed": 8,
+      "log": "week13-unit.txt"
+    },
+    {
+      "command": "npm run test:local",
+      "exitCode": 0,
+      "passed": 17,
+      "log": "local-tests.txt"
+    },
+    {
+      "command": "npm run test:week13:local",
+      "exitCode": 0,
+      "passed": 11,
+      "log": "clmm-local-tests.txt"
+    },
+    {
+      "command": "Week 13 deployed-program negative RPC simulations",
+      "exitCode": 0,
+      "passed": 44,
+      "log": "manifest.json"
+    },
+    {
+      "command": "npm run verify:week13 (invalid ANCHOR_WALLET)",
+      "exitCode": 0,
+      "passed": 25,
+      "log": "verification.txt"
+    }
+  ],
+  "devnetFinalizedTransactions": 25,
+  "devnetNegativeSimulations": 44,
+  "localValidatorTestsAreNotDevnetTransactions": true,
+  "notes": [
+    "Rust/Anchor macro cfg and deprecation warnings remain; SBF build has no stack-overflow diagnostics.",
+    "The first IDL build was interrupted by WSL unresponsiveness. The recovered full Anchor build passed.",
+    "The first CLMM test run found an oversized negative-test transaction. Removing its unnecessary NFT signature produced 11 passing tests; Vault code was unchanged."
+  ]
+}

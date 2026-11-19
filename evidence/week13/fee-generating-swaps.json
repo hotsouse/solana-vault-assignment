@@ -1,0 +1,259 @@
+{
+  "kind": "Finalized Devnet transactions signed by the separate trader",
+  "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+  "count": 12,
+  "transactions": [
+    {
+      "label": "normal-swap-1",
+      "signature": "4iw3QkQ9fQ9LLuwPpCr7FCyNJuFcp2wyq2PLFvGkfDzmJ3xq5Te7L59zNv8uHP2Asvw6LApoGKUUcjR9bD1rZxYt",
+      "explorer": "https://explorer.solana.com/tx/4iw3QkQ9fQ9LLuwPpCr7FCyNJuFcp2wyq2PLFvGkfDzmJ3xq5Te7L59zNv8uHP2Asvw6LApoGKUUcjR9bD1rZxYt?cluster=devnet",
+      "slot": 523897078,
+      "before": {
+        "a": "80880739",
+        "b": "78981011"
+      },
+      "after": {
+        "a": "80880739",
+        "b": "78981011"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "1000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -104
+      }
+    },
+    {
+      "label": "normal-swap-2",
+      "signature": "5bimyKi4TkFFYaLPnjmtuRBGwy6ZoLsqeQc6a7gnmv9qSVfmgu3QgGhi52pVbMbpKWipDRbiSagQCvtArNtDpYDv",
+      "explorer": "https://explorer.solana.com/tx/5bimyKi4TkFFYaLPnjmtuRBGwy6ZoLsqeQc6a7gnmv9qSVfmgu3QgGhi52pVbMbpKWipDRbiSagQCvtArNtDpYDv?cluster=devnet",
+      "slot": 523897092,
+      "before": {
+        "a": "80880739",
+        "b": "78981011"
+      },
+      "after": {
+        "a": "80880739",
+        "b": "78981011"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "1000000",
+        "input": "CwHVUNisByLqXM7mN47nhtcfG8AkYxeJ3tBdFB66yZAt",
+        "tickBefore": -104
+      }
+    },
+    {
+      "label": "normal-swap-3",
+      "signature": "4XZAcYrGooJexfGkLRsVRQHkCtN1a1UpQBNN5ggF6S1Tgo5QNzM742vyRAve1US8kdrQjAGL454cFYHYWCWjHbHU",
+      "explorer": "https://explorer.solana.com/tx/4XZAcYrGooJexfGkLRsVRQHkCtN1a1UpQBNN5ggF6S1Tgo5QNzM742vyRAve1US8kdrQjAGL454cFYHYWCWjHbHU?cluster=devnet",
+      "slot": 523897110,
+      "before": {
+        "a": "80880739",
+        "b": "78981011"
+      },
+      "after": {
+        "a": "80880739",
+        "b": "78981011"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "1000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -104
+      }
+    },
+    {
+      "label": "rebalance-move-0",
+      "signature": "328XJc5ZtAJPLzeFpBZ5nBkRVBftzZ1diRvbMHfkH27AvivPTFmoEwDqdVmLKaSo7eS6cETDgqLiJokiKs8TUMLz",
+      "explorer": "https://explorer.solana.com/tx/328XJc5ZtAJPLzeFpBZ5nBkRVBftzZ1diRvbMHfkH27AvivPTFmoEwDqdVmLKaSo7eS6cETDgqLiJokiKs8TUMLz?cluster=devnet",
+      "slot": 523897324,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -104
+      }
+    },
+    {
+      "label": "rebalance-move-1",
+      "signature": "55PBkx2EnGjD4wRTXe1jUeMm216pRKVzVsrGkDFnbfoGS49LtqSUvQeDGeoT51qmF4mz6VKMXKN93BS5BbK8Jchp",
+      "explorer": "https://explorer.solana.com/tx/55PBkx2EnGjD4wRTXe1jUeMm216pRKVzVsrGkDFnbfoGS49LtqSUvQeDGeoT51qmF4mz6VKMXKN93BS5BbK8Jchp?cluster=devnet",
+      "slot": 523897338,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -113
+      }
+    },
+    {
+      "label": "rebalance-move-2",
+      "signature": "3nq3hkNGzmcmFEg2xDHYthbfmsnkwXJQaBLqXNK2JgP9ECwL5iNHmNacncJxRRJabBYCaMwXLKEhaNk6bzTjTXf7",
+      "explorer": "https://explorer.solana.com/tx/3nq3hkNGzmcmFEg2xDHYthbfmsnkwXJQaBLqXNK2JgP9ECwL5iNHmNacncJxRRJabBYCaMwXLKEhaNk6bzTjTXf7?cluster=devnet",
+      "slot": 523897356,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -122
+      }
+    },
+    {
+      "label": "rebalance-move-3",
+      "signature": "2QxQWVK83Zg3t78JpRJMjYzTAKeS9oKK5FBeV4LTBC3vPEqe6jY3c81LxLLzHSnCJqp3PsGr9B7HrS744uoAxzCe",
+      "explorer": "https://explorer.solana.com/tx/2QxQWVK83Zg3t78JpRJMjYzTAKeS9oKK5FBeV4LTBC3vPEqe6jY3c81LxLLzHSnCJqp3PsGr9B7HrS744uoAxzCe?cluster=devnet",
+      "slot": 523897373,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -131
+      }
+    },
+    {
+      "label": "rebalance-move-4",
+      "signature": "3a341aUke4jtrLGH9wG5GQfXFdPJdUT7TsY3mRPSxzRRHJoC2zTE7RrHQAppkaF7E1sVas3pi8BH4YCShR51YNj",
+      "explorer": "https://explorer.solana.com/tx/3a341aUke4jtrLGH9wG5GQfXFdPJdUT7TsY3mRPSxzRRHJoC2zTE7RrHQAppkaF7E1sVas3pi8BH4YCShR51YNj?cluster=devnet",
+      "slot": 523897394,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -140
+      }
+    },
+    {
+      "label": "rebalance-move-5",
+      "signature": "4kn63cSKWb3YsEiZKwnnBP16wXbyLvhCckEwUFMh8CJi6jfihNcJr93wqBDudVxMsWGzFnB2KbjxC76eNbSWYpYa",
+      "explorer": "https://explorer.solana.com/tx/4kn63cSKWb3YsEiZKwnnBP16wXbyLvhCckEwUFMh8CJi6jfihNcJr93wqBDudVxMsWGzFnB2KbjxC76eNbSWYpYa?cluster=devnet",
+      "slot": 523897414,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -149
+      }
+    },
+    {
+      "label": "rebalance-move-6",
+      "signature": "5FMG3h2Ag3s1YL59tcLMZwMCryoyJuvE2iTGMAwokVRn8LecpbYfrbRmfWNoHrUgmrHheMj13xSXYnUXzxCJFvKY",
+      "explorer": "https://explorer.solana.com/tx/5FMG3h2Ag3s1YL59tcLMZwMCryoyJuvE2iTGMAwokVRn8LecpbYfrbRmfWNoHrUgmrHheMj13xSXYnUXzxCJFvKY?cluster=devnet",
+      "slot": 523897438,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -158
+      }
+    },
+    {
+      "label": "rebalance-move-7",
+      "signature": "J5WMzdz5svwvCfgWrmzuxC5yy6WsCFCzEVskxEAGuwRWWqCqh9J13LK3CcuPMtfhTTMdqkW7yBjY7zP1M2CJFmf",
+      "explorer": "https://explorer.solana.com/tx/J5WMzdz5svwvCfgWrmzuxC5yy6WsCFCzEVskxEAGuwRWWqCqh9J13LK3CcuPMtfhTTMdqkW7yBjY7zP1M2CJFmf?cluster=devnet",
+      "slot": 523897457,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -167
+      }
+    },
+    {
+      "label": "rebalance-move-8",
+      "signature": "25xWVBnVzPRLWkhbW2BETEEGktSZ6uNi1ppCkQwbfLmtZgzsR1MJQ317CAy21SphDJj6NHxbiTvZAdqd2b8WgmM6",
+      "explorer": "https://explorer.solana.com/tx/25xWVBnVzPRLWkhbW2BETEEGktSZ6uNi1ppCkQwbfLmtZgzsR1MJQ317CAy21SphDJj6NHxbiTvZAdqd2b8WgmM6?cluster=devnet",
+      "slot": 523897479,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -176
+      }
+    }
+  ]
+}

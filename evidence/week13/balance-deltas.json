@@ -1,0 +1,246 @@
+{
+  "amountUnits": "Raw integers; both mints have six decimals",
+  "transactionMetadata": [
+    {
+      "label": "normal-open",
+      "slot": 523897041,
+      "signature": "5EKaaMGb8WZQP9X39qzSU4zxXXHpGkSUHh7wMRCaSb2gbWAuBd4unxZ5tjv4f192gmRNgjxqh7MrTcnGQZXqT6cV",
+      "event": {
+        "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+        "nft": "BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy",
+        "action": 0,
+        "lower": -720,
+        "upper": 480,
+        "liquidity": "661942349",
+        "amount0": "19119261",
+        "amount1": "20000000",
+        "tick": -104,
+        "sqrtPriceX64": "18351856628136355229",
+        "principal0": "19119261",
+        "principal1": "20000000",
+        "fee0": "0",
+        "fee1": "0"
+      },
+      "deltaA": "-19119261",
+      "deltaB": "-20000000"
+    },
+    {
+      "label": "normal-collect",
+      "slot": 523897122,
+      "signature": "5PMwYAdNNzFj8KNjbDcLoxjsk6QpifT3Y5MJC4tEya4baqhnSaQbQrtpppU24xjq4CY9p96s3ggR2vAec8fHfnbK",
+      "event": {
+        "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+        "nft": "BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy",
+        "action": 1,
+        "lower": -720,
+        "upper": 480,
+        "liquidity": "0",
+        "amount0": "70",
+        "amount1": "35",
+        "tick": -104,
+        "sqrtPriceX64": "18351397426345686957",
+        "principal0": "0",
+        "principal1": "0",
+        "fee0": "70",
+        "fee1": "35"
+      },
+      "deltaA": "70",
+      "deltaB": "35"
+    },
+    {
+      "label": "normal-close",
+      "slot": 523897144,
+      "signature": "3LX5jAqgy7aqNSjptmUTcJb3dNvybeBTPgFJi27JqmQp1zDbrQwngcAWQavukBETunAasFmAp8moxNxBTcv8U7fE",
+      "event": {
+        "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+        "nft": "BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy",
+        "action": 2,
+        "lower": -720,
+        "upper": 480,
+        "liquidity": "661942349",
+        "amount0": "19135909",
+        "amount1": "19983521",
+        "tick": -104,
+        "sqrtPriceX64": "18351397426345686957",
+        "principal0": "19135909",
+        "principal1": "19983521",
+        "fee0": "0",
+        "fee1": "0"
+      },
+      "deltaA": "19135909",
+      "deltaB": "19983521"
+    },
+    {
+      "label": "rebalance-old-open",
+      "slot": 523897287,
+      "signature": "4T6QHDWSKyuRBaUenXeMWXhr36E3cN6NZ7JYbqep2diNhkUi77UhRqYisf42SXXVhrwaQtxFg5bonViKeMDnp6rN",
+      "event": {
+        "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+        "nft": "EVfhb1eYwmP8YAstSFUTmNMSSvFfzS58H6iSERrWVijd",
+        "action": 0,
+        "lower": -180,
+        "upper": -60,
+        "liquidity": "5276455704",
+        "amount0": "11562049",
+        "amount1": "20000000",
+        "tick": -104,
+        "sqrtPriceX64": "18351397426345686957",
+        "principal0": "11562049",
+        "principal1": "20000000",
+        "fee0": "0",
+        "fee1": "0"
+      },
+      "deltaA": "-11562049",
+      "deltaB": "-20000000"
+    },
+    {
+      "label": "rebalance-old-close",
+      "slot": 523897500,
+      "signature": "3EKyy91a98fXnxbFNuGaWhs66nwyDi4Hn9khnbQT4FdHFTrKsHMUygnqj5177YLqDaQBcG26U6V5f4Wa4n6Vt3r9",
+      "event": {
+        "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+        "nft": "EVfhb1eYwmP8YAstSFUTmNMSSvFfzS58H6iSERrWVijd",
+        "action": 2,
+        "lower": -180,
+        "upper": -60,
+        "liquidity": "5276455704",
+        "amount0": "31890409",
+        "amount1": "0",
+        "tick": -186,
+        "sqrtPriceX64": "18276348711820134206",
+        "principal0": "31847703",
+        "principal1": "0",
+        "fee0": "42706",
+        "fee1": "0"
+      },
+      "deltaA": "31890409",
+      "deltaB": "0"
+    },
+    {
+      "label": "rebalance-new-open",
+      "slot": 523897531,
+      "signature": "63rFT7FahY3eJgTJsRZZgqJ5ZZRf3Tu9gRE6cewAunjTw259vRxBzJxpAAVskq2FJBvFJHnQLodYKc3S2Da3vgEP",
+      "event": {
+        "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+        "nft": "2wkmWUqhUHXqqsRxHHSYjXstS9DgD2fgi3qM7H5tWpUc",
+        "action": 0,
+        "lower": -840,
+        "upper": 360,
+        "liquidity": "627135103",
+        "amount0": "17033840",
+        "amount1": "20000000",
+        "tick": -186,
+        "sqrtPriceX64": "18276348711820134206",
+        "principal0": "17033840",
+        "principal1": "20000000",
+        "fee0": "0",
+        "fee1": "0"
+      },
+      "deltaA": "-17033840",
+      "deltaB": "-20000000"
+    },
+    {
+      "label": "rebalance-new-close",
+      "slot": 523897643,
+      "signature": "4A2AiSBY9wLRn5U9DLV8ETJbRLEjS9UvUEM4raBLoaWiFhSPEGVBibpAYYC2qBidFJTf8h8kzygpidJkb7mCcd8v",
+      "event": {
+        "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+        "nft": "2wkmWUqhUHXqqsRxHHSYjXstS9DgD2fgi3qM7H5tWpUc",
+        "action": 2,
+        "lower": -840,
+        "upper": 360,
+        "liquidity": "627135103",
+        "amount0": "17033839",
+        "amount1": "19999999",
+        "tick": -186,
+        "sqrtPriceX64": "18276348711820134206",
+        "principal0": "17033839",
+        "principal1": "19999999",
+        "fee0": "0",
+        "fee1": "0"
+      },
+      "deltaA": "17033839",
+      "deltaB": "19999999"
+    }
+  ],
+  "rpcObservations": [
+    {
+      "label": "normal-open",
+      "before": {
+        "a": "100000000",
+        "b": "98981011"
+      },
+      "after": {
+        "a": "80880739",
+        "b": "78981011"
+      }
+    },
+    {
+      "label": "normal-collect",
+      "before": {
+        "a": "80880739",
+        "b": "78981011"
+      },
+      "after": {
+        "a": "80880809",
+        "b": "78981046"
+      }
+    },
+    {
+      "label": "normal-close",
+      "before": {
+        "a": "80880809",
+        "b": "78981046"
+      },
+      "after": {
+        "a": "100016718",
+        "b": "98964567"
+      }
+    },
+    {
+      "label": "rebalance-old-open",
+      "before": {
+        "a": "100016718",
+        "b": "98964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      }
+    },
+    {
+      "label": "rebalance-old-close",
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "120345078",
+        "b": "78964567"
+      }
+    },
+    {
+      "label": "rebalance-new-open",
+      "before": {
+        "a": "120345078",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "103311238",
+        "b": "58964567"
+      }
+    },
+    {
+      "label": "rebalance-new-close",
+      "before": {
+        "a": "103311238",
+        "b": "58964567"
+      },
+      "after": {
+        "a": "120345077",
+        "b": "78964566"
+      }
+    }
+  ],
+  "limitations": "Before/after reads are observations; transaction metadata independently establishes deltas, not arbitrary historical account bytes."
+}

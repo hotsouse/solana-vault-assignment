@@ -1,0 +1,13 @@
+{
+  "base": "b3446244d017cd807dfc280eb0b8c4defd4729d7",
+  "branch": "week-13-submission",
+  "remote": "https://github.com/hotsouse/solana-vault-assignment.git",
+  "sourceCloneInitiallyClean": true,
+  "remoteHeadsBefore": {
+    "week-8-submission": "3b6aea51dcc8a571aca95a4002181e96cf9fecdc",
+    "week-9-submission": "3a25bb470f8531ebe001a2fa7581dce0559b07b0",
+    "week-10-submission": "5d74a814b26ef4a2bbf8c00848a0077e86d9070c",
+    "week-11-submission": "f8feb8b7688b6608e04d90faf8fc4a4438a4b636",
+    "week-12-submission": "b3446244d017cd807dfc280eb0b8c4defd4729d7"
+  }
+}

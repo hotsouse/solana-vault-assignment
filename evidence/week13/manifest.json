@@ -1,0 +1,1337 @@
+{
+  "schema": 1,
+  "cluster": "devnet",
+  "program": "8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa",
+  "pool": "EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f",
+  "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+  "admin": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+  "tokenA": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+  "tokenB": "CwHVUNisByLqXM7mN47nhtcfG8AkYxeJ3tBdFB66yZAt",
+  "records": [
+    {
+      "label": "initialize-vault",
+      "signature": "5ZzZHiiWuuKdFsYXyz6RNxGjqUpjj4HduWhtdSuBqnxXEnZMVvB9gCyGvazxcRrEvTBN1HDAywKUfXAfz86sMJ9w",
+      "explorer": "https://explorer.solana.com/tx/5ZzZHiiWuuKdFsYXyz6RNxGjqUpjj4HduWhtdSuBqnxXEnZMVvB9gCyGvazxcRrEvTBN1HDAywKUfXAfz86sMJ9w?cluster=devnet",
+      "slot": 523896854,
+      "before": null,
+      "after": null,
+      "events": [],
+      "detail": {}
+    },
+    {
+      "label": "initialize-swap",
+      "signature": "3Wt7hjkTN6LjExthmd8Uo2VooYRRzAHKeWgwEoEcKAB2WfJU8pCyqJZcbGf2przcqh5esFGoLBYJPeMxxDJmn3XD",
+      "explorer": "https://explorer.solana.com/tx/3Wt7hjkTN6LjExthmd8Uo2VooYRRzAHKeWgwEoEcKAB2WfJU8pCyqJZcbGf2przcqh5esFGoLBYJPeMxxDJmn3XD?cluster=devnet",
+      "slot": 523896861,
+      "before": null,
+      "after": {
+        "a": "0",
+        "b": "0"
+      },
+      "events": [],
+      "detail": {}
+    },
+    {
+      "label": "fund-trader",
+      "signature": "3MYqsWrU52zu6ehUDnnpBYwgQRHgtzmxbJbSrybqanEmN5FsUYj4jfZFeAYJzgqRXydzipJKnL6kBA8os1MTCPYS",
+      "explorer": "https://explorer.solana.com/tx/3MYqsWrU52zu6ehUDnnpBYwgQRHgtzmxbJbSrybqanEmN5FsUYj4jfZFeAYJzgqRXydzipJKnL6kBA8os1MTCPYS?cluster=devnet",
+      "slot": 523896872,
+      "before": {
+        "a": "0",
+        "b": "0"
+      },
+      "after": {
+        "a": "0",
+        "b": "0"
+      },
+      "events": [],
+      "detail": {}
+    },
+    {
+      "label": "deposit",
+      "signature": "5cS53piuxwzoNp8RK5ZEb4iWiNwtdRy8s6DsC1wFmAuBqSSyfGWCyZoY5BQtbiYGq4t1vL8NMe2mLsbZjnqegN2j",
+      "explorer": "https://explorer.solana.com/tx/5cS53piuxwzoNp8RK5ZEb4iWiNwtdRy8s6DsC1wFmAuBqSSyfGWCyZoY5BQtbiYGq4t1vL8NMe2mLsbZjnqegN2j?cluster=devnet",
+      "slot": 523896880,
+      "before": {
+        "a": "0",
+        "b": "0"
+      },
+      "after": {
+        "a": "200000000",
+        "b": "0"
+      },
+      "events": [],
+      "detail": {}
+    },
+    {
+      "label": "prepare-vault-token-b",
+      "signature": "51QEF3rJHMEKP76R1PYJoX6QSLchDGTEYPtRherzVZjPZWMNheC7RDJNVjH8JfSd49CABsVXq8ZEf4gE4PSMoMmv",
+      "explorer": "https://explorer.solana.com/tx/51QEF3rJHMEKP76R1PYJoX6QSLchDGTEYPtRherzVZjPZWMNheC7RDJNVjH8JfSd49CABsVXq8ZEf4gE4PSMoMmv?cluster=devnet",
+      "slot": 523896901,
+      "before": {
+        "a": "200000000",
+        "b": "0"
+      },
+      "after": {
+        "a": "100000000",
+        "b": "98981011"
+      },
+      "events": [],
+      "detail": {}
+    },
+    {
+      "label": "normal-open",
+      "signature": "5EKaaMGb8WZQP9X39qzSU4zxXXHpGkSUHh7wMRCaSb2gbWAuBd4unxZ5tjv4f192gmRNgjxqh7MrTcnGQZXqT6cV",
+      "explorer": "https://explorer.solana.com/tx/5EKaaMGb8WZQP9X39qzSU4zxXXHpGkSUHh7wMRCaSb2gbWAuBd4unxZ5tjv4f192gmRNgjxqh7MrTcnGQZXqT6cV?cluster=devnet",
+      "slot": 523897041,
+      "before": {
+        "a": "100000000",
+        "b": "98981011"
+      },
+      "after": {
+        "a": "80880739",
+        "b": "78981011"
+      },
+      "events": [
+        {
+          "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+          "nft": "BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy",
+          "action": 0,
+          "lower": -720,
+          "upper": 480,
+          "liquidity": "661942349",
+          "amount0": "19119261",
+          "amount1": "20000000",
+          "tick": -104
+        }
+      ],
+      "detail": {
+        "nft": "BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy",
+        "lower": -720,
+        "upper": 480,
+        "liquidity": "661942349",
+        "max0": "20000000",
+        "max1": "20000000",
+        "tickBefore": -104,
+        "sqrtBefore": "18351856628136355229"
+      }
+    },
+    {
+      "label": "normal-swap-1",
+      "signature": "4iw3QkQ9fQ9LLuwPpCr7FCyNJuFcp2wyq2PLFvGkfDzmJ3xq5Te7L59zNv8uHP2Asvw6LApoGKUUcjR9bD1rZxYt",
+      "explorer": "https://explorer.solana.com/tx/4iw3QkQ9fQ9LLuwPpCr7FCyNJuFcp2wyq2PLFvGkfDzmJ3xq5Te7L59zNv8uHP2Asvw6LApoGKUUcjR9bD1rZxYt?cluster=devnet",
+      "slot": 523897078,
+      "before": {
+        "a": "80880739",
+        "b": "78981011"
+      },
+      "after": {
+        "a": "80880739",
+        "b": "78981011"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "1000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -104
+      }
+    },
+    {
+      "label": "normal-swap-2",
+      "signature": "5bimyKi4TkFFYaLPnjmtuRBGwy6ZoLsqeQc6a7gnmv9qSVfmgu3QgGhi52pVbMbpKWipDRbiSagQCvtArNtDpYDv",
+      "explorer": "https://explorer.solana.com/tx/5bimyKi4TkFFYaLPnjmtuRBGwy6ZoLsqeQc6a7gnmv9qSVfmgu3QgGhi52pVbMbpKWipDRbiSagQCvtArNtDpYDv?cluster=devnet",
+      "slot": 523897092,
+      "before": {
+        "a": "80880739",
+        "b": "78981011"
+      },
+      "after": {
+        "a": "80880739",
+        "b": "78981011"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "1000000",
+        "input": "CwHVUNisByLqXM7mN47nhtcfG8AkYxeJ3tBdFB66yZAt",
+        "tickBefore": -104
+      }
+    },
+    {
+      "label": "normal-swap-3",
+      "signature": "4XZAcYrGooJexfGkLRsVRQHkCtN1a1UpQBNN5ggF6S1Tgo5QNzM742vyRAve1US8kdrQjAGL454cFYHYWCWjHbHU",
+      "explorer": "https://explorer.solana.com/tx/4XZAcYrGooJexfGkLRsVRQHkCtN1a1UpQBNN5ggF6S1Tgo5QNzM742vyRAve1US8kdrQjAGL454cFYHYWCWjHbHU?cluster=devnet",
+      "slot": 523897110,
+      "before": {
+        "a": "80880739",
+        "b": "78981011"
+      },
+      "after": {
+        "a": "80880739",
+        "b": "78981011"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "1000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -104
+      }
+    },
+    {
+      "label": "normal-collect",
+      "signature": "5PMwYAdNNzFj8KNjbDcLoxjsk6QpifT3Y5MJC4tEya4baqhnSaQbQrtpppU24xjq4CY9p96s3ggR2vAec8fHfnbK",
+      "explorer": "https://explorer.solana.com/tx/5PMwYAdNNzFj8KNjbDcLoxjsk6QpifT3Y5MJC4tEya4baqhnSaQbQrtpppU24xjq4CY9p96s3ggR2vAec8fHfnbK?cluster=devnet",
+      "slot": 523897122,
+      "before": {
+        "a": "80880739",
+        "b": "78981011"
+      },
+      "after": {
+        "a": "80880809",
+        "b": "78981046"
+      },
+      "events": [
+        {
+          "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+          "nft": "BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy",
+          "action": 1,
+          "lower": -720,
+          "upper": 480,
+          "liquidity": "0",
+          "amount0": "70",
+          "amount1": "35",
+          "tick": -104
+        }
+      ],
+      "detail": {}
+    },
+    {
+      "label": "normal-close",
+      "signature": "3LX5jAqgy7aqNSjptmUTcJb3dNvybeBTPgFJi27JqmQp1zDbrQwngcAWQavukBETunAasFmAp8moxNxBTcv8U7fE",
+      "explorer": "https://explorer.solana.com/tx/3LX5jAqgy7aqNSjptmUTcJb3dNvybeBTPgFJi27JqmQp1zDbrQwngcAWQavukBETunAasFmAp8moxNxBTcv8U7fE?cluster=devnet",
+      "slot": 523897144,
+      "before": {
+        "a": "80880809",
+        "b": "78981046"
+      },
+      "after": {
+        "a": "100016718",
+        "b": "98964567"
+      },
+      "events": [
+        {
+          "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+          "nft": "BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy",
+          "action": 2,
+          "lower": -720,
+          "upper": 480,
+          "liquidity": "661942349",
+          "amount0": "19135909",
+          "amount1": "19983521",
+          "tick": -104
+        }
+      ],
+      "detail": {
+        "nft": "BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy",
+        "lower": -720,
+        "upper": 480,
+        "liquidity": "661942349",
+        "min0": "18944549",
+        "min1": "19783685",
+        "tick": -104,
+        "sqrt": "18351397426345686957"
+      }
+    },
+    {
+      "label": "rebalance-old-open",
+      "signature": "4T6QHDWSKyuRBaUenXeMWXhr36E3cN6NZ7JYbqep2diNhkUi77UhRqYisf42SXXVhrwaQtxFg5bonViKeMDnp6rN",
+      "explorer": "https://explorer.solana.com/tx/4T6QHDWSKyuRBaUenXeMWXhr36E3cN6NZ7JYbqep2diNhkUi77UhRqYisf42SXXVhrwaQtxFg5bonViKeMDnp6rN?cluster=devnet",
+      "slot": 523897287,
+      "before": {
+        "a": "100016718",
+        "b": "98964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [
+        {
+          "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+          "nft": "EVfhb1eYwmP8YAstSFUTmNMSSvFfzS58H6iSERrWVijd",
+          "action": 0,
+          "lower": -180,
+          "upper": -60,
+          "liquidity": "5276455704",
+          "amount0": "11562049",
+          "amount1": "20000000",
+          "tick": -104
+        }
+      ],
+      "detail": {
+        "nft": "EVfhb1eYwmP8YAstSFUTmNMSSvFfzS58H6iSERrWVijd",
+        "lower": -180,
+        "upper": -60,
+        "liquidity": "5276455704",
+        "max0": "20000000",
+        "max1": "20000000",
+        "tickBefore": -104,
+        "sqrtBefore": "18351397426345686957"
+      }
+    },
+    {
+      "label": "rebalance-move-0",
+      "signature": "328XJc5ZtAJPLzeFpBZ5nBkRVBftzZ1diRvbMHfkH27AvivPTFmoEwDqdVmLKaSo7eS6cETDgqLiJokiKs8TUMLz",
+      "explorer": "https://explorer.solana.com/tx/328XJc5ZtAJPLzeFpBZ5nBkRVBftzZ1diRvbMHfkH27AvivPTFmoEwDqdVmLKaSo7eS6cETDgqLiJokiKs8TUMLz?cluster=devnet",
+      "slot": 523897324,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -104
+      }
+    },
+    {
+      "label": "rebalance-move-1",
+      "signature": "55PBkx2EnGjD4wRTXe1jUeMm216pRKVzVsrGkDFnbfoGS49LtqSUvQeDGeoT51qmF4mz6VKMXKN93BS5BbK8Jchp",
+      "explorer": "https://explorer.solana.com/tx/55PBkx2EnGjD4wRTXe1jUeMm216pRKVzVsrGkDFnbfoGS49LtqSUvQeDGeoT51qmF4mz6VKMXKN93BS5BbK8Jchp?cluster=devnet",
+      "slot": 523897338,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -113
+      }
+    },
+    {
+      "label": "rebalance-move-2",
+      "signature": "3nq3hkNGzmcmFEg2xDHYthbfmsnkwXJQaBLqXNK2JgP9ECwL5iNHmNacncJxRRJabBYCaMwXLKEhaNk6bzTjTXf7",
+      "explorer": "https://explorer.solana.com/tx/3nq3hkNGzmcmFEg2xDHYthbfmsnkwXJQaBLqXNK2JgP9ECwL5iNHmNacncJxRRJabBYCaMwXLKEhaNk6bzTjTXf7?cluster=devnet",
+      "slot": 523897356,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -122
+      }
+    },
+    {
+      "label": "rebalance-move-3",
+      "signature": "2QxQWVK83Zg3t78JpRJMjYzTAKeS9oKK5FBeV4LTBC3vPEqe6jY3c81LxLLzHSnCJqp3PsGr9B7HrS744uoAxzCe",
+      "explorer": "https://explorer.solana.com/tx/2QxQWVK83Zg3t78JpRJMjYzTAKeS9oKK5FBeV4LTBC3vPEqe6jY3c81LxLLzHSnCJqp3PsGr9B7HrS744uoAxzCe?cluster=devnet",
+      "slot": 523897373,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -131
+      }
+    },
+    {
+      "label": "rebalance-move-4",
+      "signature": "3a341aUke4jtrLGH9wG5GQfXFdPJdUT7TsY3mRPSxzRRHJoC2zTE7RrHQAppkaF7E1sVas3pi8BH4YCShR51YNj",
+      "explorer": "https://explorer.solana.com/tx/3a341aUke4jtrLGH9wG5GQfXFdPJdUT7TsY3mRPSxzRRHJoC2zTE7RrHQAppkaF7E1sVas3pi8BH4YCShR51YNj?cluster=devnet",
+      "slot": 523897394,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -140
+      }
+    },
+    {
+      "label": "rebalance-move-5",
+      "signature": "4kn63cSKWb3YsEiZKwnnBP16wXbyLvhCckEwUFMh8CJi6jfihNcJr93wqBDudVxMsWGzFnB2KbjxC76eNbSWYpYa",
+      "explorer": "https://explorer.solana.com/tx/4kn63cSKWb3YsEiZKwnnBP16wXbyLvhCckEwUFMh8CJi6jfihNcJr93wqBDudVxMsWGzFnB2KbjxC76eNbSWYpYa?cluster=devnet",
+      "slot": 523897414,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -149
+      }
+    },
+    {
+      "label": "rebalance-move-6",
+      "signature": "5FMG3h2Ag3s1YL59tcLMZwMCryoyJuvE2iTGMAwokVRn8LecpbYfrbRmfWNoHrUgmrHheMj13xSXYnUXzxCJFvKY",
+      "explorer": "https://explorer.solana.com/tx/5FMG3h2Ag3s1YL59tcLMZwMCryoyJuvE2iTGMAwokVRn8LecpbYfrbRmfWNoHrUgmrHheMj13xSXYnUXzxCJFvKY?cluster=devnet",
+      "slot": 523897438,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -158
+      }
+    },
+    {
+      "label": "rebalance-move-7",
+      "signature": "J5WMzdz5svwvCfgWrmzuxC5yy6WsCFCzEVskxEAGuwRWWqCqh9J13LK3CcuPMtfhTTMdqkW7yBjY7zP1M2CJFmf",
+      "explorer": "https://explorer.solana.com/tx/J5WMzdz5svwvCfgWrmzuxC5yy6WsCFCzEVskxEAGuwRWWqCqh9J13LK3CcuPMtfhTTMdqkW7yBjY7zP1M2CJFmf?cluster=devnet",
+      "slot": 523897457,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -167
+      }
+    },
+    {
+      "label": "rebalance-move-8",
+      "signature": "25xWVBnVzPRLWkhbW2BETEEGktSZ6uNi1ppCkQwbfLmtZgzsR1MJQ317CAy21SphDJj6NHxbiTvZAdqd2b8WgmM6",
+      "explorer": "https://explorer.solana.com/tx/25xWVBnVzPRLWkhbW2BETEEGktSZ6uNi1ppCkQwbfLmtZgzsR1MJQ317CAy21SphDJj6NHxbiTvZAdqd2b8WgmM6?cluster=devnet",
+      "slot": 523897479,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "events": [],
+      "detail": {
+        "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+        "amount": "20000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -176
+      }
+    },
+    {
+      "label": "rebalance-old-close",
+      "signature": "3EKyy91a98fXnxbFNuGaWhs66nwyDi4Hn9khnbQT4FdHFTrKsHMUygnqj5177YLqDaQBcG26U6V5f4Wa4n6Vt3r9",
+      "explorer": "https://explorer.solana.com/tx/3EKyy91a98fXnxbFNuGaWhs66nwyDi4Hn9khnbQT4FdHFTrKsHMUygnqj5177YLqDaQBcG26U6V5f4Wa4n6Vt3r9?cluster=devnet",
+      "slot": 523897500,
+      "before": {
+        "a": "88454669",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "120345078",
+        "b": "78964567"
+      },
+      "events": [
+        {
+          "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+          "nft": "EVfhb1eYwmP8YAstSFUTmNMSSvFfzS58H6iSERrWVijd",
+          "action": 2,
+          "lower": -180,
+          "upper": -60,
+          "liquidity": "5276455704",
+          "amount0": "31890409",
+          "amount1": "0",
+          "tick": -186
+        }
+      ],
+      "detail": {
+        "nft": "EVfhb1eYwmP8YAstSFUTmNMSSvFfzS58H6iSERrWVijd",
+        "lower": -180,
+        "upper": -60,
+        "liquidity": "5276455704",
+        "min0": "31529225",
+        "min1": "0",
+        "tick": -186,
+        "sqrt": "18276348711820134206"
+      }
+    },
+    {
+      "label": "rebalance-new-open",
+      "signature": "63rFT7FahY3eJgTJsRZZgqJ5ZZRf3Tu9gRE6cewAunjTw259vRxBzJxpAAVskq2FJBvFJHnQLodYKc3S2Da3vgEP",
+      "explorer": "https://explorer.solana.com/tx/63rFT7FahY3eJgTJsRZZgqJ5ZZRf3Tu9gRE6cewAunjTw259vRxBzJxpAAVskq2FJBvFJHnQLodYKc3S2Da3vgEP?cluster=devnet",
+      "slot": 523897531,
+      "before": {
+        "a": "120345078",
+        "b": "78964567"
+      },
+      "after": {
+        "a": "103311238",
+        "b": "58964567"
+      },
+      "events": [
+        {
+          "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+          "nft": "2wkmWUqhUHXqqsRxHHSYjXstS9DgD2fgi3qM7H5tWpUc",
+          "action": 0,
+          "lower": -840,
+          "upper": 360,
+          "liquidity": "627135103",
+          "amount0": "17033840",
+          "amount1": "20000000",
+          "tick": -186
+        }
+      ],
+      "detail": {
+        "nft": "2wkmWUqhUHXqqsRxHHSYjXstS9DgD2fgi3qM7H5tWpUc",
+        "lower": -840,
+        "upper": 360,
+        "liquidity": "627135103",
+        "max0": "20000000",
+        "max1": "20000000",
+        "tickBefore": -186,
+        "sqrtBefore": "18276348711820134206"
+      }
+    },
+    {
+      "label": "rebalance-new-close",
+      "signature": "4A2AiSBY9wLRn5U9DLV8ETJbRLEjS9UvUEM4raBLoaWiFhSPEGVBibpAYYC2qBidFJTf8h8kzygpidJkb7mCcd8v",
+      "explorer": "https://explorer.solana.com/tx/4A2AiSBY9wLRn5U9DLV8ETJbRLEjS9UvUEM4raBLoaWiFhSPEGVBibpAYYC2qBidFJTf8h8kzygpidJkb7mCcd8v?cluster=devnet",
+      "slot": 523897643,
+      "before": {
+        "a": "103311238",
+        "b": "58964567"
+      },
+      "after": {
+        "a": "120345077",
+        "b": "78964566"
+      },
+      "events": [
+        {
+          "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+          "nft": "2wkmWUqhUHXqqsRxHHSYjXstS9DgD2fgi3qM7H5tWpUc",
+          "action": 2,
+          "lower": -840,
+          "upper": 360,
+          "liquidity": "627135103",
+          "amount0": "17033839",
+          "amount1": "19999999",
+          "tick": -186
+        }
+      ],
+      "detail": {
+        "nft": "2wkmWUqhUHXqqsRxHHSYjXstS9DgD2fgi3qM7H5tWpUc",
+        "lower": -840,
+        "upper": 360,
+        "liquidity": "627135103",
+        "min0": "16863500",
+        "min1": "19799999",
+        "tick": -186,
+        "sqrt": "18276348711820134206"
+      }
+    }
+  ],
+  "tests": [
+    {
+      "label": "normal-open non-admin",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "expected": "Unauthorized",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6005. Error Message: Only the vault administrator may swap.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1775"
+      ]
+    },
+    {
+      "label": "normal-open invalid ticks",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6003
+          }
+        ]
+      },
+      "expected": "InvalidTicks",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:131. Error Code: InvalidTicks. Error Number: 6003. Error Message: Invalid tick range or alignment.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1773"
+      ]
+    },
+    {
+      "label": "normal-open zero liquidity",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6015
+          }
+        ]
+      },
+      "expected": "ZeroAmount",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:205. Error Code: ZeroAmount. Error Number: 6015. Error Message: Amount must be greater than zero.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x177f"
+      ]
+    },
+    {
+      "label": "normal-open maximum inputs",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6017
+          }
+        ]
+      },
+      "expected": "PriceSlippageCheck",
+      "logs": [
+        "Program log: AnchorError thrown in programs/amm/src/instructions/open_position.rs:561. Error Code: PriceSlippageCheck. Error Number: 6017. Error Message: Price slippage check.",
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: custom program error: 0x1781",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1781"
+      ]
+    },
+    {
+      "label": "normal-open wrong pool",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 3007
+          }
+        ]
+      },
+      "logs": [
+        "Program log: AnchorError caused by account: pool_state. Error Code: AccountOwnedByWrongProgram. Error Number: 3007. Error Message: The given account is owned by a different program than expected.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0xbbf"
+      ]
+    },
+    {
+      "label": "normal-open incorrect NFT destination",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          "MissingAccount"
+        ]
+      },
+      "logs": [
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: An account required by the instruction is missing",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: An account required by the instruction is missing"
+      ]
+    },
+    {
+      "label": "normal-open duplicate",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6000
+          }
+        ]
+      },
+      "expected": "PositionActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:204. Error Code: PositionActive. Error Number: 6000. Error Message: Position is already active.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1770"
+      ]
+    },
+    {
+      "label": "normal-open deposits locked",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6014
+          }
+        ]
+      },
+      "expected": "StrategyActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:82. Error Code: StrategyActive. Error Number: 6014. Error Message: Single-token deposits and withdrawals are disabled after rebalancing.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x177e"
+      ]
+    },
+    {
+      "label": "normal-open withdrawals locked",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6014
+          }
+        ]
+      },
+      "expected": "StrategyActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:170. Error Code: StrategyActive. Error Number: 6014. Error Message: Single-token deposits and withdrawals are disabled after rebalancing.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x177e"
+      ]
+    },
+    {
+      "label": "normal-collect non-admin",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "expected": "Unauthorized",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6005. Error Message: Only the vault administrator may swap.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1775"
+      ]
+    },
+    {
+      "label": "normal-collect foreign NFT custody",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6002
+          }
+        ]
+      },
+      "expected": "InvalidPosition",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:116. Error Code: InvalidPosition. Error Number: 6002. Error Message: Invalid position or NFT custody.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1772"
+      ]
+    },
+    {
+      "label": "normal-close non-admin",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "expected": "Unauthorized",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6005. Error Message: Only the vault administrator may swap.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1775"
+      ]
+    },
+    {
+      "label": "normal-close zero minima",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6009
+          }
+        ]
+      },
+      "expected": "InvalidMinimum",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:376. Error Code: InvalidMinimum. Error Number: 6009. Error Message: Minimum output must be positive.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1779"
+      ]
+    },
+    {
+      "label": "normal-close excessive minima",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6017
+          }
+        ]
+      },
+      "expected": "PriceSlippageCheck",
+      "logs": [
+        "Program log: AnchorError thrown in programs/amm/src/instructions/decrease_liquidity.rs:218. Error Code: PriceSlippageCheck. Error Number: 6017. Error Message: Price slippage check.",
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: custom program error: 0x1781",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1781"
+      ]
+    },
+    {
+      "label": "normal-close foreign position",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6002
+          }
+        ]
+      },
+      "expected": "InvalidPosition",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:355. Error Code: InvalidPosition. Error Number: 6002. Error Message: Invalid position or NFT custody.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1772"
+      ]
+    },
+    {
+      "label": "normal-close duplicate close",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6001
+          }
+        ]
+      },
+      "expected": "NoPosition",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:344. Error Code: NoPosition. Error Number: 6001. Error Message: No active position.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1771"
+      ]
+    },
+    {
+      "label": "rebalance-old-open non-admin",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "expected": "Unauthorized",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6005. Error Message: Only the vault administrator may swap.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1775"
+      ]
+    },
+    {
+      "label": "rebalance-old-open invalid ticks",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6003
+          }
+        ]
+      },
+      "expected": "InvalidTicks",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:131. Error Code: InvalidTicks. Error Number: 6003. Error Message: Invalid tick range or alignment.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1773"
+      ]
+    },
+    {
+      "label": "rebalance-old-open zero liquidity",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6015
+          }
+        ]
+      },
+      "expected": "ZeroAmount",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:205. Error Code: ZeroAmount. Error Number: 6015. Error Message: Amount must be greater than zero.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x177f"
+      ]
+    },
+    {
+      "label": "rebalance-old-open maximum inputs",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6017
+          }
+        ]
+      },
+      "expected": "PriceSlippageCheck",
+      "logs": [
+        "Program log: AnchorError thrown in programs/amm/src/instructions/open_position.rs:561. Error Code: PriceSlippageCheck. Error Number: 6017. Error Message: Price slippage check.",
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: custom program error: 0x1781",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1781"
+      ]
+    },
+    {
+      "label": "rebalance-old-open wrong pool",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 3007
+          }
+        ]
+      },
+      "logs": [
+        "Program log: AnchorError caused by account: pool_state. Error Code: AccountOwnedByWrongProgram. Error Number: 3007. Error Message: The given account is owned by a different program than expected.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0xbbf"
+      ]
+    },
+    {
+      "label": "rebalance-old-open incorrect NFT destination",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          "MissingAccount"
+        ]
+      },
+      "logs": [
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: An account required by the instruction is missing",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: An account required by the instruction is missing"
+      ]
+    },
+    {
+      "label": "rebalance-old-open duplicate",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6000
+          }
+        ]
+      },
+      "expected": "PositionActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:204. Error Code: PositionActive. Error Number: 6000. Error Message: Position is already active.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1770"
+      ]
+    },
+    {
+      "label": "rebalance-old-open deposits locked",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6014
+          }
+        ]
+      },
+      "expected": "StrategyActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:82. Error Code: StrategyActive. Error Number: 6014. Error Message: Single-token deposits and withdrawals are disabled after rebalancing.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x177e"
+      ]
+    },
+    {
+      "label": "rebalance-old-open withdrawals locked",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6014
+          }
+        ]
+      },
+      "expected": "StrategyActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:170. Error Code: StrategyActive. Error Number: 6014. Error Message: Single-token deposits and withdrawals are disabled after rebalancing.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x177e"
+      ]
+    },
+    {
+      "label": "rebalance-old-close non-admin",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "expected": "Unauthorized",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6005. Error Message: Only the vault administrator may swap.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1775"
+      ]
+    },
+    {
+      "label": "rebalance-old-close zero minima",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6009
+          }
+        ]
+      },
+      "expected": "InvalidMinimum",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:376. Error Code: InvalidMinimum. Error Number: 6009. Error Message: Minimum output must be positive.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1779"
+      ]
+    },
+    {
+      "label": "rebalance-old-close excessive minima",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6017
+          }
+        ]
+      },
+      "expected": "PriceSlippageCheck",
+      "logs": [
+        "Program log: AnchorError thrown in programs/amm/src/instructions/decrease_liquidity.rs:218. Error Code: PriceSlippageCheck. Error Number: 6017. Error Message: Price slippage check.",
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: custom program error: 0x1781",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1781"
+      ]
+    },
+    {
+      "label": "rebalance-old-close foreign position",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6002
+          }
+        ]
+      },
+      "expected": "InvalidPosition",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:355. Error Code: InvalidPosition. Error Number: 6002. Error Message: Invalid position or NFT custody.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1772"
+      ]
+    },
+    {
+      "label": "rebalance-old-close duplicate close",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6001
+          }
+        ]
+      },
+      "expected": "NoPosition",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:344. Error Code: NoPosition. Error Number: 6001. Error Message: No active position.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1771"
+      ]
+    },
+    {
+      "label": "rebalance-new-open non-admin",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "expected": "Unauthorized",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6005. Error Message: Only the vault administrator may swap.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1775"
+      ]
+    },
+    {
+      "label": "rebalance-new-open invalid ticks",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6003
+          }
+        ]
+      },
+      "expected": "InvalidTicks",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:131. Error Code: InvalidTicks. Error Number: 6003. Error Message: Invalid tick range or alignment.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1773"
+      ]
+    },
+    {
+      "label": "rebalance-new-open zero liquidity",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6015
+          }
+        ]
+      },
+      "expected": "ZeroAmount",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:205. Error Code: ZeroAmount. Error Number: 6015. Error Message: Amount must be greater than zero.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x177f"
+      ]
+    },
+    {
+      "label": "rebalance-new-open maximum inputs",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6017
+          }
+        ]
+      },
+      "expected": "PriceSlippageCheck",
+      "logs": [
+        "Program log: AnchorError thrown in programs/amm/src/instructions/open_position.rs:561. Error Code: PriceSlippageCheck. Error Number: 6017. Error Message: Price slippage check.",
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: custom program error: 0x1781",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1781"
+      ]
+    },
+    {
+      "label": "rebalance-new-open wrong pool",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 3007
+          }
+        ]
+      },
+      "logs": [
+        "Program log: AnchorError caused by account: pool_state. Error Code: AccountOwnedByWrongProgram. Error Number: 3007. Error Message: The given account is owned by a different program than expected.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0xbbf"
+      ]
+    },
+    {
+      "label": "rebalance-new-open incorrect NFT destination",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          "MissingAccount"
+        ]
+      },
+      "logs": [
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: An account required by the instruction is missing",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: An account required by the instruction is missing"
+      ]
+    },
+    {
+      "label": "rebalance-new-open duplicate",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6000
+          }
+        ]
+      },
+      "expected": "PositionActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:204. Error Code: PositionActive. Error Number: 6000. Error Message: Position is already active.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1770"
+      ]
+    },
+    {
+      "label": "rebalance-new-open deposits locked",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6014
+          }
+        ]
+      },
+      "expected": "StrategyActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:82. Error Code: StrategyActive. Error Number: 6014. Error Message: Single-token deposits and withdrawals are disabled after rebalancing.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x177e"
+      ]
+    },
+    {
+      "label": "rebalance-new-open withdrawals locked",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6014
+          }
+        ]
+      },
+      "expected": "StrategyActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:170. Error Code: StrategyActive. Error Number: 6014. Error Message: Single-token deposits and withdrawals are disabled after rebalancing.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x177e"
+      ]
+    },
+    {
+      "label": "rebalance-new-close non-admin",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "expected": "Unauthorized",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6005. Error Message: Only the vault administrator may swap.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1775"
+      ]
+    },
+    {
+      "label": "rebalance-new-close zero minima",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6009
+          }
+        ]
+      },
+      "expected": "InvalidMinimum",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:376. Error Code: InvalidMinimum. Error Number: 6009. Error Message: Minimum output must be positive.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1779"
+      ]
+    },
+    {
+      "label": "rebalance-new-close excessive minima",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6017
+          }
+        ]
+      },
+      "expected": "PriceSlippageCheck",
+      "logs": [
+        "Program log: AnchorError thrown in programs/amm/src/instructions/decrease_liquidity.rs:218. Error Code: PriceSlippageCheck. Error Number: 6017. Error Message: Price slippage check.",
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: custom program error: 0x1781",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1781"
+      ]
+    },
+    {
+      "label": "rebalance-new-close foreign position",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6002
+          }
+        ]
+      },
+      "expected": "InvalidPosition",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:355. Error Code: InvalidPosition. Error Number: 6002. Error Message: Invalid position or NFT custody.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1772"
+      ]
+    },
+    {
+      "label": "rebalance-new-close duplicate close",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6001
+          }
+        ]
+      },
+      "expected": "NoPosition",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:344. Error Code: NoPosition. Error Number: 6001. Error Message: No active position.",
+        "Program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa failed: custom program error: 0x1771"
+      ]
+    }
+  ],
+  "trader": "8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ",
+  "outside": {
+    "tick": -186,
+    "sqrt": "18276348711820134206",
+    "lower": -180,
+    "upper": -60,
+    "observedAt": "2026-11-19T06:14:59.401Z"
+  }
+}

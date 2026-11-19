@@ -1,0 +1,26 @@
+{
+  "status": "Week 13 acceptance requirements independently verified",
+  "program": "8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa",
+  "deployment": "31oM1gN5Wjzxqd3CaPKpftoLEfXq5xEsEEwPj7NDMrN3SD24W8Cyn9Ypz36vP58NtrepPuCPpMCTYee9uLKJmqZW",
+  "scenarioTransactions": 24,
+  "totalFinalizedTransactions": 25,
+  "negativeSimulations": 44,
+  "feesRaw": {
+    "A": "42776",
+    "B": "35"
+  },
+  "normalCollectedFeesRaw": {
+    "A": "70",
+    "B": "35"
+  },
+  "finalObservedBalancesRaw": {
+    "a": "120345077",
+    "b": "78964566"
+  },
+  "allPositionsClosed": true,
+  "withdrawalsRemainLocked": true,
+  "verification": "2026-11-19T17:11:29.505Z",
+  "securityAuditPassed": true,
+  "historicalIsolationVerified": true,
+  "secretScanPassed": true
+}

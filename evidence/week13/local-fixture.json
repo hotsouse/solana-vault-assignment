@@ -1,0 +1,27 @@
+{
+  "kind": "LOCAL validator fixture cloned from public Devnet",
+  "observedAt": "2026-11-19T06:04:44.800Z",
+  "sourceGenesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "sourceAdmin": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+  "accounts": [
+    "EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f",
+    "CD4aJtX11cqTCAc83nxSPkkh5JW2yjD6uwHeovjqQ1qu",
+    "8HrDX2744CqZ2MgXs9TmjTfj1kMGT3V6ys7AB7G9tUs6",
+    "3zojm6RTjF9pYPnBJXsXNTJKQy1ByXF4eYGECDUnfKT1",
+    "FoHptmGx1NZxSbBZPyLpTooDxFo4aqVQ4KsDNNTGPYt3",
+    "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+    "CwHVUNisByLqXM7mN47nhtcfG8AkYxeJ3tBdFB66yZAt",
+    "CZHgQ7iQhQYbasg7C6UPqbU53FWAhGvTpaZDfzNQaFvt",
+    "6tpkbuK3nh62XXhULqEaBrX584WjdES6XuaNPzVJQ8Je",
+    "6DXKswmk6oSb4A85ancTsBgsmox9d5YBb1M3kF6aSuew",
+    "4ywbDDanms1xnPPMreFEBNzvS76kXTST4npEBANvmDNX",
+    "HXN5zrt8hsEV9WNzBJBJnT7agAzxx9ANiZW4Ro7CGVPz"
+  ],
+  "programs": [
+    "DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH",
+    "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
+  ],
+  "limitations": [
+    "All transactions executed against this fixture are local, never Devnet evidence."
+  ]
+}

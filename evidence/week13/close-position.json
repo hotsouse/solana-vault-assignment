@@ -1,0 +1,62 @@
+{
+  "transaction": {
+    "label": "normal-close",
+    "signature": "3LX5jAqgy7aqNSjptmUTcJb3dNvybeBTPgFJi27JqmQp1zDbrQwngcAWQavukBETunAasFmAp8moxNxBTcv8U7fE",
+    "explorer": "https://explorer.solana.com/tx/3LX5jAqgy7aqNSjptmUTcJb3dNvybeBTPgFJi27JqmQp1zDbrQwngcAWQavukBETunAasFmAp8moxNxBTcv8U7fE?cluster=devnet",
+    "slot": 523897144,
+    "before": {
+      "a": "80880809",
+      "b": "78981046"
+    },
+    "after": {
+      "a": "100016718",
+      "b": "98964567"
+    },
+    "events": [
+      {
+        "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+        "nft": "BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy",
+        "action": 2,
+        "lower": -720,
+        "upper": 480,
+        "liquidity": "661942349",
+        "amount0": "19135909",
+        "amount1": "19983521",
+        "tick": -104
+      }
+    ],
+    "detail": {
+      "nft": "BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy",
+      "lower": -720,
+      "upper": 480,
+      "liquidity": "661942349",
+      "min0": "18944549",
+      "min1": "19783685",
+      "tick": -104,
+      "sqrt": "18351397426345686957"
+    }
+  },
+  "independentlyVerified": {
+    "label": "normal-close",
+    "slot": 523897144,
+    "signature": "3LX5jAqgy7aqNSjptmUTcJb3dNvybeBTPgFJi27JqmQp1zDbrQwngcAWQavukBETunAasFmAp8moxNxBTcv8U7fE",
+    "event": {
+      "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+      "nft": "BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy",
+      "action": 2,
+      "lower": -720,
+      "upper": 480,
+      "liquidity": "661942349",
+      "amount0": "19135909",
+      "amount1": "19983521",
+      "tick": -104,
+      "sqrtPriceX64": "18351397426345686957",
+      "principal0": "19135909",
+      "principal1": "19983521",
+      "fee0": "0",
+      "fee1": "0"
+    },
+    "deltaA": "19135909",
+    "deltaB": "19983521"
+  }
+}

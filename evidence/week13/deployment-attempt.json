@@ -1,0 +1,11 @@
+{
+  "exitCode": 0,
+  "program": "8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa",
+  "genesisVerified": true,
+  "elfBytes": 604864,
+  "sha256": "e6712608e22f254b87a2c48f881ce0502cc6cde62a79bd507d6eae9dd112f666",
+  "programDataRent": 3073587960,
+  "walletLamportsBefore": 3347173735,
+  "transport": "TPU",
+  "explicitIgnoredBuffer": true
+}

@@ -1,0 +1,66 @@
+{
+  "observedAt": "2026-11-19T05:21:26.464Z",
+  "commitment": "finalized",
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "program": "8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa",
+  "programDeployed": false,
+  "admin": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+  "lamports": "3347173735",
+  "pool": "EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f",
+  "clmm": "DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH",
+  "mint0": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+  "mint1": "CwHVUNisByLqXM7mN47nhtcfG8AkYxeJ3tBdFB66yZAt",
+  "tick": -52,
+  "tickSpacing": 60,
+  "liquidity": "38584613330",
+  "sqrtPriceX64": "18399178014378143518",
+  "status": 0,
+  "tokens": [
+    {
+      "mint": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+      "decimals": 6,
+      "supply": "1000000000000",
+      "walletBalance": "989010000000",
+      "mintAuthority": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7"
+    },
+    {
+      "mint": "CwHVUNisByLqXM7mN47nhtcfG8AkYxeJ3tBdFB66yZAt",
+      "decimals": 6,
+      "supply": "1000000000000",
+      "walletBalance": "990000000000",
+      "mintAuthority": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7"
+    }
+  ],
+  "vaults": [
+    {
+      "address": "3zojm6RTjF9pYPnBJXsXNTJKQy1ByXF4eYGECDUnfKT1",
+      "mint": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+      "authority": "EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f",
+      "amount": "10100000000"
+    },
+    {
+      "address": "FoHptmGx1NZxSbBZPyLpTooDxFo4aqVQ4KsDNNTGPYt3",
+      "mint": "CwHVUNisByLqXM7mN47nhtcfG8AkYxeJ3tBdFB66yZAt",
+      "authority": "EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f",
+      "amount": "9900507212"
+    }
+  ],
+  "tickArrays": [
+    {
+      "address": "4ywbDDanms1xnPPMreFEBNzvS76kXTST4npEBANvmDNX",
+      "start": -7200,
+      "initialized": 1
+    },
+    {
+      "address": "HXN5zrt8hsEV9WNzBJBJnT7agAzxx9ANiZW4Ro7CGVPz",
+      "start": 3600,
+      "initialized": 1
+    }
+  ],
+  "vault": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+  "vaultInitialized": false,
+  "limitations": [
+    "This is a current-state observation, not a historical snapshot.",
+    "Funding sufficiency is assessed against the actual deployment rent estimate before deployment."
+  ]
+}

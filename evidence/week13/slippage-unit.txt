@@ -1,0 +1,16 @@
+
+> liquidity-vault-week-13@0.1.0 test:unit
+> node --no-experimental-strip-types -r ts-node/register node_modules/mocha/bin/mocha.js tests/slippage.ts
+
+
+
+  integer slippage
+    ✔ floors 1% below the expected amount
+    ✔ preserves precision above Number.MAX_SAFE_INTEGER
+    ✔ rejects zero expected output
+    ✔ rejects a zero minimum
+    ✔ rejects invalid basis points
+    ✔ accepts exact output with zero slippage
+
+
+  6 passing (66ms)

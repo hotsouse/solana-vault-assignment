@@ -2,14 +2,14 @@
 anchor_version = "0.31.1"
 
 [features]
-seeds = false
+resolution = true
 skip-lint = false
 
 [programs.localnet]
-simple_vault = "HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF"
+simple_vault = "8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa"
 
 [programs.devnet]
-simple_vault = "HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF"
+simple_vault = "8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa"
 
 [registry]
 url = "https://api.apr.dev"

@@ -1,0 +1,33 @@
+{
+  "historicalCustodyProof": "Finalized SPL initialization and mintTo plus Vault-authorized Raydium CPI, checked by week13-verify.ts",
+  "currentState": "All three NFT token accounts and personal-position accounts are closed; legacy NFT mints remain with supply zero.",
+  "positions": [
+    {
+      "label": "normal-open",
+      "nft": "BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy",
+      "nftAccount": "ECbfDWCnxMAZ86j49cYLMwECcN7YXFndcweCo5Yfx7Dr",
+      "personalPosition": "H1JEfo8s3jT3YpuPnGJFiieHKhrZFy3Tyy5M7XC9gAn5",
+      "authority": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+      "closed": true,
+      "mintSupply": "0"
+    },
+    {
+      "label": "rebalance-old-open",
+      "nft": "EVfhb1eYwmP8YAstSFUTmNMSSvFfzS58H6iSERrWVijd",
+      "nftAccount": "6r3XmRtwcom6E84m18g7eN5SUMNfVBsNQeQU7fqVfK7U",
+      "personalPosition": "BS5q8L1VH2gXrfRmJ1XDjsKcWnWfSnpA8vKdQwRwoEG9",
+      "authority": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+      "closed": true,
+      "mintSupply": "0"
+    },
+    {
+      "label": "rebalance-new-open",
+      "nft": "2wkmWUqhUHXqqsRxHHSYjXstS9DgD2fgi3qM7H5tWpUc",
+      "nftAccount": "DJLMJNQXWMW8vDkD4wtqSvdU9aDRHukf6S9iq9t1sEvg",
+      "personalPosition": "2AeqPTddibRWEFWbzVuVT13mCPxN7NUnS9CX1UAbB58Q",
+      "authority": "CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN",
+      "closed": true,
+      "mintSupply": "0"
+    }
+  ]
+}
