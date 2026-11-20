@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "auditedAt": "2026-11-20T12:19:05.412Z",
+  "baseCommit": "87d58a276110353007b5e7ccd56fcbeeb25f26e4",
+  "branch": "week-13-submission",
+  "historicalEvidenceFileCount": 37,
+  "historicalEvidenceHashesUnchanged": true,
+  "originalVerificationCodeUnchanged": true,
+  "unchangedPaths": [
+    "Anchor.toml",
+    "Cargo.lock",
+    "package-lock.json",
+    "scripts/week13-verify.ts",
+    "scripts/week13-run.ts",
+    "programs/simple_vault/src/position.rs",
+    "README-WEEK12.md"
+  ],
+  "sourceHashesMatchDeployedArtifact": true,
+  "remoteHeadsBeforeCommit": {
+    "week-10-submission": "5d74a814b26ef4a2bbf8c00848a0077e86d9070c",
+    "week-11-submission": "f8feb8b7688b6608e04d90faf8fc4a4438a4b636",
+    "week-12-submission": "b3446244d017cd807dfc280eb0b8c4defd4729d7",
+    "week-13-submission": "87d58a276110353007b5e7ccd56fcbeeb25f26e4",
+    "week-8-submission": "3b6aea51dcc8a571aca95a4002181e96cf9fecdc",
+    "week-9-submission": "3a25bb470f8531ebe001a2fa7581dce0559b07b0"
+  },
+  "previousWeeksRemoteHeadsUnchanged": true,
+  "week12Deployment": {
+    "program": "HudBjTFM6HRinqoiQN6DZPDNkUK9K9qES9QdeGDKPBNF",
+    "sha256": "b7e01470824c016d6fa4cbfe76ea77907e5dee207a35c275c63d6014dc0de822",
+    "lastDeploymentSlot": 523546321,
+    "unchangedFromWeek12Artifact": true,
+    "observedSha256": "b7e01470824c016d6fa4cbfe76ea77907e5dee207a35c275c63d6014dc0de822",
+    "observedDeploymentSlot": 523546321
+  },
+  "originalWeek13Deployment": "Unchanged deployed ELF and deployment slot independently checked in historical-verification-summary.json",
+  "newProgram": "Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9",
+  "newDeployment": "Isolated deployment, no old program upgrade",
+  "scopeAndSecretScanPassed": true,
+  "reviewedControls": [
+    "Administrator and canonical account constraints",
+    "Full B input, positive minimum, exact balance deltas and retained lock",
+    "No active LP, no tracked liquidity, burned NFT and closed custody/position",
+    "Actual A reconciliation, unchanged share supply and integer floor redemption",
+    "Fail-closed idle accounting, external donations and supply mismatch",
+    "Original position CPI implementation and dependency locks unchanged",
+    "No Mainnet transactions; Devnet genesis verified"
+  ],
+  "limitations": [
+    "Dependencies unchanged: historical audit has 9 moderate and 10 high advisories",
+    "Tracked SPL Token non-reward pool only; no Token-2022/reward-bearing pool support",
+    "Unconvertible B dust remains locked",
+    "External share burns fail closed on supply mismatch",
+    "Public RPC cannot return arbitrary historical account bytes"
+  ]
+}

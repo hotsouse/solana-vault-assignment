@@ -1,0 +1,18 @@
+
+> liquidity-vault-week-13@0.1.0 test:settlement
+> node --no-experimental-strip-types -r ts-node/register node_modules/mocha/bin/mocha.js tests/settlement-accounting.ts
+
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+
+
+  settlement redemption accounting
+    ✔ values existing shares against actual settled assets
+    ✔ floors partial redemptions
+    ✔ returns all residual units to the final shareholder
+    ✔ detects a zero-output rounding edge
+    ✔ preserves precision at the u64 maximum
+    ✔ rejects zero and excessive share requests (73ms)
+    ✔ never creates value across sequential floor-rounded redemptions (42ms)
+
+
+  7 passing (269ms)

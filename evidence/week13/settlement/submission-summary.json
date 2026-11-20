@@ -1,0 +1,152 @@
+{
+  "status": "completed",
+  "baseCommit": "87d58a276110353007b5e7ccd56fcbeeb25f26e4",
+  "branch": "week-13-submission",
+  "program": "Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9",
+  "vault": "6YafwX7ujgJUrP1hQPeGRQCB2ZxbzcgWRphJjvgj92gD",
+  "deployment": {
+    "program": "Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9",
+    "signature": "XD1vSBiLE94esqjaLxEEw8r9wGT3krRtQa6LaxPxWNPPsPA5jiWjejj6XRR6TiUMi7GVDzvxeB9abHmqB58HWv8",
+    "slot": 524343232,
+    "explorer": "https://explorer.solana.com/tx/XD1vSBiLE94esqjaLxEEw8r9wGT3krRtQa6LaxPxWNPPsPA5jiWjejj6XRR6TiUMi7GVDzvxeB9abHmqB58HWv8?cluster=devnet",
+    "commitment": "finalized",
+    "sha256": "c162fda9c1df25d9b05f21df7148923c1c0fc991add8b077b3ceba2db93d750c",
+    "bytes": 646696,
+    "maxLen": 646696,
+    "upgradeAuthority": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7"
+  },
+  "settlementInstructions": [
+    "reverse_swap_via_raydium",
+    "settle_strategy"
+  ],
+  "user": "98SVWHgDL6rWLJBEE4zozMUGBpukcnULhmq4aqAZ4w2H",
+  "depositedTokenARaw": "200000000",
+  "issuedSharesRaw": "200000000",
+  "withdrawnTokenARaw": "199506361",
+  "withdrawnTokenA": "199.506361",
+  "finalState": {
+    "a": "0",
+    "b": "0",
+    "shareSupply": "0",
+    "userA": "199506361",
+    "userShares": "0",
+    "strategyActive": false,
+    "totalTokens": "0",
+    "totalShares": "0",
+    "observationSlot": 524346689,
+    "existing": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "settlementVerificationAt": "2026-11-20T12:16:43.931Z",
+  "historicalVerificationAt": "2026-11-20T12:14:49.735Z",
+  "successTransactions": [
+    {
+      "label": "initialize-vault",
+      "signature": "3HMe3E9isJ2KjPxT9x4VmrtXNCbWEfaeJjMNAu6fEXM5zi9P5Y2mz2NkdzX6ANK6MkCdZLisusCNUeQYKc9zDWpa",
+      "slot": 524345494,
+      "explorer": "https://explorer.solana.com/tx/3HMe3E9isJ2KjPxT9x4VmrtXNCbWEfaeJjMNAu6fEXM5zi9P5Y2mz2NkdzX6ANK6MkCdZLisusCNUeQYKc9zDWpa?cluster=devnet"
+    },
+    {
+      "label": "initialize-swap",
+      "signature": "3jzF1ghdxvqcQWadpLB8KcDqZgfRwfaZCvdMkCKt4yQfkbzkWR1YppamaTGoZSc3QAHb6cbW13okQuNN3ngzQqGZ",
+      "slot": 524345504,
+      "explorer": "https://explorer.solana.com/tx/3jzF1ghdxvqcQWadpLB8KcDqZgfRwfaZCvdMkCKt4yQfkbzkWR1YppamaTGoZSc3QAHb6cbW13okQuNN3ngzQqGZ?cluster=devnet"
+    },
+    {
+      "label": "fund-trader",
+      "signature": "4wB978qbNCmUg2TZ4FUp4KZVHZfj1QH34j712obcB7pDXoxsEetu4b7JMjAyzeNaF7NSAgHRhfsmCoaNK1CotSty",
+      "slot": 524345515,
+      "explorer": "https://explorer.solana.com/tx/4wB978qbNCmUg2TZ4FUp4KZVHZfj1QH34j712obcB7pDXoxsEetu4b7JMjAyzeNaF7NSAgHRhfsmCoaNK1CotSty?cluster=devnet"
+    },
+    {
+      "label": "fund-user",
+      "signature": "42iCveVce4jqoSaFGDuCyvQxNCdJ6eWWEWkvsNEiRdKcu9h25QXWUpiR4XPrzafKN7Dvdx2hSfD7R7meNZ7M6jSt",
+      "slot": 524345524,
+      "explorer": "https://explorer.solana.com/tx/42iCveVce4jqoSaFGDuCyvQxNCdJ6eWWEWkvsNEiRdKcu9h25QXWUpiR4XPrzafKN7Dvdx2hSfD7R7meNZ7M6jSt?cluster=devnet"
+    },
+    {
+      "label": "deposit",
+      "signature": "43rdydZWa5UxgGVR5UAxS98Gd6gwwmVvD3VyFRnfcu7aSLXjU9RfAz88WJid19Qc7CmJ3hmxxB9uN3xR4hUtcbKd",
+      "slot": 524345534,
+      "explorer": "https://explorer.solana.com/tx/43rdydZWa5UxgGVR5UAxS98Gd6gwwmVvD3VyFRnfcu7aSLXjU9RfAz88WJid19Qc7CmJ3hmxxB9uN3xR4hUtcbKd?cluster=devnet"
+    },
+    {
+      "label": "prepare-vault-token-b",
+      "signature": "cGBC6VUzZDmdkBjEmUgbRHEtaZV8KtguWjWnzeTzYTUV1qQYYbjWjdeXacCvZvjf4ni62na187ENN467yhx3MeR",
+      "slot": 524345547,
+      "explorer": "https://explorer.solana.com/tx/cGBC6VUzZDmdkBjEmUgbRHEtaZV8KtguWjWnzeTzYTUV1qQYYbjWjdeXacCvZvjf4ni62na187ENN467yhx3MeR?cluster=devnet"
+    },
+    {
+      "label": "normal-open",
+      "signature": "2agtZPSEuymGtbskrTmi9KuEi97U8MwUXnpjkQvKfaK1HWs6jVum1iyUXMrj4bPFwXBsGixRSBxeKmPiPX7tgBYL",
+      "slot": 524346047,
+      "explorer": "https://explorer.solana.com/tx/2agtZPSEuymGtbskrTmi9KuEi97U8MwUXnpjkQvKfaK1HWs6jVum1iyUXMrj4bPFwXBsGixRSBxeKmPiPX7tgBYL?cluster=devnet"
+    },
+    {
+      "label": "normal-swap-1",
+      "signature": "4d19viMD8s82cbZRtsskeMPoPW6T7s2ZtfzCJRMfkfiC5txoB5QNGT1JbNkVxUpg86ki6DBb8FWNBNAKnRad9GB7",
+      "slot": 524346074,
+      "explorer": "https://explorer.solana.com/tx/4d19viMD8s82cbZRtsskeMPoPW6T7s2ZtfzCJRMfkfiC5txoB5QNGT1JbNkVxUpg86ki6DBb8FWNBNAKnRad9GB7?cluster=devnet"
+    },
+    {
+      "label": "normal-swap-2",
+      "signature": "4Pu15jVqKSvRbFXBE86u6pT5URhCijW6N8ukpdbHco8vZyRPw37nYfddnPukKDwFxomjZkktyF4Dahxvgvcv4cpD",
+      "slot": 524346087,
+      "explorer": "https://explorer.solana.com/tx/4Pu15jVqKSvRbFXBE86u6pT5URhCijW6N8ukpdbHco8vZyRPw37nYfddnPukKDwFxomjZkktyF4Dahxvgvcv4cpD?cluster=devnet"
+    },
+    {
+      "label": "normal-swap-3",
+      "signature": "5uprc62qgcWqjbzXUXT98ofzezLjQnrzxpBx5S5mJ7YiJUtmBS4SFAC62xM5UWA7ar9BkPpvmnYtXoDPZCKRCWWn",
+      "slot": 524346108,
+      "explorer": "https://explorer.solana.com/tx/5uprc62qgcWqjbzXUXT98ofzezLjQnrzxpBx5S5mJ7YiJUtmBS4SFAC62xM5UWA7ar9BkPpvmnYtXoDPZCKRCWWn?cluster=devnet"
+    },
+    {
+      "label": "normal-collect",
+      "signature": "2bHY9czX1sWgArAZNffKC6f191yB42TrEEPapX5H5r59FmR1axNgWqdtkQKcgxYdZVurQTgTcqfyVcDtMWVReFcR",
+      "slot": 524346120,
+      "explorer": "https://explorer.solana.com/tx/2bHY9czX1sWgArAZNffKC6f191yB42TrEEPapX5H5r59FmR1axNgWqdtkQKcgxYdZVurQTgTcqfyVcDtMWVReFcR?cluster=devnet"
+    },
+    {
+      "label": "normal-close",
+      "signature": "2HTpH3wufCRfLfJZf9SUu5H8He2DDz1adcbUiu3NagrQuQ6JJRXpxVe5N23s7WMp75K6SEh5vB1kZthKMVbYWAYD",
+      "slot": 524346139,
+      "explorer": "https://explorer.solana.com/tx/2HTpH3wufCRfLfJZf9SUu5H8He2DDz1adcbUiu3NagrQuQ6JJRXpxVe5N23s7WMp75K6SEh5vB1kZthKMVbYWAYD?cluster=devnet"
+    },
+    {
+      "label": "reverse-all-b",
+      "signature": "3LEsdAgF3K3i9FuTVPoLDpUwBNRxo9Bs8J8cPyMCeEPQgAnYopbg9vQHmNFRWS6MNbB4VUAV5kqRX2t4hAGEAgta",
+      "slot": 524346461,
+      "explorer": "https://explorer.solana.com/tx/3LEsdAgF3K3i9FuTVPoLDpUwBNRxo9Bs8J8cPyMCeEPQgAnYopbg9vQHmNFRWS6MNbB4VUAV5kqRX2t4hAGEAgta?cluster=devnet"
+    },
+    {
+      "label": "settle-strategy",
+      "signature": "2qjqX14uHSrjDCdRY7zfmRSuDwrVxccNepLQCpizPWLGLo15165SsbvdTaiBa6xXLgqGRmSeQu2URvsw6XbfqJoX",
+      "slot": 524346471,
+      "explorer": "https://explorer.solana.com/tx/2qjqX14uHSrjDCdRY7zfmRSuDwrVxccNepLQCpizPWLGLo15165SsbvdTaiBa6xXLgqGRmSeQu2URvsw6XbfqJoX?cluster=devnet"
+    },
+    {
+      "label": "user-withdraw",
+      "signature": "4sf9KKiUdA7nKtkESYzymfMRiyWX9wUDuKxiM3d2Gxzwe8YR76ptasrJWtxwEvpm8KJrTQYcrr7Sz5dc8zdiuYWc",
+      "slot": 524346684,
+      "explorer": "https://explorer.solana.com/tx/4sf9KKiUdA7nKtkESYzymfMRiyWX9wUDuKxiM3d2Gxzwe8YR76ptasrJWtxwEvpm8KJrTQYcrr7Sz5dc8zdiuYWc?cluster=devnet"
+    }
+  ],
+  "verificationCommands": [
+    "npm run verify:week13",
+    "npm run verify:week13:settlement"
+  ],
+  "limitations": [
+    "Dependencies unchanged: historical audit has 9 moderate and 10 high advisories",
+    "Tracked SPL Token non-reward pool only; no Token-2022/reward-bearing pool support",
+    "Unconvertible B dust remains locked",
+    "External share burns fail closed on supply mismatch",
+    "Public RPC cannot return arbitrary historical account bytes"
+  ],
+  "changedFiles": "changed-files.json"
+}

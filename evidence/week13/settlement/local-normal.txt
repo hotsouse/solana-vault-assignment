@@ -1,0 +1,30 @@
+
+> liquidity-vault-week-13@0.1.0 week13:settlement
+> node --no-experimental-strip-types -r ts-node/register scripts/week13-settlement-run.ts normal
+
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+PASS normal-open non-admin
+PASS normal-open invalid ticks
+PASS normal-open zero liquidity
+PASS normal-open maximum inputs
+PASS normal-open wrong pool
+PASS normal-open incorrect NFT destination
+normal-open rh1MhptqhFCM3SZY15Fdde9S9hnXukkYcHFyWsVCKndBaXYMZB22FGy95o9YaXg8t5bFCm8LGCSoJyTUUqxC2GN
+PASS normal-open duplicate
+PASS normal-open deposits locked
+PASS normal-open withdrawals locked
+PASS local expected failure withdraw-while-active 2uVzWtSomN2qwSceVsQwKMbPNq3ueVZAUGSVmAAFHS9shVjRDrTwGkXBRaCo7Mz6bwjfztQXpfkZdUvHt8cNheUD
+PASS settle active position
+normal-swap-1 5JR7UNXtFP2LLmoPsAhdRT5mA5X7ZjKAgcGb5mWbt26R17TzS6TCon1SL9ziZyXq18kCHQKoKusNpJTB8dZL2HJQ
+normal-swap-2 5VAavVCcchKXqvwswRS4YpeSqj6ZzRqhjf259fKbuqAdVpuG3bmofdD7UEe5FZtigfe9M8LaPhD89ji7gq9xNUP8
+normal-swap-3 2muuYnXZqfaVVhFHEdwqNFRhfibrs4KyvV2iSFuCNWhyASz33Sc3zAsTsP6X5hfPmUzgxjQtGLg5v3hggzd1nyDn
+PASS normal-collect non-admin
+PASS normal-collect foreign NFT custody
+normal-collect 2pJtLBmnPVejvB6LQz5W2JxbnPHmHa9GjU5XBhgrJ8sBwFfDYgUeRQjZsxjgXFtKa2CHs8GeLCtWaUNEdkhQqDxv
+PASS normal-close non-admin
+PASS normal-close zero minima
+PASS normal-close excessive minima
+PASS normal-close foreign position
+normal-close 4PFZdbtu6wxT3abVkqzEKjx13NAdfpL6mJqQVSdok28R2QnTqAC6EAXR4pZzTzGw9dA2HcsNZfeB4FC76E2tohtR
+PASS normal-close duplicate close
+Completed phase normal

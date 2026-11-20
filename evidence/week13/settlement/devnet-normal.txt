@@ -1,0 +1,33 @@
+
+> liquidity-vault-week-13@0.1.0 week13:settlement
+> node --no-experimental-strip-types -r ts-node/register scripts/week13-settlement-run.ts normal
+
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+PASS normal-open non-admin
+PASS normal-open invalid ticks
+PASS normal-open zero liquidity
+PASS normal-open maximum inputs
+PASS normal-open wrong pool
+PASS normal-open incorrect NFT destination
+normal-open 2agtZPSEuymGtbskrTmi9KuEi97U8MwUXnpjkQvKfaK1HWs6jVum1iyUXMrj4bPFwXBsGixRSBxeKmPiPX7tgBYL
+PASS normal-open duplicate
+PASS normal-open deposits locked
+PASS normal-open withdrawals locked
+PASS finalized expected failure withdraw-while-active 4XMXuL5TcNstk2WLXZZ1ZWc1Lb4qZd2EbxRQoCfeti4Mt2LDHK8xDzXPkGm7hDmstRyWcChq81wRVGebz5WSZBBr
+PASS settle active position
+normal-swap-1 4d19viMD8s82cbZRtsskeMPoPW6T7s2ZtfzCJRMfkfiC5txoB5QNGT1JbNkVxUpg86ki6DBb8FWNBNAKnRad9GB7
+normal-swap-2 4Pu15jVqKSvRbFXBE86u6pT5URhCijW6N8ukpdbHco8vZyRPw37nYfddnPukKDwFxomjZkktyF4Dahxvgvcv4cpD
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+normal-swap-3 5uprc62qgcWqjbzXUXT98ofzezLjQnrzxpBx5S5mJ7YiJUtmBS4SFAC62xM5UWA7ar9BkPpvmnYtXoDPZCKRCWWn
+PASS normal-collect non-admin
+PASS normal-collect foreign NFT custody
+normal-collect 2bHY9czX1sWgArAZNffKC6f191yB42TrEEPapX5H5r59FmR1axNgWqdtkQKcgxYdZVurQTgTcqfyVcDtMWVReFcR
+PASS normal-close non-admin
+PASS normal-close zero minima
+PASS normal-close excessive minima
+PASS normal-close foreign position
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+normal-close 2HTpH3wufCRfLfJZf9SUu5H8He2DDz1adcbUiu3NagrQuQ6JJRXpxVe5N23s7WMp75K6SEh5vB1kZthKMVbYWAYD
+PASS normal-close duplicate close
+Completed phase normal

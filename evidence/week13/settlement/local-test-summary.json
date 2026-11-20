@@ -1,0 +1,27 @@
+{
+  "kind": "LOCAL validator; not Devnet evidence",
+  "legacyPassed": 17,
+  "clmmPassed": 11,
+  "settlementPositiveTransactions": 15,
+  "explicitNegativeSimulations": 34,
+  "expectedFailedTransactions": 2,
+  "finalBalances": {
+    "a": "0",
+    "b": "0",
+    "shareSupply": "0",
+    "userA": "199506361",
+    "userShares": "0",
+    "strategyActive": false,
+    "totalTokens": "0",
+    "totalShares": "0",
+    "observationSlot": 229,
+    "existing": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  }
+}

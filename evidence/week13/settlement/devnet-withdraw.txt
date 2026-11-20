@@ -1,0 +1,12 @@
+
+> liquidity-vault-week-13@0.1.0 week13:settlement
+> node --no-experimental-strip-types -r ts-node/register scripts/week13-settlement-run.ts withdraw
+
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+PASS withdraw exceeding shares
+PASS withdraw invalid share account
+PASS withdraw residual B after unlock
+PASS withdraw stale asset accounting
+PASS withdraw rounds to zero
+user-withdraw 4sf9KKiUdA7nKtkESYzymfMRiyWX9wUDuKxiM3d2Gxzwe8YR76ptasrJWtxwEvpm8KJrTQYcrr7Sz5dc8zdiuYWc
+Completed phase withdraw

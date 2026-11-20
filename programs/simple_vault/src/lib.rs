@@ -1,3 +1,5 @@
+pub mod settlement;
+use settlement::*;
 pub mod position;
 use position::*;
 pub mod swap;
@@ -5,7 +7,10 @@ use anchor_lang::prelude::*;
 use anchor_spl::token::{self, Burn, Mint, MintTo, Token, TokenAccount, Transfer};
 use swap::*;
 
+#[cfg(not(feature = "settlement-deployment"))]
 declare_id!("8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa");
+#[cfg(feature = "settlement-deployment")]
+declare_id!("Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9");
 
 #[program]
 pub mod simple_vault {
@@ -32,6 +37,17 @@ pub mod simple_vault {
         min_1: u64,
     ) -> Result<()> {
         position::manage(ctx, true, min_0, min_1)
+    }
+
+    pub fn reverse_swap_via_raydium<'a, 'b, 'c: 'info, 'info>(
+        ctx: Context<'a, 'b, 'c, 'info, ReverseSwap<'info>>,
+        amount_in: u64,
+        minimum_amount_out: u64,
+    ) -> Result<()> {
+        settlement::reverse(ctx, amount_in, minimum_amount_out)
+    }
+    pub fn settle_strategy(ctx: Context<SettleStrategy>) -> Result<()> {
+        settlement::finalize(ctx)
     }
 
     pub fn initialize_swap(ctx: Context<InitializeSwap>) -> Result<()> {
@@ -85,10 +101,27 @@ pub mod simple_vault {
         );
         require!(amount > 0, VaultError::ZeroAmount);
 
+        check_strategy_token_account(
+            &ctx.accounts.strategy_token_account,
+            ctx.accounts.vault_state.key(),
+        )?;
+        check_idle_accounting(
+            &ctx.accounts.vault_state,
+            &ctx.accounts.vault_token_account,
+            &ctx.accounts.share_mint,
+        )?;
+        require!(
+            ctx.accounts.vault_state.total_shares > 0 || ctx.accounts.vault_state.total_tokens == 0,
+            VaultError::OrphanAssets
+        );
+        require!(
+            ctx.accounts.vault_state.total_shares == 0 || ctx.accounts.vault_state.total_tokens > 0,
+            VaultError::InsolventVault
+        );
         let vault = &ctx.accounts.vault_state;
 
         // Сколько shares получит пользователь
-        let shares = if vault.total_shares == 0 || vault.total_tokens == 0 {
+        let shares = if vault.total_shares == 0 {
             amount // первый депозит: 1 share = 1 token
         } else {
             (amount as u128)
@@ -173,8 +206,21 @@ pub mod simple_vault {
         );
         require!(shares_amount > 0, VaultError::ZeroAmount);
 
+        check_strategy_token_account(
+            &ctx.accounts.strategy_token_account,
+            ctx.accounts.vault_state.key(),
+        )?;
+        check_idle_accounting(
+            &ctx.accounts.vault_state,
+            &ctx.accounts.vault_token_account,
+            &ctx.accounts.share_mint,
+        )?;
         let vault = &ctx.accounts.vault_state;
         require!(vault.total_shares > 0, VaultError::VaultEmpty);
+        require!(
+            shares_amount <= ctx.accounts.user_share_account.amount,
+            VaultError::InsufficientShares
+        );
 
         let tokens_out = tokens_for_shares(shares_amount, vault.total_tokens, vault.total_shares)
             .ok_or(VaultError::MathOverflow)?;
@@ -369,6 +415,9 @@ pub struct Deposit<'info> {
     pub user: Signer<'info>,
 
     pub token_program: Program<'info, Token>,
+    /// CHECK: Canonical strategy token account may be uninitialized before initialize_swap.
+    #[account(seeds=[b"vault_output",vault_state.key().as_ref()],bump)]
+    pub strategy_token_account: UncheckedAccount<'info>,
 }
 
 #[derive(Accounts)]
@@ -422,6 +471,9 @@ pub struct Withdraw<'info> {
     pub user: Signer<'info>,
 
     pub token_program: Program<'info, Token>,
+    /// CHECK: Canonical strategy token account may be uninitialized before initialize_swap.
+    #[account(seeds=[b"vault_output",vault_state.key().as_ref()],bump)]
+    pub strategy_token_account: UncheckedAccount<'info>,
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -506,6 +558,51 @@ pub enum VaultError {
     WithdrawTooSmall,
     #[msg("Math overflow")]
     MathOverflow,
+    #[msg("Recorded assets differ from the actual token balance")]
+    StaleAccounting,
+    #[msg("Recorded shares differ from the SPL mint supply")]
+    ShareSupplyMismatch,
+    #[msg("TOKEN_B must be fully converted before unlocking")]
+    UnsettledTokenB,
+    #[msg("Reverse swap must consume the entire TOKEN_B balance")]
+    IncompleteConversion,
+    #[msg("Strategy is not active")]
+    StrategyInactive,
+    #[msg("Settlement is already reconciled")]
+    AlreadySettled,
+    #[msg("Outstanding shares have no backing assets")]
+    InsolventVault,
+    #[msg("Requested redemption exceeds the user's share balance")]
+    InsufficientShares,
+    #[msg("Assets without outstanding shares require explicit handling")]
+    OrphanAssets,
+}
+
+fn check_strategy_token_account(info: &AccountInfo, vault: Pubkey) -> Result<()> {
+    if info.data_is_empty() {
+        require_keys_eq!(
+            *info.owner,
+            anchor_lang::system_program::ID,
+            VaultError::InvalidMint
+        );
+        return Ok(());
+    }
+    require_keys_eq!(*info.owner, anchor_spl::token::ID, VaultError::InvalidMint);
+    let account = TokenAccount::try_deserialize(&mut &info.try_borrow_data()?[..])?;
+    require_keys_eq!(account.owner, vault, VaultError::InvalidMint);
+    require!(account.amount == 0, VaultError::UnsettledTokenB);
+    Ok(())
+}
+fn check_idle_accounting(vault: &VaultState, tokens: &TokenAccount, mint: &Mint) -> Result<()> {
+    require!(
+        vault.total_shares == mint.supply,
+        VaultError::ShareSupplyMismatch
+    );
+    require!(
+        vault.total_tokens == tokens.amount,
+        VaultError::StaleAccounting
+    );
+    Ok(())
 }
 
 fn tokens_for_shares(shares_amount: u64, total_tokens: u64, total_shares: u64) -> Option<u64> {
@@ -532,5 +629,34 @@ mod tests {
     #[test]
     fn withdrawal_calculation_rejects_division_by_zero() {
         assert_eq!(tokens_for_shares(1, 2, 0), None);
+    }
+}
+
+#[cfg(test)]
+mod settlement_accounting_tests {
+    use super::*;
+    #[test]
+    fn final_redemption_returns_every_remaining_unit() {
+        assert_eq!(tokens_for_shares(7, 101, 7), Some(101));
+    }
+    #[test]
+    fn split_rounding_never_overdraws() {
+        for assets in 1..50 {
+            for shares in 1..30 {
+                for burn in 1..shares {
+                    let first = tokens_for_shares(burn, assets, shares).unwrap();
+                    let last =
+                        tokens_for_shares(shares - burn, assets - first, shares - burn).unwrap();
+                    assert_eq!(first + last, assets);
+                }
+            }
+        }
+    }
+    #[test]
+    fn checked_redemption_handles_u64_limits() {
+        assert_eq!(
+            tokens_for_shares(u64::MAX, u64::MAX, u64::MAX),
+            Some(u64::MAX)
+        );
     }
 }

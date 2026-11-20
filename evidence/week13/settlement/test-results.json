@@ -1,0 +1,119 @@
+{
+  "status": "passed",
+  "recordedAt": "2026-11-20T12:18:06.604801+00:00",
+  "checks": [
+    {
+      "command": "cargo fmt --check",
+      "exitCode": 0,
+      "result": "passed",
+      "log": "format-check.txt"
+    },
+    {
+      "command": "cargo check --workspace",
+      "exitCode": 0,
+      "result": "passed",
+      "log": "cargo-check.txt"
+    },
+    {
+      "command": "cargo test --workspace",
+      "exitCode": 0,
+      "result": "passed",
+      "log": "rust-tests.txt"
+    },
+    {
+      "command": "anchor build",
+      "exitCode": 0,
+      "result": "passed",
+      "log": "anchor-build.txt"
+    },
+    {
+      "command": "anchor build -- --features settlement-deployment",
+      "exitCode": 0,
+      "result": "passed",
+      "log": "anchor-build-settlement.txt"
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "result": "passed",
+      "log": "final-typecheck.txt"
+    },
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "result": "passed",
+      "log": "unit-tests.txt"
+    },
+    {
+      "command": "npm run test:settlement",
+      "exitCode": 0,
+      "result": "passed",
+      "log": "settlement-unit.txt"
+    },
+    {
+      "command": "npm run test:local",
+      "exitCode": 0,
+      "result": "passed",
+      "log": "legacy-local.txt"
+    },
+    {
+      "command": "npm run test:week13:local",
+      "exitCode": 0,
+      "result": "passed",
+      "log": "clmm-local.txt"
+    },
+    {
+      "command": "npm run verify:week13",
+      "exitCode": 0,
+      "result": "passed",
+      "log": "historical-verification.txt"
+    },
+    {
+      "command": "npm run verify:week13:settlement",
+      "exitCode": 0,
+      "result": "passed",
+      "log": "verification-settlement.txt"
+    }
+  ],
+  "rustPassed": 8,
+  "existingTypeScriptPassed": 14,
+  "settlementArithmeticPassed": 7,
+  "legacyLocalPassed": 17,
+  "raydiumCpiLocalPassed": 11,
+  "localSettlement": {
+    "kind": "LOCAL validator; not Devnet evidence",
+    "legacyPassed": 17,
+    "clmmPassed": 11,
+    "settlementPositiveTransactions": 15,
+    "explicitNegativeSimulations": 34,
+    "expectedFailedTransactions": 2,
+    "finalBalances": {
+      "a": "0",
+      "b": "0",
+      "shareSupply": "0",
+      "userA": "199506361",
+      "userShares": "0",
+      "strategyActive": false,
+      "totalTokens": "0",
+      "totalShares": "0",
+      "observationSlot": 229,
+      "existing": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  },
+  "devnet": {
+    "successScenarioTransactions": 15,
+    "deploymentTransactions": 1,
+    "explicitExpectedErrorSimulations": 34,
+    "finalizedExpectedFailures": 2,
+    "verificationWalletFree": true,
+    "historicalWeek13VerifierPreserved": true
+  },
+  "warning": "Existing compiler cfg warnings, pure-JS bigint fallback and unchanged dependency advisories are retained in logs."
+}

@@ -1,5 +1,7 @@
 # Liquidity Vault - Week 13
 
+**Settlement addendum:** The original results below belong to immutable commit `87d58a2` and program `8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa`. The [Post-CLMM Settlement and User Withdrawal](#post-clmm-settlement-and-user-withdrawal) section documents a separate deployment and a finalized user redemption. All original evidence and links are preserved.
+
 **Verified on Solana Devnet:** Vault-controlled opening, fee collection, complete closure and out-of-range rebalancing. The independent verifier passed for **25 finalized transactions**, including deployment. All three test positions are now closed.
 
 ## Verify the submission in a few minutes
@@ -256,3 +258,105 @@ This work starts at `origin/week-12-submission` commit `b3446244d017cd807dfc280e
 - [Pinned decrease/fee implementation](https://github.com/raydium-io/raydium-clmm/blob/d4ec101534724a20e1eb38a9b997f8b391c5100f/programs/amm/src/instructions/decrease_liquidity.rs).
 
 The public CPI argument order is taken from the pinned `lib.rs`, which differs from its internal helper order. Wallet-owned SDK liquidity operations are not used as proof of Vault CPI functionality.
+
+## Post-CLMM Settlement and User Withdrawal
+
+### Accounting and deployment isolation
+
+The original program tracks liquid TOKEN_A in `total_tokens` during strategy execution. It cannot use that amount to value shares while TOKEN_B or LP assets remain. Closing a position therefore keeps `strategy_active` true. The original forward swap binds A as input and B as output; it does not already provide a reverse path. The [accounting audit](evidence/week13/settlement/accounting-audit.md) records these findings and the original zero-asset issuance and idle-accounting gaps.
+
+The new implementation is deployed separately at **`Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9`**, with Vault **`6YafwX7ujgJUrP1hQPeGRQCB2ZxbzcgWRphJjvgj92gD`**. The original Week 13 deployment and its locked Vault remain unchanged, and its 25 transactions remain independently verifiable. Weeks 8-12 branches and deployments are preserved. `Anchor.toml` retains the original identity; the `settlement-deployment` Cargo feature selects the isolated identity. The deployment helper verifies Devnet genesis, exact artifact hash, signer identity and funding, and refuses to upgrade any existing program. Do not use `anchor deploy` to reproduce this addendum.
+
+### Settlement state machine
+
+1. Users deposit A and receive SPL shares. Deposit and withdrawal reject an active strategy, residual B, mismatched share supply or stale A accounting. The appended canonical `strategy_token_account` client account is required by both instructions in the new IDL.
+2. The administrator opens and manages the existing Vault-controlled Raydium position. Closing removes all tracked liquidity, burns the NFT and closes its token account and personal position; the strategy remains locked.
+3. `reverse_swap_via_raydium(amount_in, minimum_amount_out)` is administrator-only and requires an inactive position with zero liquidity. It reverses the existing `swap_v2` CPI account orientation. The input must equal the entire canonical B balance and the minimum must be positive. Checked actual deltas must show the exact input spent, minimum A received and zero B remaining. Failure rolls back atomically; success retains the lock.
+4. `settle_strategy` validates canonical Vault/config/pool/mints/token accounts, administrator, zero liquidity, inactive manager, burned NFT mint with no mint authority, and closed canonical NFT and personal-position accounts. B must be zero, outstanding shares positive and SPL supply equal to recorded shares. It assigns actual A to `total_tokens`, preserves all shares and unlocks. The unchanged repeated operation returns `AlreadySettled`.
+5. A user signs `withdraw(shares)` and receives `floor(shares * total_tokens / total_shares)` raw A units, using checked integer arithmetic. The same transaction burns those shares and updates both totals. UserCard records history; SPL balances and supply determine ownership. The final holder receives every remaining A unit.
+
+Idle A donations require explicit administrator reconciliation. B donations also block redemption after unlock; the administrator can fully reverse that B and settle again. Share supply mismatches fail closed. If B dust cannot be converted with a positive minimum, the Vault remains locked. Settlement performs no transfer, share mint or share burn.
+
+### Finalized Devnet results
+
+All 15 successful scenario transactions plus the new deployment are listed below. The user `98SVWHgDL6rWLJBEE4zozMUGBpukcnULhmq4aqAZ4w2H` differs from the administrator and fee-generating trader. The public [manifest](evidence/week13/settlement/manifest.json), [balance and share snapshots](evidence/week13/settlement/balance-and-share-snapshots.json), [negative results](evidence/week13/settlement/negative-test-results.json), [public IDL](evidence/week13/settlement/program-idl.json) and [independent verification summary](evidence/week13/settlement/verification-summary.json) contain exact raw values.
+
+| Checkpoint | Vault A raw | Vault B raw | Share supply raw | Strategy locked |
+|---|---:|---:|---:|---|
+| deposit | 200000000 | 0 | 200000000 | false |
+| normal-close | 100016745 | 97649294 | 200000000 | true |
+| reverse-all-b | 199506361 | 0 | 200000000 | true |
+| settle-strategy | 199506361 | 0 | 200000000 | false |
+| user-withdraw | 0 | 0 | 0 | false |
+
+The user deposited **200.000000 A** and received **200,000,000 raw shares**. Closure left 100,016,745 raw A and 97,649,294 raw B. The full B conversion returned 99,489,616 raw A with a minimum of 98,494,719. Settlement reconciled 199,506,361 raw A against the unchanged 200,000,000 raw shares. Redeeming all shares returned **199.506361 A** (six decimals). This test includes fees, price movement, trading fees and slippage; it does not assert a profit or a guaranteed exchange rate. Final Vault A, B, recorded totals, user share balance and SPL share supply are all zero; no tracked LP is active.
+
+| Action | Finalized slot | Explorer |
+|---|---:|---|
+| settlement-deployment | 524343232 | [transaction](https://explorer.solana.com/tx/XD1vSBiLE94esqjaLxEEw8r9wGT3krRtQa6LaxPxWNPPsPA5jiWjejj6XRR6TiUMi7GVDzvxeB9abHmqB58HWv8?cluster=devnet) |
+| initialize-vault | 524345494 | [transaction](https://explorer.solana.com/tx/3HMe3E9isJ2KjPxT9x4VmrtXNCbWEfaeJjMNAu6fEXM5zi9P5Y2mz2NkdzX6ANK6MkCdZLisusCNUeQYKc9zDWpa?cluster=devnet) |
+| initialize-swap | 524345504 | [transaction](https://explorer.solana.com/tx/3jzF1ghdxvqcQWadpLB8KcDqZgfRwfaZCvdMkCKt4yQfkbzkWR1YppamaTGoZSc3QAHb6cbW13okQuNN3ngzQqGZ?cluster=devnet) |
+| fund-trader | 524345515 | [transaction](https://explorer.solana.com/tx/4wB978qbNCmUg2TZ4FUp4KZVHZfj1QH34j712obcB7pDXoxsEetu4b7JMjAyzeNaF7NSAgHRhfsmCoaNK1CotSty?cluster=devnet) |
+| fund-user | 524345524 | [transaction](https://explorer.solana.com/tx/42iCveVce4jqoSaFGDuCyvQxNCdJ6eWWEWkvsNEiRdKcu9h25QXWUpiR4XPrzafKN7Dvdx2hSfD7R7meNZ7M6jSt?cluster=devnet) |
+| deposit | 524345534 | [transaction](https://explorer.solana.com/tx/43rdydZWa5UxgGVR5UAxS98Gd6gwwmVvD3VyFRnfcu7aSLXjU9RfAz88WJid19Qc7CmJ3hmxxB9uN3xR4hUtcbKd?cluster=devnet) |
+| prepare-vault-token-b | 524345547 | [transaction](https://explorer.solana.com/tx/cGBC6VUzZDmdkBjEmUgbRHEtaZV8KtguWjWnzeTzYTUV1qQYYbjWjdeXacCvZvjf4ni62na187ENN467yhx3MeR?cluster=devnet) |
+| normal-open | 524346047 | [transaction](https://explorer.solana.com/tx/2agtZPSEuymGtbskrTmi9KuEi97U8MwUXnpjkQvKfaK1HWs6jVum1iyUXMrj4bPFwXBsGixRSBxeKmPiPX7tgBYL?cluster=devnet) |
+| normal-swap-1 | 524346074 | [transaction](https://explorer.solana.com/tx/4d19viMD8s82cbZRtsskeMPoPW6T7s2ZtfzCJRMfkfiC5txoB5QNGT1JbNkVxUpg86ki6DBb8FWNBNAKnRad9GB7?cluster=devnet) |
+| normal-swap-2 | 524346087 | [transaction](https://explorer.solana.com/tx/4Pu15jVqKSvRbFXBE86u6pT5URhCijW6N8ukpdbHco8vZyRPw37nYfddnPukKDwFxomjZkktyF4Dahxvgvcv4cpD?cluster=devnet) |
+| normal-swap-3 | 524346108 | [transaction](https://explorer.solana.com/tx/5uprc62qgcWqjbzXUXT98ofzezLjQnrzxpBx5S5mJ7YiJUtmBS4SFAC62xM5UWA7ar9BkPpvmnYtXoDPZCKRCWWn?cluster=devnet) |
+| normal-collect | 524346120 | [transaction](https://explorer.solana.com/tx/2bHY9czX1sWgArAZNffKC6f191yB42TrEEPapX5H5r59FmR1axNgWqdtkQKcgxYdZVurQTgTcqfyVcDtMWVReFcR?cluster=devnet) |
+| normal-close | 524346139 | [transaction](https://explorer.solana.com/tx/2HTpH3wufCRfLfJZf9SUu5H8He2DDz1adcbUiu3NagrQuQ6JJRXpxVe5N23s7WMp75K6SEh5vB1kZthKMVbYWAYD?cluster=devnet) |
+| reverse-all-b | 524346461 | [transaction](https://explorer.solana.com/tx/3LEsdAgF3K3i9FuTVPoLDpUwBNRxo9Bs8J8cPyMCeEPQgAnYopbg9vQHmNFRWS6MNbB4VUAV5kqRX2t4hAGEAgta?cluster=devnet) |
+| settle-strategy | 524346471 | [transaction](https://explorer.solana.com/tx/2qjqX14uHSrjDCdRY7zfmRSuDwrVxccNepLQCpizPWLGLo15165SsbvdTaiBa6xXLgqGRmSeQu2URvsw6XbfqJoX?cluster=devnet) |
+| user-withdraw | 524346684 | [transaction](https://explorer.solana.com/tx/4sf9KKiUdA7nKtkESYzymfMRiyWX9wUDuKxiM3d2Gxzwe8YR76ptasrJWtxwEvpm8KJrTQYcrr7Sz5dc8zdiuYWc?cluster=devnet) |
+
+Two deliberately failed transactions are also finalized; each has the required error and unchanged token/share balances:
+
+- [withdraw-while-active](https://explorer.solana.com/tx/4XMXuL5TcNstk2WLXZZ1ZWc1Lb4qZd2EbxRQoCfeti4Mt2LDHK8xDzXPkGm7hDmstRyWcChq81wRVGebz5WSZBBr?cluster=devnet): `StrategyActive`.
+- [reverse-slippage-failure](https://explorer.solana.com/tx/2bfdW9KDeZxwLuWUedGmyhCFVbKjyRq4B71JPsE2V4o49hguLy1uEvjqjsroBQjAQt9g2y3FyQmDJRnUg8fA5gu?cluster=devnet): `TooLittleOutputReceived`.
+
+### Tests and reproduction
+
+Fresh results are in [test-results.json](evidence/week13/settlement/test-results.json): Rust 8 passed; existing TypeScript suites 6 slippage plus 8 verifier-integrity tests passed; settlement arithmetic 7 passed; local validator legacy 17 and real Raydium CPI 11 passed. The local settlement workflow completed 15 success transactions, 34 explicit-error simulations and two expected failed transactions; it is labeled **LOCAL**, separately from the real Devnet evidence. The real Devnet run also records 34 explicit expected-error simulations and two finalized failed transactions. [Negative-test results](evidence/week13/settlement/negative-test-results.json) state each expected error and matching logs, including active-position settlement, residual B, unauthorized signer, wrong pool/mint/PDA/account, invalid amount, partial conversion, slippage, premature withdrawal, repeated settlement, excessive shares, invalid share account, rounding, stale assets and mismatched supply.
+
+With Rust, Solana/Agave, Anchor 0.31.1, Node 22 and the unchanged dependency lockfiles:
+
+```bash
+npm ci
+cargo fmt --check
+cargo check --workspace
+cargo test --workspace
+anchor build
+npm run typecheck
+npm test
+npm run test:settlement
+# Builds default identity and isolated settlement feature; sends no transactions:
+npm run build:settlement
+# Clones public Devnet accounts into an isolated local validator; runs old and new suites:
+npm run test:settlement:local
+# Public RPC only, no wallet and no build:
+ANCHOR_WALLET=/nonexistent/no-wallet.json npm run verify:week13
+ANCHOR_WALLET=/nonexistent/no-wallet.json npm run verify:week13:settlement
+```
+
+The new verifier paces public RPC reads. An RPC rate limit may require retrying; the unchanged historical verifier was run with a temporary 1.8-second fetch pacing wrapper, recorded in its fresh [verification summary](evidence/week13/settlement/historical-verification-summary.json). It retains every original check. Both verifiers reject a changed deployed ELF or upgrade slot. The settlement verifier independently retrieves finalized transaction metadata, share mint/burn and transfers, Vault-signed Raydium CPIs, LP/NFT closure, full B conversion, settlement event, user proceeds and current zero balances/supply. Stored snapshots are observations, not archival account-byte proofs.
+
+Local clone tests use the configured test administrator key matching `sourceAdmin` in the public fixture; signing keys are not distributed. Public verification requires no signing key. The existing Devnet run is complete and should be verified read-only. The signed runner phases used were `npm run week13:settlement -- setup`, `-- normal`, `-- settle`, `-- withdraw`, in that order. They require the authorized administrator and ignored local user/trader keys, and checkpoint signatures before broadcast. `-- recover` inspects a pending submission before a retry. A fresh public demonstration requires a separately planned identity/vault and its own manifest; the deployment helper refuses reuse of an existing program. Build and local-test reproduction write scratch outputs under ignored `.tools/`; recording modes refuse to overwrite deployment evidence.
+
+### Combined methodology evidence
+
+| Requirement | Evidence |
+|---|---|
+| Administrator-selected range; both-token maxima; genuine Raydium CPI | Original 25-transaction evidence above; new `normal-open`, local CPI regression tests |
+| Vault-controlled NFT and liquidity; fees; full close with minima | Original normal and rebalance runs; new open/collect/close CPI and NFT checks |
+| Separate-wallet fee-generating swaps | Three new trader-signed swaps between open and collection |
+| Out-of-range close and reopen | Preserved original rebalancing evidence; unchanged `position.rs` and passing regressions |
+| Deposited A and correct issued shares | New user-signed `deposit`; parsed Vault-authorized SPL mint and token deltas |
+| Lock throughout active LP and before settlement | `withdraw-while-active` finalized failure; explicit strategy/active-position/residual-B negative tests |
+| Close before converting the entire B balance; positive slippage minimum | Ordered `normal-close` then `reverse-all-b`; exact Raydium CPI bindings and token deltas |
+| Reconcile actual A without changing shares; authorized unlock | `settle-strategy` event, unchanged supply, no mint/burn/transfers; account/NFT and negative checks |
+| Correct user redemption and share burn | Finalized `user-withdraw`, integer floor formula, exact user A increase and SPL burn |
+| No remaining tracked LP, B, A or user shares | Current RPC checks in settlement verifier and final snapshots |
+| Read-only verification, builds, security tests, earlier-week preservation | Both verifier logs, fresh test logs and final audit under the settlement evidence directory |
+
+The final [audit](evidence/week13/settlement/final-audit.json) records preserved historical hashes, earlier branch/deployment checks and the exact [changed-file list](evidence/week13/settlement/changed-files.json). Dependencies were not changed to silence the original 19 audit advisories (9 moderate, 10 high). The scope remains SPL Token test assets and the tracked non-reward pool; Token-2022/reward-bearing pools and external economic security certification are outside this demonstration.

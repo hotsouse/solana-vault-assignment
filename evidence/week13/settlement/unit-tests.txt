@@ -1,0 +1,42 @@
+
+> liquidity-vault-week-13@0.1.0 test
+> npm run test:unit && npm run test:week13
+
+
+> liquidity-vault-week-13@0.1.0 test:unit
+> node --no-experimental-strip-types -r ts-node/register node_modules/mocha/bin/mocha.js tests/slippage.ts
+
+
+
+  integer slippage
+    ✔ floors 1% below the expected amount
+    ✔ preserves precision above Number.MAX_SAFE_INTEGER
+    ✔ rejects zero expected output
+    ✔ rejects a zero minimum
+    ✔ rejects invalid basis points
+    ✔ accepts exact output with zero slippage
+
+
+  6 passing (10ms)
+
+
+> liquidity-vault-week-13@0.1.0 test:week13
+> node --no-experimental-strip-types -r ts-node/register node_modules/mocha/bin/mocha.js tests/week13.ts
+
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+
+
+  Week 13 evidence verifier
+    ✔ decodes exact amounts beyond Number precision
+    ✔ rejects event-shaped data emitted by another program
+    ✔ attributes nested log data to the actual emitter
+    ✔ uses exact on-chain raw token deltas
+    ✔ fails closed on missing balances (45ms)
+    ✔ rejects spoofed authority and mint metadata
+
+  Raydium event evidence
+    ✔ decodes price, principal and fees from the pinned Raydium schema
+    ✔ rejects Raydium-shaped data emitted by the Vault
+
+
+  8 passing (71ms)

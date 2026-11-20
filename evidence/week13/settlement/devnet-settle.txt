@@ -1,0 +1,25 @@
+
+> liquidity-vault-week-13@0.1.0 week13:settlement
+> node --no-experimental-strip-types -r ts-node/register scripts/week13-settlement-run.ts settle
+
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+PASS settle non-admin
+PASS settle residual B
+PASS settle wrong pool
+PASS settle wrong vault PDA
+PASS reverse wrong mint
+PASS reverse wrong token account
+PASS reverse zero amount
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 1000ms delay...
+Server responded with 429 Too Many Requests.  Retrying after 2000ms delay...
+PASS reverse partial balance
+PASS reverse zero minimum
+PASS reverse slippage
+PASS finalized expected failure reverse-slippage-failure 2bfdW9KDeZxwLuWUedGmyhCFVbKjyRq4B71JPsE2V4o49hguLy1uEvjqjsroBQjAQt9g2y3FyQmDJRnUg8fA5gu
+Server responded with 429 Too Many Requests.  Retrying after 500ms delay...
+reverse-all-b 3LEsdAgF3K3i9FuTVPoLDpUwBNRxo9Bs8J8cPyMCeEPQgAnYopbg9vQHmNFRWS6MNbB4VUAV5kqRX2t4hAGEAgta
+PASS settle stale share accounting
+settle-strategy 2qjqX14uHSrjDCdRY7zfmRSuDwrVxccNepLQCpizPWLGLo15165SsbvdTaiBa6xXLgqGRmSeQu2URvsw6XbfqJoX
+PASS repeated settlement
+Completed phase settle

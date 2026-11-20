@@ -1,0 +1,11 @@
+{
+  "program": "Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9",
+  "signature": "XD1vSBiLE94esqjaLxEEw8r9wGT3krRtQa6LaxPxWNPPsPA5jiWjejj6XRR6TiUMi7GVDzvxeB9abHmqB58HWv8",
+  "slot": 524343232,
+  "explorer": "https://explorer.solana.com/tx/XD1vSBiLE94esqjaLxEEw8r9wGT3krRtQa6LaxPxWNPPsPA5jiWjejj6XRR6TiUMi7GVDzvxeB9abHmqB58HWv8?cluster=devnet",
+  "commitment": "finalized",
+  "sha256": "c162fda9c1df25d9b05f21df7148923c1c0fc991add8b077b3ceba2db93d750c",
+  "bytes": 646696,
+  "maxLen": 646696,
+  "upgradeAuthority": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7"
+}

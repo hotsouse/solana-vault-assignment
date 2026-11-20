@@ -1,0 +1,597 @@
+{
+  "cluster": "devnet",
+  "kind": "Runner RPC observations after finalized transactions; account observations are confirmed, not archival account proofs",
+  "snapshots": [
+    {
+      "label": "initialize-vault",
+      "signature": "3HMe3E9isJ2KjPxT9x4VmrtXNCbWEfaeJjMNAu6fEXM5zi9P5Y2mz2NkdzX6ANK6MkCdZLisusCNUeQYKc9zDWpa",
+      "transactionSlot": 524345494,
+      "before": null,
+      "after": null
+    },
+    {
+      "label": "initialize-swap",
+      "signature": "3jzF1ghdxvqcQWadpLB8KcDqZgfRwfaZCvdMkCKt4yQfkbzkWR1YppamaTGoZSc3QAHb6cbW13okQuNN3ngzQqGZ",
+      "transactionSlot": 524345504,
+      "before": null,
+      "after": {
+        "a": "0",
+        "b": "0",
+        "shareSupply": "0",
+        "userA": "0",
+        "userShares": "0",
+        "strategyActive": false,
+        "totalTokens": "0",
+        "totalShares": "0",
+        "observationSlot": 524345508,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "label": "fund-trader",
+      "signature": "4wB978qbNCmUg2TZ4FUp4KZVHZfj1QH34j712obcB7pDXoxsEetu4b7JMjAyzeNaF7NSAgHRhfsmCoaNK1CotSty",
+      "transactionSlot": 524345515,
+      "before": {
+        "a": "0",
+        "b": "0",
+        "shareSupply": "0",
+        "userA": "0",
+        "userShares": "0",
+        "strategyActive": false,
+        "totalTokens": "0",
+        "totalShares": "0",
+        "observationSlot": 524345511,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      "after": {
+        "a": "0",
+        "b": "0",
+        "shareSupply": "0",
+        "userA": "0",
+        "userShares": "0",
+        "strategyActive": false,
+        "totalTokens": "0",
+        "totalShares": "0",
+        "observationSlot": 524345519,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "label": "fund-user",
+      "signature": "42iCveVce4jqoSaFGDuCyvQxNCdJ6eWWEWkvsNEiRdKcu9h25QXWUpiR4XPrzafKN7Dvdx2hSfD7R7meNZ7M6jSt",
+      "transactionSlot": 524345524,
+      "before": {
+        "a": "0",
+        "b": "0",
+        "shareSupply": "0",
+        "userA": "0",
+        "userShares": "0",
+        "strategyActive": false,
+        "totalTokens": "0",
+        "totalShares": "0",
+        "observationSlot": 524345519,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      "after": {
+        "a": "0",
+        "b": "0",
+        "shareSupply": "0",
+        "userA": "200000000",
+        "userShares": "0",
+        "strategyActive": false,
+        "totalTokens": "0",
+        "totalShares": "0",
+        "observationSlot": 524345528,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "label": "deposit",
+      "signature": "43rdydZWa5UxgGVR5UAxS98Gd6gwwmVvD3VyFRnfcu7aSLXjU9RfAz88WJid19Qc7CmJ3hmxxB9uN3xR4hUtcbKd",
+      "transactionSlot": 524345534,
+      "before": {
+        "a": "0",
+        "b": "0",
+        "shareSupply": "0",
+        "userA": "200000000",
+        "userShares": "0",
+        "strategyActive": false,
+        "totalTokens": "0",
+        "totalShares": "0",
+        "observationSlot": 524345529,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "200000000",
+        "b": "0",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": false,
+        "totalTokens": "200000000",
+        "totalShares": "200000000",
+        "observationSlot": 524345537,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "label": "prepare-vault-token-b",
+      "signature": "cGBC6VUzZDmdkBjEmUgbRHEtaZV8KtguWjWnzeTzYTUV1qQYYbjWjdeXacCvZvjf4ni62na187ENN467yhx3MeR",
+      "transactionSlot": 524345547,
+      "before": {
+        "a": "200000000",
+        "b": "0",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": false,
+        "totalTokens": "200000000",
+        "totalShares": "200000000",
+        "observationSlot": 524345542,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "100000000",
+        "b": "97665544",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "100000000",
+        "totalShares": "200000000",
+        "observationSlot": 524345551,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "label": "normal-open",
+      "signature": "2agtZPSEuymGtbskrTmi9KuEi97U8MwUXnpjkQvKfaK1HWs6jVum1iyUXMrj4bPFwXBsGixRSBxeKmPiPX7tgBYL",
+      "transactionSlot": 524346047,
+      "before": {
+        "a": "100000000",
+        "b": "97665544",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "100000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346041,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346051,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "label": "normal-swap-1",
+      "signature": "4d19viMD8s82cbZRtsskeMPoPW6T7s2ZtfzCJRMfkfiC5txoB5QNGT1JbNkVxUpg86ki6DBb8FWNBNAKnRad9GB7",
+      "transactionSlot": 524346074,
+      "before": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346069,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346077,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "label": "normal-swap-2",
+      "signature": "4Pu15jVqKSvRbFXBE86u6pT5URhCijW6N8ukpdbHco8vZyRPw37nYfddnPukKDwFxomjZkktyF4Dahxvgvcv4cpD",
+      "transactionSlot": 524346087,
+      "before": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346083,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346089,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "label": "normal-swap-3",
+      "signature": "5uprc62qgcWqjbzXUXT98ofzezLjQnrzxpBx5S5mJ7YiJUtmBS4SFAC62xM5UWA7ar9BkPpvmnYtXoDPZCKRCWWn",
+      "transactionSlot": 524346108,
+      "before": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346100,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346112,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "label": "normal-collect",
+      "signature": "2bHY9czX1sWgArAZNffKC6f191yB42TrEEPapX5H5r59FmR1axNgWqdtkQKcgxYdZVurQTgTcqfyVcDtMWVReFcR",
+      "transactionSlot": 524346120,
+      "before": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346115,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "80000071",
+        "b": "77925596",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000071",
+        "totalShares": "200000000",
+        "observationSlot": 524346124,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "label": "normal-close",
+      "signature": "2HTpH3wufCRfLfJZf9SUu5H8He2DDz1adcbUiu3NagrQuQ6JJRXpxVe5N23s7WMp75K6SEh5vB1kZthKMVbYWAYD",
+      "transactionSlot": 524346139,
+      "before": {
+        "a": "80000071",
+        "b": "77925596",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000071",
+        "totalShares": "200000000",
+        "observationSlot": 524346133,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "100016745",
+        "b": "97649294",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "100016745",
+        "totalShares": "200000000",
+        "observationSlot": 524346143,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "label": "reverse-all-b",
+      "signature": "3LEsdAgF3K3i9FuTVPoLDpUwBNRxo9Bs8J8cPyMCeEPQgAnYopbg9vQHmNFRWS6MNbB4VUAV5kqRX2t4hAGEAgta",
+      "transactionSlot": 524346461,
+      "before": {
+        "a": "100016745",
+        "b": "97649294",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "100016745",
+        "totalShares": "200000000",
+        "observationSlot": 524346456,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "199506361",
+        "b": "0",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "199506361",
+        "totalShares": "200000000",
+        "observationSlot": 524346464,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "label": "settle-strategy",
+      "signature": "2qjqX14uHSrjDCdRY7zfmRSuDwrVxccNepLQCpizPWLGLo15165SsbvdTaiBa6xXLgqGRmSeQu2URvsw6XbfqJoX",
+      "transactionSlot": 524346471,
+      "before": {
+        "a": "199506361",
+        "b": "0",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "199506361",
+        "totalShares": "200000000",
+        "observationSlot": 524346465,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "199506361",
+        "b": "0",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": false,
+        "totalTokens": "199506361",
+        "totalShares": "200000000",
+        "observationSlot": 524346475,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "label": "user-withdraw",
+      "signature": "4sf9KKiUdA7nKtkESYzymfMRiyWX9wUDuKxiM3d2Gxzwe8YR76ptasrJWtxwEvpm8KJrTQYcrr7Sz5dc8zdiuYWc",
+      "transactionSlot": 524346684,
+      "before": {
+        "a": "199506361",
+        "b": "0",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": false,
+        "totalTokens": "199506361",
+        "totalShares": "200000000",
+        "observationSlot": 524346679,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "0",
+        "b": "0",
+        "shareSupply": "0",
+        "userA": "199506361",
+        "userShares": "0",
+        "strategyActive": false,
+        "totalTokens": "0",
+        "totalShares": "0",
+        "observationSlot": 524346689,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  ]
+}

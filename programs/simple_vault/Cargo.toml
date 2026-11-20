@@ -13,6 +13,7 @@ no-idl = []
 no-log-ix-name = []
 cpi = ["no-entrypoint"]
 default = []
+settlement-deployment = []
 idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build", "raydium-amm-v3/idl-build"]
 
 [dependencies]

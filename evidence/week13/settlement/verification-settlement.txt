@@ -1,0 +1,130 @@
+
+> liquidity-vault-week-13@0.1.0 verify:week13:settlement
+> node --no-experimental-strip-types -r ts-node/register scripts/week13-settlement-verify.ts
+
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+PASS finalized initialize-vault 3HMe3E9isJ2KjPxT9x4VmrtXNCbWEfaeJjMNAu6fEXM5zi9P5Y2mz2NkdzX6ANK6MkCdZLisusCNUeQYKc9zDWpa
+PASS finalized initialize-swap 3jzF1ghdxvqcQWadpLB8KcDqZgfRwfaZCvdMkCKt4yQfkbzkWR1YppamaTGoZSc3QAHb6cbW13okQuNN3ngzQqGZ
+PASS finalized fund-trader 4wB978qbNCmUg2TZ4FUp4KZVHZfj1QH34j712obcB7pDXoxsEetu4b7JMjAyzeNaF7NSAgHRhfsmCoaNK1CotSty
+PASS finalized fund-user 42iCveVce4jqoSaFGDuCyvQxNCdJ6eWWEWkvsNEiRdKcu9h25QXWUpiR4XPrzafKN7Dvdx2hSfD7R7meNZ7M6jSt
+PASS finalized deposit 43rdydZWa5UxgGVR5UAxS98Gd6gwwmVvD3VyFRnfcu7aSLXjU9RfAz88WJid19Qc7CmJ3hmxxB9uN3xR4hUtcbKd
+PASS finalized prepare-vault-token-b cGBC6VUzZDmdkBjEmUgbRHEtaZV8KtguWjWnzeTzYTUV1qQYYbjWjdeXacCvZvjf4ni62na187ENN467yhx3MeR
+PASS finalized normal-open 2agtZPSEuymGtbskrTmi9KuEi97U8MwUXnpjkQvKfaK1HWs6jVum1iyUXMrj4bPFwXBsGixRSBxeKmPiPX7tgBYL
+PASS finalized normal-swap-1 4d19viMD8s82cbZRtsskeMPoPW6T7s2ZtfzCJRMfkfiC5txoB5QNGT1JbNkVxUpg86ki6DBb8FWNBNAKnRad9GB7
+PASS finalized normal-swap-2 4Pu15jVqKSvRbFXBE86u6pT5URhCijW6N8ukpdbHco8vZyRPw37nYfddnPukKDwFxomjZkktyF4Dahxvgvcv4cpD
+PASS finalized normal-swap-3 5uprc62qgcWqjbzXUXT98ofzezLjQnrzxpBx5S5mJ7YiJUtmBS4SFAC62xM5UWA7ar9BkPpvmnYtXoDPZCKRCWWn
+PASS finalized normal-collect 2bHY9czX1sWgArAZNffKC6f191yB42TrEEPapX5H5r59FmR1axNgWqdtkQKcgxYdZVurQTgTcqfyVcDtMWVReFcR
+PASS finalized normal-close 2HTpH3wufCRfLfJZf9SUu5H8He2DDz1adcbUiu3NagrQuQ6JJRXpxVe5N23s7WMp75K6SEh5vB1kZthKMVbYWAYD
+PASS finalized reverse-all-b 3LEsdAgF3K3i9FuTVPoLDpUwBNRxo9Bs8J8cPyMCeEPQgAnYopbg9vQHmNFRWS6MNbB4VUAV5kqRX2t4hAGEAgta
+PASS finalized settle-strategy 2qjqX14uHSrjDCdRY7zfmRSuDwrVxccNepLQCpizPWLGLo15165SsbvdTaiBa6xXLgqGRmSeQu2URvsw6XbfqJoX
+PASS finalized user-withdraw 4sf9KKiUdA7nKtkESYzymfMRiyWX9wUDuKxiM3d2Gxzwe8YR76ptasrJWtxwEvpm8KJrTQYcrr7Sz5dc8zdiuYWc
+PASS finalized expected failure withdraw-while-active 4XMXuL5TcNstk2WLXZZ1ZWc1Lb4qZd2EbxRQoCfeti4Mt2LDHK8xDzXPkGm7hDmstRyWcChq81wRVGebz5WSZBBr
+PASS finalized expected failure reverse-slippage-failure 2bfdW9KDeZxwLuWUedGmyhCFVbKjyRq4B71JPsE2V4o49hguLy1uEvjqjsroBQjAQt9g2y3FyQmDJRnUg8fA5gu
+{
+  "status": "passed",
+  "verifiedAt": "2026-11-20T12:16:43.931Z",
+  "deployment": "XD1vSBiLE94esqjaLxEEw8r9wGT3krRtQa6LaxPxWNPPsPA5jiWjejj6XRR6TiUMi7GVDzvxeB9abHmqB58HWv8",
+  "checks": [
+    {
+      "label": "normal-open",
+      "slot": 524346047,
+      "signature": "2agtZPSEuymGtbskrTmi9KuEi97U8MwUXnpjkQvKfaK1HWs6jVum1iyUXMrj4bPFwXBsGixRSBxeKmPiPX7tgBYL",
+      "event": {
+        "vault": "6YafwX7ujgJUrP1hQPeGRQCB2ZxbzcgWRphJjvgj92gD",
+        "nft": "ExBaw6h5x2zVPPgjSi6Mg7Z4zPUDfWrFTmDpWRNubihz",
+        "action": 0,
+        "lower": -840,
+        "upper": 360,
+        "liquidity": "672346137",
+        "amount0": "20000000",
+        "amount1": "19739983",
+        "tick": -237,
+        "sqrtPriceX64": "18229656231521355575",
+        "principal0": "20000000",
+        "principal1": "19739983",
+        "fee0": "0",
+        "fee1": "0"
+      },
+      "deltaA": "-20000000",
+      "deltaB": "-19739983"
+    },
+    {
+      "label": "normal-collect",
+      "slot": 524346120,
+      "signature": "2bHY9czX1sWgArAZNffKC6f191yB42TrEEPapX5H5r59FmR1axNgWqdtkQKcgxYdZVurQTgTcqfyVcDtMWVReFcR",
+      "event": {
+        "vault": "6YafwX7ujgJUrP1hQPeGRQCB2ZxbzcgWRphJjvgj92gD",
+        "nft": "ExBaw6h5x2zVPPgjSi6Mg7Z4zPUDfWrFTmDpWRNubihz",
+        "action": 1,
+        "lower": -840,
+        "upper": 360,
+        "liquidity": "0",
+        "amount0": "71",
+        "amount1": "35",
+        "tick": -238,
+        "sqrtPriceX64": "18229209465829026868",
+        "principal0": "0",
+        "principal1": "0",
+        "fee0": "71",
+        "fee1": "35"
+      },
+      "deltaA": "71",
+      "deltaB": "35"
+    },
+    {
+      "label": "normal-close",
+      "slot": 524346139,
+      "signature": "2HTpH3wufCRfLfJZf9SUu5H8He2DDz1adcbUiu3NagrQuQ6JJRXpxVe5N23s7WMp75K6SEh5vB1kZthKMVbYWAYD",
+      "event": {
+        "vault": "6YafwX7ujgJUrP1hQPeGRQCB2ZxbzcgWRphJjvgj92gD",
+        "nft": "ExBaw6h5x2zVPPgjSi6Mg7Z4zPUDfWrFTmDpWRNubihz",
+        "action": 2,
+        "lower": -840,
+        "upper": 360,
+        "liquidity": "672346137",
+        "amount0": "20016674",
+        "amount1": "19723698",
+        "tick": -238,
+        "sqrtPriceX64": "18229209465829026868",
+        "principal0": "20016674",
+        "principal1": "19723698",
+        "fee0": "0",
+        "fee1": "0"
+      },
+      "deltaA": "20016674",
+      "deltaB": "19723698"
+    }
+  ],
+  "settlement": {
+    "deposit": {
+      "deposited": "200000000",
+      "issued": "200000000"
+    },
+    "reverse-all-b": {
+      "spentB": "97649294",
+      "receivedA": "99489616",
+      "finalA": "199506361"
+    },
+    "settle-strategy": {
+      "assets": "199506361",
+      "shares": "200000000"
+    },
+    "user-withdraw": {
+      "sharesBurned": "200000000",
+      "receivedA": "199506361"
+    }
+  },
+  "finalBalances": {
+    "a": "0",
+    "b": "0",
+    "shareSupply": "0",
+    "totalTokens": "0",
+    "totalShares": "0",
+    "strategyActive": false
+  },
+  "limitations": [
+    "RPC provides transaction token balances and instruction logs; arbitrary historical account bytes cannot be retrieved.",
+    "Historical NFT custody is proven by token initialization, minting and Vault-authorized CPI; current accounts are labeled separately.",
+    "Stored preflight balances are observations, not archival account proofs."
+  ]
+}

@@ -1,0 +1,12 @@
+
+> liquidity-vault-week-13@0.1.0 week13:settlement
+> node --no-experimental-strip-types -r ts-node/register scripts/week13-settlement-run.ts setup
+
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+initialize-vault 236yBJ79jooByewFjPbJMjtiqnrTTQkWcThFqUDyeqYuadzaMeQXHzsdF4av288xvJe5ovhKYxqecFi3wpf9JFZZ
+initialize-swap 4XyYxnggN1ApQh4NdRrEsMyV5CnRzo7zLuvJSeFs9LHc49dx4zFhYGU7xpESzqzbGLH1TTa4TkQ14MWimuQmk9cX
+fund-trader 2CML2UvYKQpzb8FCVz3uQn49WaiDQAktSK9QuonWKpRCbcwk25gA98BkS5nJS7H4y3pSwFxJ5CQxpGvmDveGkWNc
+fund-user 49tELwTKnKj3XWykgJhR7uZhgFgymgoDdBTd3hA6648f4ubacfQcinqiffnNYxTvwGfK1uLAFkWmNye7U6prwGrj
+deposit 2upGmDw75zfviZYYRSXzUAc84nYPpDFe7zSjdsRXi9hK6ioDGKxL5zSxYEUi3GM4tBC1uvFiwuw5MzxfKg7vf2KA
+prepare-vault-token-b 2stTQvshzSnieCiKTDZeG34LAehXPcrT6ogGojmVXUVLTW9Sy3wB7zfsT2RNCUsTNJAiJz1t59wUeZbgMHuyg6At
+Completed phase setup

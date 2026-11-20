@@ -1,0 +1,694 @@
+{
+  "cluster": "devnet",
+  "explicitExpectedErrorSimulations": [
+    {
+      "label": "normal-open non-admin",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "expected": "Unauthorized",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6005. Error Message: Only the vault administrator may swap.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1775"
+      ]
+    },
+    {
+      "label": "normal-open invalid ticks",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6003
+          }
+        ]
+      },
+      "expected": "InvalidTicks",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:131. Error Code: InvalidTicks. Error Number: 6003. Error Message: Invalid tick range or alignment.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1773"
+      ]
+    },
+    {
+      "label": "normal-open zero liquidity",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6015
+          }
+        ]
+      },
+      "expected": "ZeroAmount",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:205. Error Code: ZeroAmount. Error Number: 6015. Error Message: Amount must be greater than zero.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x177f"
+      ]
+    },
+    {
+      "label": "normal-open maximum inputs",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6017
+          }
+        ]
+      },
+      "expected": "PriceSlippageCheck",
+      "logs": [
+        "Program log: AnchorError thrown in programs/amm/src/instructions/open_position.rs:561. Error Code: PriceSlippageCheck. Error Number: 6017. Error Message: Price slippage check.",
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: custom program error: 0x1781",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1781"
+      ]
+    },
+    {
+      "label": "normal-open wrong pool",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 3007
+          }
+        ]
+      },
+      "expected": "AccountOwnedByWrongProgram",
+      "logs": [
+        "Program log: AnchorError caused by account: pool_state. Error Code: AccountOwnedByWrongProgram. Error Number: 3007. Error Message: The given account is owned by a different program than expected.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0xbbf"
+      ]
+    },
+    {
+      "label": "normal-open incorrect NFT destination",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          "MissingAccount"
+        ]
+      },
+      "expected": "An account required by the instruction is missing",
+      "logs": [
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: An account required by the instruction is missing",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: An account required by the instruction is missing"
+      ]
+    },
+    {
+      "label": "normal-open duplicate",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6000
+          }
+        ]
+      },
+      "expected": "PositionActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:204. Error Code: PositionActive. Error Number: 6000. Error Message: Position is already active.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1770"
+      ]
+    },
+    {
+      "label": "normal-open deposits locked",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6014
+          }
+        ]
+      },
+      "expected": "StrategyActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:98. Error Code: StrategyActive. Error Number: 6014. Error Message: Single-token deposits and withdrawals are disabled after rebalancing.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x177e"
+      ]
+    },
+    {
+      "label": "normal-open withdrawals locked",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6014
+          }
+        ]
+      },
+      "expected": "StrategyActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:203. Error Code: StrategyActive. Error Number: 6014. Error Message: Single-token deposits and withdrawals are disabled after rebalancing.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x177e"
+      ]
+    },
+    {
+      "label": "settle active position",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6000
+          }
+        ]
+      },
+      "expected": "PositionActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/settlement.rs:85. Error Code: PositionActive. Error Number: 6000. Error Message: Position is already active.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1770"
+      ]
+    },
+    {
+      "label": "normal-collect non-admin",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "expected": "Unauthorized",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6005. Error Message: Only the vault administrator may swap.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1775"
+      ]
+    },
+    {
+      "label": "normal-collect foreign NFT custody",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6002
+          }
+        ]
+      },
+      "expected": "InvalidPosition",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:116. Error Code: InvalidPosition. Error Number: 6002. Error Message: Invalid position or NFT custody.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1772"
+      ]
+    },
+    {
+      "label": "normal-close non-admin",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "expected": "Unauthorized",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6005. Error Message: Only the vault administrator may swap.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1775"
+      ]
+    },
+    {
+      "label": "normal-close zero minima",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6009
+          }
+        ]
+      },
+      "expected": "InvalidMinimum",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:376. Error Code: InvalidMinimum. Error Number: 6009. Error Message: Minimum output must be positive.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1779"
+      ]
+    },
+    {
+      "label": "normal-close excessive minima",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6017
+          }
+        ]
+      },
+      "expected": "PriceSlippageCheck",
+      "logs": [
+        "Program log: AnchorError thrown in programs/amm/src/instructions/decrease_liquidity.rs:218. Error Code: PriceSlippageCheck. Error Number: 6017. Error Message: Price slippage check.",
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: custom program error: 0x1781",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1781"
+      ]
+    },
+    {
+      "label": "normal-close foreign position",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6002
+          }
+        ]
+      },
+      "expected": "InvalidPosition",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:355. Error Code: InvalidPosition. Error Number: 6002. Error Message: Invalid position or NFT custody.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1772"
+      ]
+    },
+    {
+      "label": "normal-close duplicate close",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6001
+          }
+        ]
+      },
+      "expected": "NoPosition",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:344. Error Code: NoPosition. Error Number: 6001. Error Message: No active position.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1771"
+      ]
+    },
+    {
+      "label": "settle non-admin",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "expected": "Unauthorized",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6005. Error Message: Only the vault administrator may swap.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1775"
+      ]
+    },
+    {
+      "label": "settle residual B",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6022
+          }
+        ]
+      },
+      "expected": "UnsettledTokenB",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/settlement.rs:108. Error Code: UnsettledTokenB. Error Number: 6022. Error Message: TOKEN_B must be fully converted before unlocking.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1786"
+      ]
+    },
+    {
+      "label": "settle wrong pool",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 3007
+          }
+        ]
+      },
+      "expected": "AccountOwnedByWrongProgram",
+      "logs": [
+        "Program log: AnchorError caused by account: pool_state. Error Code: AccountOwnedByWrongProgram. Error Number: 3007. Error Message: The given account is owned by a different program than expected.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0xbbf"
+      ]
+    },
+    {
+      "label": "settle wrong vault PDA",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 3002
+          }
+        ]
+      },
+      "expected": "AccountDiscriminatorMismatch",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: AccountDiscriminatorMismatch. Error Number: 3002. Error Message: Account discriminator did not match what was expected.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0xbba"
+      ]
+    },
+    {
+      "label": "reverse wrong mint",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 2014
+          }
+        ]
+      },
+      "expected": "ConstraintTokenMint",
+      "logs": [
+        "Program log: AnchorError occurred. Error Code: ConstraintTokenMint. Error Number: 2014. Error Message: A token mint constraint was violated.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x7de"
+      ]
+    },
+    {
+      "label": "reverse wrong token account",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 2006
+          }
+        ]
+      },
+      "expected": "ConstraintSeeds",
+      "logs": [
+        "Program log: AnchorError caused by account: input_token_account. Error Code: ConstraintSeeds. Error Number: 2006. Error Message: A seeds constraint was violated.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x7d6"
+      ]
+    },
+    {
+      "label": "reverse zero amount",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6015
+          }
+        ]
+      },
+      "expected": "ZeroAmount",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/settlement.rs:32. Error Code: ZeroAmount. Error Number: 6015. Error Message: Amount must be greater than zero.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x177f"
+      ]
+    },
+    {
+      "label": "reverse partial balance",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6023
+          }
+        ]
+      },
+      "expected": "IncompleteConversion",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/settlement.rs:33. Error Code: IncompleteConversion. Error Number: 6023. Error Message: Reverse swap must consume the entire TOKEN_B balance.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1787"
+      ]
+    },
+    {
+      "label": "reverse zero minimum",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6009
+          }
+        ]
+      },
+      "expected": "InvalidMinimum",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/swap.rs:145. Error Code: InvalidMinimum. Error Number: 6009. Error Message: Minimum output must be positive.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1779"
+      ]
+    },
+    {
+      "label": "reverse slippage",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6018
+          }
+        ]
+      },
+      "expected": "TooLittleOutputReceived",
+      "logs": [
+        "Program log: AnchorError thrown in programs/amm/src/instructions/swap_v2.rs:364. Error Code: TooLittleOutputReceived. Error Number: 6018. Error Message: Too little output received.",
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: custom program error: 0x1782",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1782"
+      ]
+    },
+    {
+      "label": "settle stale share accounting",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6021
+          }
+        ]
+      },
+      "expected": "ShareSupplyMismatch",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/settlement.rs:109. Error Code: ShareSupplyMismatch. Error Number: 6021. Error Message: Recorded shares differ from the SPL mint supply.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1785"
+      ]
+    },
+    {
+      "label": "repeated settlement",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6025
+          }
+        ]
+      },
+      "expected": "AlreadySettled",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/settlement.rs:116. Error Code: AlreadySettled. Error Number: 6025. Error Message: Settlement is already reconciled.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1789"
+      ]
+    },
+    {
+      "label": "withdraw exceeding shares",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6027
+          }
+        ]
+      },
+      "expected": "InsufficientShares",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:220. Error Code: InsufficientShares. Error Number: 6027. Error Message: Requested redemption exceeds the user's share balance.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x178b"
+      ]
+    },
+    {
+      "label": "withdraw invalid share account",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 2014
+          }
+        ]
+      },
+      "expected": "ConstraintTokenMint",
+      "logs": [
+        "Program log: AnchorError occurred. Error Code: ConstraintTokenMint. Error Number: 2014. Error Message: A token mint constraint was violated.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x7de"
+      ]
+    },
+    {
+      "label": "withdraw residual B after unlock",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6022
+          }
+        ]
+      },
+      "expected": "UnsettledTokenB",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:593. Error Code: UnsettledTokenB. Error Number: 6022. Error Message: TOKEN_B must be fully converted before unlocking.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1786"
+      ]
+    },
+    {
+      "label": "withdraw stale asset accounting",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6020
+          }
+        ]
+      },
+      "expected": "StaleAccounting",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:601. Error Code: StaleAccounting. Error Number: 6020. Error Message: Recorded assets differ from the actual token balance.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1784"
+      ]
+    },
+    {
+      "label": "withdraw rounds to zero",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6018
+          }
+        ]
+      },
+      "expected": "WithdrawTooSmall",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:227. Error Code: WithdrawTooSmall. Error Number: 6018. Error Message: Withdrawal rounds down to zero tokens.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1782"
+      ]
+    }
+  ],
+  "finalizedFailedTransactions": [
+    {
+      "label": "withdraw-while-active",
+      "signature": "4XMXuL5TcNstk2WLXZZ1ZWc1Lb4qZd2EbxRQoCfeti4Mt2LDHK8xDzXPkGm7hDmstRyWcChq81wRVGebz5WSZBBr",
+      "slot": 524346060,
+      "explorer": "https://explorer.solana.com/tx/4XMXuL5TcNstk2WLXZZ1ZWc1Lb4qZd2EbxRQoCfeti4Mt2LDHK8xDzXPkGm7hDmstRyWcChq81wRVGebz5WSZBBr?cluster=devnet",
+      "expected": "StrategyActive",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6014
+          }
+        ]
+      },
+      "before": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346055,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346063,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "label": "reverse-slippage-failure",
+      "signature": "2bfdW9KDeZxwLuWUedGmyhCFVbKjyRq4B71JPsE2V4o49hguLy1uEvjqjsroBQjAQt9g2y3FyQmDJRnUg8fA5gu",
+      "slot": 524346440,
+      "explorer": "https://explorer.solana.com/tx/2bfdW9KDeZxwLuWUedGmyhCFVbKjyRq4B71JPsE2V4o49hguLy1uEvjqjsroBQjAQt9g2y3FyQmDJRnUg8fA5gu?cluster=devnet",
+      "expected": "TooLittleOutputReceived",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6018
+          }
+        ]
+      },
+      "before": {
+        "a": "100016745",
+        "b": "97649294",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "100016745",
+        "totalShares": "200000000",
+        "observationSlot": 524346435,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "100016745",
+        "b": "97649294",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "100016745",
+        "totalShares": "200000000",
+        "observationSlot": 524346445,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  ],
+  "simulationCount": 34,
+  "actualFailureCount": 2
+}

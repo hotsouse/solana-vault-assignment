@@ -1,0 +1,1461 @@
+{
+  "schema": 2,
+  "cluster": "devnet",
+  "user": "98SVWHgDL6rWLJBEE4zozMUGBpukcnULhmq4aqAZ4w2H",
+  "program": "Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9",
+  "pool": "EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f",
+  "vault": "6YafwX7ujgJUrP1hQPeGRQCB2ZxbzcgWRphJjvgj92gD",
+  "admin": "3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7",
+  "tokenA": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+  "tokenB": "CwHVUNisByLqXM7mN47nhtcfG8AkYxeJ3tBdFB66yZAt",
+  "records": [
+    {
+      "label": "initialize-vault",
+      "signature": "3HMe3E9isJ2KjPxT9x4VmrtXNCbWEfaeJjMNAu6fEXM5zi9P5Y2mz2NkdzX6ANK6MkCdZLisusCNUeQYKc9zDWpa",
+      "explorer": "https://explorer.solana.com/tx/3HMe3E9isJ2KjPxT9x4VmrtXNCbWEfaeJjMNAu6fEXM5zi9P5Y2mz2NkdzX6ANK6MkCdZLisusCNUeQYKc9zDWpa?cluster=devnet",
+      "slot": 524345494,
+      "before": null,
+      "after": null,
+      "events": [],
+      "detail": {}
+    },
+    {
+      "label": "initialize-swap",
+      "signature": "3jzF1ghdxvqcQWadpLB8KcDqZgfRwfaZCvdMkCKt4yQfkbzkWR1YppamaTGoZSc3QAHb6cbW13okQuNN3ngzQqGZ",
+      "explorer": "https://explorer.solana.com/tx/3jzF1ghdxvqcQWadpLB8KcDqZgfRwfaZCvdMkCKt4yQfkbzkWR1YppamaTGoZSc3QAHb6cbW13okQuNN3ngzQqGZ?cluster=devnet",
+      "slot": 524345504,
+      "before": null,
+      "after": {
+        "a": "0",
+        "b": "0",
+        "shareSupply": "0",
+        "userA": "0",
+        "userShares": "0",
+        "strategyActive": false,
+        "totalTokens": "0",
+        "totalShares": "0",
+        "observationSlot": 524345508,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      "events": [],
+      "detail": {}
+    },
+    {
+      "label": "fund-trader",
+      "signature": "4wB978qbNCmUg2TZ4FUp4KZVHZfj1QH34j712obcB7pDXoxsEetu4b7JMjAyzeNaF7NSAgHRhfsmCoaNK1CotSty",
+      "explorer": "https://explorer.solana.com/tx/4wB978qbNCmUg2TZ4FUp4KZVHZfj1QH34j712obcB7pDXoxsEetu4b7JMjAyzeNaF7NSAgHRhfsmCoaNK1CotSty?cluster=devnet",
+      "slot": 524345515,
+      "before": {
+        "a": "0",
+        "b": "0",
+        "shareSupply": "0",
+        "userA": "0",
+        "userShares": "0",
+        "strategyActive": false,
+        "totalTokens": "0",
+        "totalShares": "0",
+        "observationSlot": 524345511,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      "after": {
+        "a": "0",
+        "b": "0",
+        "shareSupply": "0",
+        "userA": "0",
+        "userShares": "0",
+        "strategyActive": false,
+        "totalTokens": "0",
+        "totalShares": "0",
+        "observationSlot": 524345519,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      "events": [],
+      "detail": {}
+    },
+    {
+      "label": "fund-user",
+      "signature": "42iCveVce4jqoSaFGDuCyvQxNCdJ6eWWEWkvsNEiRdKcu9h25QXWUpiR4XPrzafKN7Dvdx2hSfD7R7meNZ7M6jSt",
+      "explorer": "https://explorer.solana.com/tx/42iCveVce4jqoSaFGDuCyvQxNCdJ6eWWEWkvsNEiRdKcu9h25QXWUpiR4XPrzafKN7Dvdx2hSfD7R7meNZ7M6jSt?cluster=devnet",
+      "slot": 524345524,
+      "before": {
+        "a": "0",
+        "b": "0",
+        "shareSupply": "0",
+        "userA": "0",
+        "userShares": "0",
+        "strategyActive": false,
+        "totalTokens": "0",
+        "totalShares": "0",
+        "observationSlot": 524345519,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      "after": {
+        "a": "0",
+        "b": "0",
+        "shareSupply": "0",
+        "userA": "200000000",
+        "userShares": "0",
+        "strategyActive": false,
+        "totalTokens": "0",
+        "totalShares": "0",
+        "observationSlot": 524345528,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "events": [],
+      "detail": {}
+    },
+    {
+      "label": "deposit",
+      "signature": "43rdydZWa5UxgGVR5UAxS98Gd6gwwmVvD3VyFRnfcu7aSLXjU9RfAz88WJid19Qc7CmJ3hmxxB9uN3xR4hUtcbKd",
+      "explorer": "https://explorer.solana.com/tx/43rdydZWa5UxgGVR5UAxS98Gd6gwwmVvD3VyFRnfcu7aSLXjU9RfAz88WJid19Qc7CmJ3hmxxB9uN3xR4hUtcbKd?cluster=devnet",
+      "slot": 524345534,
+      "before": {
+        "a": "0",
+        "b": "0",
+        "shareSupply": "0",
+        "userA": "200000000",
+        "userShares": "0",
+        "strategyActive": false,
+        "totalTokens": "0",
+        "totalShares": "0",
+        "observationSlot": 524345529,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "200000000",
+        "b": "0",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": false,
+        "totalTokens": "200000000",
+        "totalShares": "200000000",
+        "observationSlot": 524345537,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "events": [],
+      "detail": {}
+    },
+    {
+      "label": "prepare-vault-token-b",
+      "signature": "cGBC6VUzZDmdkBjEmUgbRHEtaZV8KtguWjWnzeTzYTUV1qQYYbjWjdeXacCvZvjf4ni62na187ENN467yhx3MeR",
+      "explorer": "https://explorer.solana.com/tx/cGBC6VUzZDmdkBjEmUgbRHEtaZV8KtguWjWnzeTzYTUV1qQYYbjWjdeXacCvZvjf4ni62na187ENN467yhx3MeR?cluster=devnet",
+      "slot": 524345547,
+      "before": {
+        "a": "200000000",
+        "b": "0",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": false,
+        "totalTokens": "200000000",
+        "totalShares": "200000000",
+        "observationSlot": 524345542,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "100000000",
+        "b": "97665544",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "100000000",
+        "totalShares": "200000000",
+        "observationSlot": 524345551,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "events": [
+        {
+          "name": "vaultSwap",
+          "data": {
+            "vault": "6YafwX7ujgJUrP1hQPeGRQCB2ZxbzcgWRphJjvgj92gD",
+            "pool": "EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f",
+            "amountIn": "100000000",
+            "amountOut": "97665544",
+            "minimumAmountOut": "96688888",
+            "sqrtPriceBefore": "18276348711820134206",
+            "sqrtPriceAfter": "18229656231521355575"
+          }
+        }
+      ],
+      "detail": {}
+    },
+    {
+      "label": "normal-open",
+      "signature": "2agtZPSEuymGtbskrTmi9KuEi97U8MwUXnpjkQvKfaK1HWs6jVum1iyUXMrj4bPFwXBsGixRSBxeKmPiPX7tgBYL",
+      "explorer": "https://explorer.solana.com/tx/2agtZPSEuymGtbskrTmi9KuEi97U8MwUXnpjkQvKfaK1HWs6jVum1iyUXMrj4bPFwXBsGixRSBxeKmPiPX7tgBYL?cluster=devnet",
+      "slot": 524346047,
+      "before": {
+        "a": "100000000",
+        "b": "97665544",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "100000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346041,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346051,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "events": [
+        {
+          "name": "vaultPositionEvent",
+          "data": {
+            "vault": "6YafwX7ujgJUrP1hQPeGRQCB2ZxbzcgWRphJjvgj92gD",
+            "nft": "ExBaw6h5x2zVPPgjSi6Mg7Z4zPUDfWrFTmDpWRNubihz",
+            "action": 0,
+            "lower": -840,
+            "upper": 360,
+            "liquidity": "672346137",
+            "amount0": "20000000",
+            "amount1": "19739983",
+            "tick": -237
+          }
+        }
+      ],
+      "detail": {
+        "nft": "ExBaw6h5x2zVPPgjSi6Mg7Z4zPUDfWrFTmDpWRNubihz",
+        "lower": -840,
+        "upper": 360,
+        "liquidity": "672346137",
+        "max0": "20000000",
+        "max1": "20000000",
+        "tickBefore": -237,
+        "sqrtBefore": "18229656231521355575"
+      }
+    },
+    {
+      "label": "normal-swap-1",
+      "signature": "4d19viMD8s82cbZRtsskeMPoPW6T7s2ZtfzCJRMfkfiC5txoB5QNGT1JbNkVxUpg86ki6DBb8FWNBNAKnRad9GB7",
+      "explorer": "https://explorer.solana.com/tx/4d19viMD8s82cbZRtsskeMPoPW6T7s2ZtfzCJRMfkfiC5txoB5QNGT1JbNkVxUpg86ki6DBb8FWNBNAKnRad9GB7?cluster=devnet",
+      "slot": 524346074,
+      "before": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346069,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346077,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "events": [],
+      "detail": {
+        "trader": "H3u9tXjQLEx1p5ym9Ezb7wdK2mjTwQ1CcrurHaUAt7U2",
+        "amount": "1000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -237
+      }
+    },
+    {
+      "label": "normal-swap-2",
+      "signature": "4Pu15jVqKSvRbFXBE86u6pT5URhCijW6N8ukpdbHco8vZyRPw37nYfddnPukKDwFxomjZkktyF4Dahxvgvcv4cpD",
+      "explorer": "https://explorer.solana.com/tx/4Pu15jVqKSvRbFXBE86u6pT5URhCijW6N8ukpdbHco8vZyRPw37nYfddnPukKDwFxomjZkktyF4Dahxvgvcv4cpD?cluster=devnet",
+      "slot": 524346087,
+      "before": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346083,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346089,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "events": [],
+      "detail": {
+        "trader": "H3u9tXjQLEx1p5ym9Ezb7wdK2mjTwQ1CcrurHaUAt7U2",
+        "amount": "1000000",
+        "input": "CwHVUNisByLqXM7mN47nhtcfG8AkYxeJ3tBdFB66yZAt",
+        "tickBefore": -238
+      }
+    },
+    {
+      "label": "normal-swap-3",
+      "signature": "5uprc62qgcWqjbzXUXT98ofzezLjQnrzxpBx5S5mJ7YiJUtmBS4SFAC62xM5UWA7ar9BkPpvmnYtXoDPZCKRCWWn",
+      "explorer": "https://explorer.solana.com/tx/5uprc62qgcWqjbzXUXT98ofzezLjQnrzxpBx5S5mJ7YiJUtmBS4SFAC62xM5UWA7ar9BkPpvmnYtXoDPZCKRCWWn?cluster=devnet",
+      "slot": 524346108,
+      "before": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346100,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346112,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "events": [],
+      "detail": {
+        "trader": "H3u9tXjQLEx1p5ym9Ezb7wdK2mjTwQ1CcrurHaUAt7U2",
+        "amount": "1000000",
+        "input": "7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF",
+        "tickBefore": -237
+      }
+    },
+    {
+      "label": "normal-collect",
+      "signature": "2bHY9czX1sWgArAZNffKC6f191yB42TrEEPapX5H5r59FmR1axNgWqdtkQKcgxYdZVurQTgTcqfyVcDtMWVReFcR",
+      "explorer": "https://explorer.solana.com/tx/2bHY9czX1sWgArAZNffKC6f191yB42TrEEPapX5H5r59FmR1axNgWqdtkQKcgxYdZVurQTgTcqfyVcDtMWVReFcR?cluster=devnet",
+      "slot": 524346120,
+      "before": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346115,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "80000071",
+        "b": "77925596",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000071",
+        "totalShares": "200000000",
+        "observationSlot": 524346124,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "events": [
+        {
+          "name": "vaultPositionEvent",
+          "data": {
+            "vault": "6YafwX7ujgJUrP1hQPeGRQCB2ZxbzcgWRphJjvgj92gD",
+            "nft": "ExBaw6h5x2zVPPgjSi6Mg7Z4zPUDfWrFTmDpWRNubihz",
+            "action": 1,
+            "lower": -840,
+            "upper": 360,
+            "liquidity": "0",
+            "amount0": "71",
+            "amount1": "35",
+            "tick": -238
+          }
+        }
+      ],
+      "detail": {}
+    },
+    {
+      "label": "normal-close",
+      "signature": "2HTpH3wufCRfLfJZf9SUu5H8He2DDz1adcbUiu3NagrQuQ6JJRXpxVe5N23s7WMp75K6SEh5vB1kZthKMVbYWAYD",
+      "explorer": "https://explorer.solana.com/tx/2HTpH3wufCRfLfJZf9SUu5H8He2DDz1adcbUiu3NagrQuQ6JJRXpxVe5N23s7WMp75K6SEh5vB1kZthKMVbYWAYD?cluster=devnet",
+      "slot": 524346139,
+      "before": {
+        "a": "80000071",
+        "b": "77925596",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000071",
+        "totalShares": "200000000",
+        "observationSlot": 524346133,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "100016745",
+        "b": "97649294",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "100016745",
+        "totalShares": "200000000",
+        "observationSlot": 524346143,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "events": [
+        {
+          "name": "vaultPositionEvent",
+          "data": {
+            "vault": "6YafwX7ujgJUrP1hQPeGRQCB2ZxbzcgWRphJjvgj92gD",
+            "nft": "ExBaw6h5x2zVPPgjSi6Mg7Z4zPUDfWrFTmDpWRNubihz",
+            "action": 2,
+            "lower": -840,
+            "upper": 360,
+            "liquidity": "672346137",
+            "amount0": "20016674",
+            "amount1": "19723698",
+            "tick": -238
+          }
+        }
+      ],
+      "detail": {
+        "nft": "ExBaw6h5x2zVPPgjSi6Mg7Z4zPUDfWrFTmDpWRNubihz",
+        "lower": -840,
+        "upper": 360,
+        "liquidity": "672346137",
+        "min0": "19816507",
+        "min1": "19526461",
+        "tick": -238,
+        "sqrt": "18229209465829026868"
+      }
+    },
+    {
+      "label": "reverse-all-b",
+      "signature": "3LEsdAgF3K3i9FuTVPoLDpUwBNRxo9Bs8J8cPyMCeEPQgAnYopbg9vQHmNFRWS6MNbB4VUAV5kqRX2t4hAGEAgta",
+      "explorer": "https://explorer.solana.com/tx/3LEsdAgF3K3i9FuTVPoLDpUwBNRxo9Bs8J8cPyMCeEPQgAnYopbg9vQHmNFRWS6MNbB4VUAV5kqRX2t4hAGEAgta?cluster=devnet",
+      "slot": 524346461,
+      "before": {
+        "a": "100016745",
+        "b": "97649294",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "100016745",
+        "totalShares": "200000000",
+        "observationSlot": 524346456,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "199506361",
+        "b": "0",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "199506361",
+        "totalShares": "200000000",
+        "observationSlot": 524346464,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "events": [
+        {
+          "name": "vaultSwap",
+          "data": {
+            "vault": "6YafwX7ujgJUrP1hQPeGRQCB2ZxbzcgWRphJjvgj92gD",
+            "pool": "EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f",
+            "amountIn": "97649294",
+            "amountOut": "99489616",
+            "minimumAmountOut": "98494719",
+            "sqrtPriceBefore": "18229209465829026868",
+            "sqrtPriceAfter": "18275777465022869544"
+          }
+        }
+      ],
+      "detail": {
+        "amount": "97649294",
+        "minimum": "98494719"
+      }
+    },
+    {
+      "label": "settle-strategy",
+      "signature": "2qjqX14uHSrjDCdRY7zfmRSuDwrVxccNepLQCpizPWLGLo15165SsbvdTaiBa6xXLgqGRmSeQu2URvsw6XbfqJoX",
+      "explorer": "https://explorer.solana.com/tx/2qjqX14uHSrjDCdRY7zfmRSuDwrVxccNepLQCpizPWLGLo15165SsbvdTaiBa6xXLgqGRmSeQu2URvsw6XbfqJoX?cluster=devnet",
+      "slot": 524346471,
+      "before": {
+        "a": "199506361",
+        "b": "0",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "199506361",
+        "totalShares": "200000000",
+        "observationSlot": 524346465,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "199506361",
+        "b": "0",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": false,
+        "totalTokens": "199506361",
+        "totalShares": "200000000",
+        "observationSlot": 524346475,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "events": [
+        {
+          "name": "strategySettled",
+          "data": {
+            "vault": "6YafwX7ujgJUrP1hQPeGRQCB2ZxbzcgWRphJjvgj92gD",
+            "previousAssets": "199506361",
+            "assets": "199506361",
+            "shares": "200000000",
+            "tokenB": "0",
+            "nft": "ExBaw6h5x2zVPPgjSi6Mg7Z4zPUDfWrFTmDpWRNubihz"
+          }
+        }
+      ],
+      "detail": {}
+    },
+    {
+      "label": "user-withdraw",
+      "signature": "4sf9KKiUdA7nKtkESYzymfMRiyWX9wUDuKxiM3d2Gxzwe8YR76ptasrJWtxwEvpm8KJrTQYcrr7Sz5dc8zdiuYWc",
+      "explorer": "https://explorer.solana.com/tx/4sf9KKiUdA7nKtkESYzymfMRiyWX9wUDuKxiM3d2Gxzwe8YR76ptasrJWtxwEvpm8KJrTQYcrr7Sz5dc8zdiuYWc?cluster=devnet",
+      "slot": 524346684,
+      "before": {
+        "a": "199506361",
+        "b": "0",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": false,
+        "totalTokens": "199506361",
+        "totalShares": "200000000",
+        "observationSlot": 524346679,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "0",
+        "b": "0",
+        "shareSupply": "0",
+        "userA": "199506361",
+        "userShares": "0",
+        "strategyActive": false,
+        "totalTokens": "0",
+        "totalShares": "0",
+        "observationSlot": 524346689,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "events": [],
+      "detail": {
+        "shares": "200000000",
+        "expectedTokenA": "199506361"
+      }
+    }
+  ],
+  "tests": [
+    {
+      "label": "normal-open non-admin",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "expected": "Unauthorized",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6005. Error Message: Only the vault administrator may swap.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1775"
+      ]
+    },
+    {
+      "label": "normal-open invalid ticks",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6003
+          }
+        ]
+      },
+      "expected": "InvalidTicks",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:131. Error Code: InvalidTicks. Error Number: 6003. Error Message: Invalid tick range or alignment.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1773"
+      ]
+    },
+    {
+      "label": "normal-open zero liquidity",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6015
+          }
+        ]
+      },
+      "expected": "ZeroAmount",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:205. Error Code: ZeroAmount. Error Number: 6015. Error Message: Amount must be greater than zero.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x177f"
+      ]
+    },
+    {
+      "label": "normal-open maximum inputs",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6017
+          }
+        ]
+      },
+      "expected": "PriceSlippageCheck",
+      "logs": [
+        "Program log: AnchorError thrown in programs/amm/src/instructions/open_position.rs:561. Error Code: PriceSlippageCheck. Error Number: 6017. Error Message: Price slippage check.",
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: custom program error: 0x1781",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1781"
+      ]
+    },
+    {
+      "label": "normal-open wrong pool",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 3007
+          }
+        ]
+      },
+      "expected": "AccountOwnedByWrongProgram",
+      "logs": [
+        "Program log: AnchorError caused by account: pool_state. Error Code: AccountOwnedByWrongProgram. Error Number: 3007. Error Message: The given account is owned by a different program than expected.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0xbbf"
+      ]
+    },
+    {
+      "label": "normal-open incorrect NFT destination",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          "MissingAccount"
+        ]
+      },
+      "expected": "An account required by the instruction is missing",
+      "logs": [
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: An account required by the instruction is missing",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: An account required by the instruction is missing"
+      ]
+    },
+    {
+      "label": "normal-open duplicate",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6000
+          }
+        ]
+      },
+      "expected": "PositionActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:204. Error Code: PositionActive. Error Number: 6000. Error Message: Position is already active.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1770"
+      ]
+    },
+    {
+      "label": "normal-open deposits locked",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6014
+          }
+        ]
+      },
+      "expected": "StrategyActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:98. Error Code: StrategyActive. Error Number: 6014. Error Message: Single-token deposits and withdrawals are disabled after rebalancing.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x177e"
+      ]
+    },
+    {
+      "label": "normal-open withdrawals locked",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6014
+          }
+        ]
+      },
+      "expected": "StrategyActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:203. Error Code: StrategyActive. Error Number: 6014. Error Message: Single-token deposits and withdrawals are disabled after rebalancing.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x177e"
+      ]
+    },
+    {
+      "label": "settle active position",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6000
+          }
+        ]
+      },
+      "expected": "PositionActive",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/settlement.rs:85. Error Code: PositionActive. Error Number: 6000. Error Message: Position is already active.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1770"
+      ]
+    },
+    {
+      "label": "normal-collect non-admin",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "expected": "Unauthorized",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6005. Error Message: Only the vault administrator may swap.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1775"
+      ]
+    },
+    {
+      "label": "normal-collect foreign NFT custody",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6002
+          }
+        ]
+      },
+      "expected": "InvalidPosition",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:116. Error Code: InvalidPosition. Error Number: 6002. Error Message: Invalid position or NFT custody.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1772"
+      ]
+    },
+    {
+      "label": "normal-close non-admin",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "expected": "Unauthorized",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6005. Error Message: Only the vault administrator may swap.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1775"
+      ]
+    },
+    {
+      "label": "normal-close zero minima",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6009
+          }
+        ]
+      },
+      "expected": "InvalidMinimum",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:376. Error Code: InvalidMinimum. Error Number: 6009. Error Message: Minimum output must be positive.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1779"
+      ]
+    },
+    {
+      "label": "normal-close excessive minima",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6017
+          }
+        ]
+      },
+      "expected": "PriceSlippageCheck",
+      "logs": [
+        "Program log: AnchorError thrown in programs/amm/src/instructions/decrease_liquidity.rs:218. Error Code: PriceSlippageCheck. Error Number: 6017. Error Message: Price slippage check.",
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: custom program error: 0x1781",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1781"
+      ]
+    },
+    {
+      "label": "normal-close foreign position",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6002
+          }
+        ]
+      },
+      "expected": "InvalidPosition",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:355. Error Code: InvalidPosition. Error Number: 6002. Error Message: Invalid position or NFT custody.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1772"
+      ]
+    },
+    {
+      "label": "normal-close duplicate close",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6001
+          }
+        ]
+      },
+      "expected": "NoPosition",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/position.rs:344. Error Code: NoPosition. Error Number: 6001. Error Message: No active position.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1771"
+      ]
+    },
+    {
+      "label": "settle non-admin",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "expected": "Unauthorized",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: Unauthorized. Error Number: 6005. Error Message: Only the vault administrator may swap.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1775"
+      ]
+    },
+    {
+      "label": "settle residual B",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6022
+          }
+        ]
+      },
+      "expected": "UnsettledTokenB",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/settlement.rs:108. Error Code: UnsettledTokenB. Error Number: 6022. Error Message: TOKEN_B must be fully converted before unlocking.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1786"
+      ]
+    },
+    {
+      "label": "settle wrong pool",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 3007
+          }
+        ]
+      },
+      "expected": "AccountOwnedByWrongProgram",
+      "logs": [
+        "Program log: AnchorError caused by account: pool_state. Error Code: AccountOwnedByWrongProgram. Error Number: 3007. Error Message: The given account is owned by a different program than expected.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0xbbf"
+      ]
+    },
+    {
+      "label": "settle wrong vault PDA",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 3002
+          }
+        ]
+      },
+      "expected": "AccountDiscriminatorMismatch",
+      "logs": [
+        "Program log: AnchorError caused by account: vault_state. Error Code: AccountDiscriminatorMismatch. Error Number: 3002. Error Message: Account discriminator did not match what was expected.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0xbba"
+      ]
+    },
+    {
+      "label": "reverse wrong mint",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 2014
+          }
+        ]
+      },
+      "expected": "ConstraintTokenMint",
+      "logs": [
+        "Program log: AnchorError occurred. Error Code: ConstraintTokenMint. Error Number: 2014. Error Message: A token mint constraint was violated.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x7de"
+      ]
+    },
+    {
+      "label": "reverse wrong token account",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 2006
+          }
+        ]
+      },
+      "expected": "ConstraintSeeds",
+      "logs": [
+        "Program log: AnchorError caused by account: input_token_account. Error Code: ConstraintSeeds. Error Number: 2006. Error Message: A seeds constraint was violated.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x7d6"
+      ]
+    },
+    {
+      "label": "reverse zero amount",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6015
+          }
+        ]
+      },
+      "expected": "ZeroAmount",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/settlement.rs:32. Error Code: ZeroAmount. Error Number: 6015. Error Message: Amount must be greater than zero.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x177f"
+      ]
+    },
+    {
+      "label": "reverse partial balance",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6023
+          }
+        ]
+      },
+      "expected": "IncompleteConversion",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/settlement.rs:33. Error Code: IncompleteConversion. Error Number: 6023. Error Message: Reverse swap must consume the entire TOKEN_B balance.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1787"
+      ]
+    },
+    {
+      "label": "reverse zero minimum",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6009
+          }
+        ]
+      },
+      "expected": "InvalidMinimum",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/swap.rs:145. Error Code: InvalidMinimum. Error Number: 6009. Error Message: Minimum output must be positive.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1779"
+      ]
+    },
+    {
+      "label": "reverse slippage",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6018
+          }
+        ]
+      },
+      "expected": "TooLittleOutputReceived",
+      "logs": [
+        "Program log: AnchorError thrown in programs/amm/src/instructions/swap_v2.rs:364. Error Code: TooLittleOutputReceived. Error Number: 6018. Error Message: Too little output received.",
+        "Program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH failed: custom program error: 0x1782",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1782"
+      ]
+    },
+    {
+      "label": "settle stale share accounting",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6021
+          }
+        ]
+      },
+      "expected": "ShareSupplyMismatch",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/settlement.rs:109. Error Code: ShareSupplyMismatch. Error Number: 6021. Error Message: Recorded shares differ from the SPL mint supply.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1785"
+      ]
+    },
+    {
+      "label": "repeated settlement",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6025
+          }
+        ]
+      },
+      "expected": "AlreadySettled",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/settlement.rs:116. Error Code: AlreadySettled. Error Number: 6025. Error Message: Settlement is already reconciled.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1789"
+      ]
+    },
+    {
+      "label": "withdraw exceeding shares",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6027
+          }
+        ]
+      },
+      "expected": "InsufficientShares",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:220. Error Code: InsufficientShares. Error Number: 6027. Error Message: Requested redemption exceeds the user's share balance.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x178b"
+      ]
+    },
+    {
+      "label": "withdraw invalid share account",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 2014
+          }
+        ]
+      },
+      "expected": "ConstraintTokenMint",
+      "logs": [
+        "Program log: AnchorError occurred. Error Code: ConstraintTokenMint. Error Number: 2014. Error Message: A token mint constraint was violated.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x7de"
+      ]
+    },
+    {
+      "label": "withdraw residual B after unlock",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6022
+          }
+        ]
+      },
+      "expected": "UnsettledTokenB",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:593. Error Code: UnsettledTokenB. Error Number: 6022. Error Message: TOKEN_B must be fully converted before unlocking.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1786"
+      ]
+    },
+    {
+      "label": "withdraw stale asset accounting",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          2,
+          {
+            "Custom": 6020
+          }
+        ]
+      },
+      "expected": "StaleAccounting",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:601. Error Code: StaleAccounting. Error Number: 6020. Error Message: Recorded assets differ from the actual token balance.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1784"
+      ]
+    },
+    {
+      "label": "withdraw rounds to zero",
+      "kind": "RPC simulation",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6018
+          }
+        ]
+      },
+      "expected": "WithdrawTooSmall",
+      "logs": [
+        "Program log: AnchorError thrown in programs/simple_vault/src/lib.rs:227. Error Code: WithdrawTooSmall. Error Number: 6018. Error Message: Withdrawal rounds down to zero tokens.",
+        "Program Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9 failed: custom program error: 0x1782"
+      ]
+    }
+  ],
+  "trader": "H3u9tXjQLEx1p5ym9Ezb7wdK2mjTwQ1CcrurHaUAt7U2",
+  "failures": [
+    {
+      "label": "withdraw-while-active",
+      "signature": "4XMXuL5TcNstk2WLXZZ1ZWc1Lb4qZd2EbxRQoCfeti4Mt2LDHK8xDzXPkGm7hDmstRyWcChq81wRVGebz5WSZBBr",
+      "slot": 524346060,
+      "explorer": "https://explorer.solana.com/tx/4XMXuL5TcNstk2WLXZZ1ZWc1Lb4qZd2EbxRQoCfeti4Mt2LDHK8xDzXPkGm7hDmstRyWcChq81wRVGebz5WSZBBr?cluster=devnet",
+      "expected": "StrategyActive",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6014
+          }
+        ]
+      },
+      "before": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346055,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "80000000",
+        "b": "77925561",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "80000000",
+        "totalShares": "200000000",
+        "observationSlot": 524346063,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "label": "reverse-slippage-failure",
+      "signature": "2bfdW9KDeZxwLuWUedGmyhCFVbKjyRq4B71JPsE2V4o49hguLy1uEvjqjsroBQjAQt9g2y3FyQmDJRnUg8fA5gu",
+      "slot": 524346440,
+      "explorer": "https://explorer.solana.com/tx/2bfdW9KDeZxwLuWUedGmyhCFVbKjyRq4B71JPsE2V4o49hguLy1uEvjqjsroBQjAQt9g2y3FyQmDJRnUg8fA5gu?cluster=devnet",
+      "expected": "TooLittleOutputReceived",
+      "error": {
+        "InstructionError": [
+          1,
+          {
+            "Custom": 6018
+          }
+        ]
+      },
+      "before": {
+        "a": "100016745",
+        "b": "97649294",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "100016745",
+        "totalShares": "200000000",
+        "observationSlot": 524346435,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "after": {
+        "a": "100016745",
+        "b": "97649294",
+        "shareSupply": "200000000",
+        "userA": "0",
+        "userShares": "200000000",
+        "strategyActive": true,
+        "totalTokens": "100016745",
+        "totalShares": "200000000",
+        "observationSlot": 524346445,
+        "existing": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  ]
+}

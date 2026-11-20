@@ -1,0 +1,15 @@
+{
+  "program": "Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9",
+  "bytes": 646696,
+  "sha256": "c162fda9c1df25d9b05f21df7148923c1c0fc991add8b077b3ceba2db93d750c",
+  "publicIdlSha256": "433fb800970c755489a4806a9eb88b465e15b7152a69ca73a8c6d481fe7b7e7f",
+  "feature": "settlement-deployment",
+  "artifact": "target/deploy/week13-settlement.so",
+  "sourceHashes": {
+    "programs/simple_vault/src/lib.rs": "f4c3057a50983dcbb84effb19496174bfcf708ee1506e17cd4972af7c7f0a638",
+    "programs/simple_vault/src/position.rs": "1ab736bac0dc6520bb2e6f85141ff2acb6871c0620cf738bd708789683c0d831",
+    "programs/simple_vault/src/settlement.rs": "849910d6b0748ccfe79c997b656c924e8f6a849a78c437fa6b479b4cebb4ebb1",
+    "programs/simple_vault/src/swap.rs": "b861741068ce5b01da030b99b9d8f14afb750130ddcf4c977b43b0a82c43ffc3"
+  },
+  "historicalProgramNotUpgraded": true
+}

@@ -96,23 +96,65 @@ pub fn swap<'a, 'b, 'c: 'info, 'info>(
     amount_in: u64,
     minimum_amount_out: u64,
 ) -> Result<()> {
+    execute(
+        ctx.accounts,
+        ctx.remaining_accounts,
+        amount_in,
+        minimum_amount_out,
+        false,
+    )
+}
+pub fn execute<'info>(
+    a: &mut SwapViaRaydium<'info>,
+    remaining_accounts: &'info [AccountInfo<'info>],
+    amount_in: u64,
+    minimum_amount_out: u64,
+    reverse: bool,
+) -> Result<()> {
+    let balance_in = if reverse {
+        a.output_token_account.amount
+    } else {
+        a.input_token_account.amount
+    };
+    let balance_out = if reverse {
+        a.input_token_account.amount
+    } else {
+        a.output_token_account.amount
+    };
+    let input_mint_key = if reverse {
+        a.output_mint.key()
+    } else {
+        a.input_mint.key()
+    };
+    let output_mint_key = if reverse {
+        a.input_mint.key()
+    } else {
+        a.output_mint.key()
+    };
+    let input_vault_key = if reverse {
+        a.output_vault.key()
+    } else {
+        a.input_vault.key()
+    };
+    let output_vault_key = if reverse {
+        a.input_vault.key()
+    } else {
+        a.output_vault.key()
+    };
     require!(amount_in > 0, VaultError::ZeroAmount);
     require!(minimum_amount_out > 0, VaultError::InvalidMinimum);
-    require!(
-        ctx.accounts.input_token_account.amount >= amount_in,
-        VaultError::InsufficientBalance
-    );
-    let before_input = ctx.accounts.input_token_account.amount;
-    let before_output = ctx.accounts.output_token_account.amount;
+    require!(balance_in >= amount_in, VaultError::InsufficientBalance);
+    let before_input = balance_in;
+    let before_output = balance_out;
     let sqrt_before;
     {
-        let p = ctx.accounts.pool_state.load()?;
-        let zero_for_one = p.token_mint_0 == ctx.accounts.input_mint.key();
+        let p = a.pool_state.load()?;
+        let zero_for_one = p.token_mint_0 == input_mint_key;
         require!(
-            (zero_for_one && p.token_mint_1 == ctx.accounts.output_mint.key())
+            (zero_for_one && p.token_mint_1 == output_mint_key)
                 || (!zero_for_one
-                    && p.token_mint_1 == ctx.accounts.input_mint.key()
-                    && p.token_mint_0 == ctx.accounts.output_mint.key()),
+                    && p.token_mint_1 == input_mint_key
+                    && p.token_mint_0 == output_mint_key),
             VaultError::InvalidMint
         );
         let (expected_input, expected_output) = if zero_for_one {
@@ -120,26 +162,18 @@ pub fn swap<'a, 'b, 'c: 'info, 'info>(
         } else {
             (p.token_vault_1, p.token_vault_0)
         };
-        require_keys_eq!(
-            expected_input,
-            ctx.accounts.input_vault.key(),
-            VaultError::InvalidPool
-        );
-        require_keys_eq!(
-            expected_output,
-            ctx.accounts.output_vault.key(),
-            VaultError::InvalidPool
-        );
+        require_keys_eq!(expected_input, input_vault_key, VaultError::InvalidPool);
+        require_keys_eq!(expected_output, output_vault_key, VaultError::InvalidPool);
         require!(p.liquidity > 0, VaultError::NoLiquidity);
         sqrt_before = p.sqrt_price_x64;
     }
     require!(
-        !ctx.remaining_accounts.is_empty() && ctx.remaining_accounts.len() <= 8,
+        !remaining_accounts.is_empty() && remaining_accounts.len() <= 8,
         VaultError::InvalidTickArray
     );
-    let bitmap = TickArrayBitmapExtension::key(ctx.accounts.pool_state.key());
+    let bitmap = TickArrayBitmapExtension::key(a.pool_state.key());
     let mut tick_count = 0;
-    for info in ctx.remaining_accounts {
+    for info in remaining_accounts {
         require_keys_eq!(
             *info.owner,
             raydium_amm_v3::ID,
@@ -153,74 +187,101 @@ pub fn swap<'a, 'b, 'c: 'info, 'info>(
             let loader = AccountLoader::<TickArrayBitmapExtension>::try_from(info)?;
             require_keys_eq!(
                 loader.load()?.pool_id,
-                ctx.accounts.pool_state.key(),
+                a.pool_state.key(),
                 VaultError::InvalidTickArray
             );
         } else {
             let loader = AccountLoader::<TickArrayState>::try_from(info)?;
             require_keys_eq!(
                 loader.load()?.pool_id,
-                ctx.accounts.pool_state.key(),
+                a.pool_state.key(),
                 VaultError::InvalidTickArray
             );
             tick_count += 1;
         }
     }
     require!(tick_count > 0, VaultError::InvalidTickArray);
-    let mint = ctx.accounts.vault_state.token_mint;
-    let bump = [ctx.accounts.vault_state.bump];
+    let mint = a.vault_state.token_mint;
+    let bump = [a.vault_state.bump];
     let seeds: &[&[u8]] = &[b"vault", mint.as_ref(), &bump];
     let signer = &[seeds];
     let accounts = cpi::accounts::SwapSingleV2 {
-        payer: ctx.accounts.vault_state.to_account_info(),
-        amm_config: ctx.accounts.amm_config.to_account_info(),
-        pool_state: ctx.accounts.pool_state.to_account_info(),
-        input_token_account: ctx.accounts.input_token_account.to_account_info(),
-        output_token_account: ctx.accounts.output_token_account.to_account_info(),
-        input_vault: ctx.accounts.input_vault.to_account_info(),
-        output_vault: ctx.accounts.output_vault.to_account_info(),
-        observation_state: ctx.accounts.observation_state.to_account_info(),
-        token_program: ctx.accounts.token_program.to_account_info(),
-        token_program_2022: ctx.accounts.token_program_2022.to_account_info(),
-        memo_program: ctx.accounts.memo_program.to_account_info(),
-        input_vault_mint: ctx.accounts.input_mint.to_account_info(),
-        output_vault_mint: ctx.accounts.output_mint.to_account_info(),
+        payer: a.vault_state.to_account_info(),
+        amm_config: a.amm_config.to_account_info(),
+        pool_state: a.pool_state.to_account_info(),
+        input_token_account: if reverse {
+            a.output_token_account.to_account_info()
+        } else {
+            a.input_token_account.to_account_info()
+        },
+        output_token_account: if reverse {
+            a.input_token_account.to_account_info()
+        } else {
+            a.output_token_account.to_account_info()
+        },
+        input_vault: if reverse {
+            a.output_vault.to_account_info()
+        } else {
+            a.input_vault.to_account_info()
+        },
+        output_vault: if reverse {
+            a.input_vault.to_account_info()
+        } else {
+            a.output_vault.to_account_info()
+        },
+        observation_state: a.observation_state.to_account_info(),
+        token_program: a.token_program.to_account_info(),
+        token_program_2022: a.token_program_2022.to_account_info(),
+        memo_program: a.memo_program.to_account_info(),
+        input_vault_mint: if reverse {
+            a.output_mint.to_account_info()
+        } else {
+            a.input_mint.to_account_info()
+        },
+        output_vault_mint: if reverse {
+            a.input_mint.to_account_info()
+        } else {
+            a.output_mint.to_account_info()
+        },
     };
     cpi::swap_v2(
-        CpiContext::new_with_signer(
-            ctx.accounts.clmm_program.to_account_info(),
-            accounts,
-            signer,
-        )
-        .with_remaining_accounts(ctx.remaining_accounts.to_vec()),
+        CpiContext::new_with_signer(a.clmm_program.to_account_info(), accounts, signer)
+            .with_remaining_accounts(remaining_accounts.to_vec()),
         amount_in,
         minimum_amount_out,
         0,
         true,
     )?;
-    ctx.accounts.input_token_account.reload()?;
-    ctx.accounts.output_token_account.reload()?;
+    a.input_token_account.reload()?;
+    a.output_token_account.reload()?;
+    let after_input = if reverse {
+        a.output_token_account.amount
+    } else {
+        a.input_token_account.amount
+    };
+    let after_output = if reverse {
+        a.input_token_account.amount
+    } else {
+        a.output_token_account.amount
+    };
     let spent = before_input
-        .checked_sub(ctx.accounts.input_token_account.amount)
+        .checked_sub(after_input)
         .ok_or(VaultError::MathOverflow)?;
-    let received = ctx
-        .accounts
-        .output_token_account
-        .amount
+    let received = after_output
         .checked_sub(before_output)
         .ok_or(VaultError::MathOverflow)?;
     require!(spent == amount_in, VaultError::PartialFill);
     require!(received >= minimum_amount_out, VaultError::SlippageExceeded);
-    ctx.accounts.vault_state.total_tokens = ctx.accounts.input_token_account.amount;
-    ctx.accounts.vault_state.strategy_active = true;
+    a.vault_state.total_tokens = a.input_token_account.amount;
+    a.vault_state.strategy_active = true;
     emit!(VaultSwap {
-        vault: ctx.accounts.vault_state.key(),
-        pool: ctx.accounts.pool_state.key(),
+        vault: a.vault_state.key(),
+        pool: a.pool_state.key(),
         amount_in: spent,
         amount_out: received,
         minimum_amount_out,
         sqrt_price_before: sqrt_before,
-        sqrt_price_after: ctx.accounts.pool_state.load()?.sqrt_price_x64,
+        sqrt_price_after: a.pool_state.load()?.sqrt_price_x64,
     });
     Ok(())
 }
