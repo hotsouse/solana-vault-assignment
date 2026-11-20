@@ -1,150 +1,150 @@
-# Liquidity Vault - Week 13
+# Liquidity Vault — Неделя 13
 
-**Settlement addendum:** The original results below belong to immutable commit `87d58a2` and program `8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa`. The [Post-CLMM Settlement and User Withdrawal](#post-clmm-settlement-and-user-withdrawal) section documents a separate deployment and a finalized user redemption. All original evidence and links are preserved.
+**Дополнение о завершении стратегии:** исходные результаты ниже относятся к неизменённому коммиту `87d58a2` и программе `8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa`. В разделе [Расчёты после CLMM и вывод средств пользователем](#post-clmm-settlement-and-user-withdrawal) описаны отдельное развёртывание и финализированное погашение долей пользователем. Все исходные доказательства и ссылки сохранены.
 
-**Verified on Solana Devnet:** Vault-controlled opening, fee collection, complete closure and out-of-range rebalancing. The independent verifier passed for **25 finalized transactions**, including deployment. All three test positions are now closed.
+**Проверено в Solana Devnet:** открытие позиции под управлением Vault, сбор комиссий, полное закрытие и ребалансировка при выходе цены за диапазон. Независимая проверка успешно выполнена для **25 финализированных транзакций**, включая развёртывание. Все три тестовые позиции закрыты.
 
-## Verify the submission in a few minutes
+## Проверка работы за несколько минут
 
 ```bash
 npm ci
 npm run verify:week13
 ```
 
-No wallet, private key, Anchor build or transaction submission is required for verification. The recorded run also passed with `ANCHOR_WALLET` pointing to a nonexistent file. Read [verification-summary.json](evidence/week13/verification-summary.json) and the transaction links below. Verification was executed at `2026-11-19T17:11:29.505Z` UTC; transaction slots identify historical execution independently of current pool state.
+Для проверки не нужны кошелёк, приватный ключ, сборка Anchor или отправка транзакций. Зафиксированный запуск также прошёл с `ANCHOR_WALLET`, указывающим на несуществующий файл. См. [verification-summary.json](evidence/week13/verification-summary.json) и ссылки на транзакции ниже. Проверка выполнена `2026-11-19T17:11:29.505Z` UTC; слоты транзакций определяют историческое исполнение независимо от текущего состояния пула.
 
-## Assignment and implementation
+## Задание и реализация
 
-The [original methodology, page 7](evidence/week13/requirements-page-7.txt), requires administrator-selected bounds, both token contributions with maxima, a Vault-owned position NFT, fee collection, full withdrawal with minima, and a genuine out-of-range rebalance.
+[Исходная методология, страница 7](evidence/week13/requirements-page-7.txt), требует выбора границ администратором, внесения обоих токенов с ограничением максимальных сумм, владения NFT позиции со стороны Vault, сбора комиссий, полного вывода с минимальными суммами и фактической ребалансировки при выходе цены за диапазон.
 
-| Vault instruction | Official Raydium CPI sequence | Result |
-|---|---|---|
-| `open_position` | `open_position_v2` with zero liquidity, then `increase_liquidity_v2` | Admin pays rent; Vault supplies both tokens and owns the NFT |
-| `collect_position_fees` | `decrease_liquidity_v2` with liquidity zero | Fees enter Vault token accounts; position liquidity remains unchanged |
-| `close_position` | Full `decrease_liquidity_v2`, then `close_position` | Both outputs go to Vault, NFT is burned, NFT account and personal position close |
+| Инструкция Vault | Официальная последовательность Raydium CPI | Результат |
+| --- | --- | --- |
+| `open_position` | `open_position_v2` с нулевой ликвидностью, затем `increase_liquidity_v2` | Администратор оплачивает ренту; Vault предоставляет оба токена и владеет NFT |
+| `collect_position_fees` | `decrease_liquidity_v2` с нулевой ликвидностью | Комиссии поступают в токен-аккаунты Vault; ликвидность позиции не меняется |
+| `close_position` | Полный `decrease_liquidity_v2`, затем `close_position` | Оба токена поступают в Vault, NFT сжигается, аккаунт NFT и персональная позиция закрываются |
 
-Opening and funding are atomic. The rent payer and token authority are separated because the Vault PDA is a program-owned state account. A failure in either opening CPI rolls back the whole instruction. Withdrawal and NFT closure are likewise one atomic Vault instruction.
+Открытие и внесение средств атомарны. Плательщик ренты и владелец полномочий на токены разделены, поскольку Vault PDA — принадлежащий программе аккаунт состояния. Ошибка в любом CPI открытия откатывает всю инструкцию. Вывод ликвидности и закрытие NFT также составляют одну атомарную инструкцию Vault.
 
 ```mermaid
 flowchart LR
-    Admin[Administrator signer] --> Program[Week 13 Vault program]
-    Program -->|PDA signed CPI| Raydium[Raydium CLMM]
-    Vault[Vault PDA] --> NFT[Position NFT in Vault ATA]
-    Vault --> Tokens[Both Vault token accounts]
-    Raydium --> Pool[Existing Devnet pool]
-    Trader[Separate trader wallet] -->|Genuine swaps| Pool
-    Pool -->|Fees and withdrawn principal| Tokens
+    Admin[Подпись администратора] --> Program[Программа Vault Week 13]
+    Program -->|CPI с подписью PDA| Raydium[Raydium CLMM]
+    Vault[Vault PDA] --> NFT[NFT позиции в ATA Vault]
+    Vault --> Tokens[Оба токен-аккаунта Vault]
+    Raydium --> Pool[Существующий пул Devnet]
+    Trader[Отдельный кошелёк трейдера] -->|Реальные обмены| Pool
+    Pool -->|Комиссии и выведенный капитал| Tokens
 ```
 
-Vault signer seeds are `["vault", token_mint, bump]`. The manager PDA uses `["position", vault_state]` and stores the bound pool, NFT mint, personal-position address, range, liquidity and active flag. Only one position may be active. NFT mint keypairs sign account creation; custody belongs to the NFT token account's **Vault PDA authority**.
+Начальные значения для подписи Vault: `["vault", token_mint, bump]`. PDA менеджера использует `["position", vault_state]` и хранит привязанный пул, mint NFT, адрес персональной позиции, диапазон, ликвидность и флаг активности. Одновременно может быть активна только одна позиция. Пары ключей mint NFT подписывают создание аккаунтов; полномочия над токен-аккаунтом NFT принадлежат **Vault PDA**.
 
-## Devnet addresses
+## Адреса Devnet
 
-| Account | Address |
-|---|---|
-| Week 13 program | `8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa` |
-| Vault PDA / NFT authority | `CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN` |
-| TOKEN_A account | `6ywuuHXGwoXxsMoUufL9BpeLkKGXzohPvrXgxpaLDAyi` |
-| TOKEN_B account | `DveZCv2hMWqZ5UbdBQxyp4xC6aZPpofpkN2xTzgghHuZ` |
-| Share mint | `GDoh9tMjfVzrUYH7PQxF8KYtfVNkMqay6ELpB8b4e8ET` |
-| Position manager PDA | `H4VjkQSzC6fV9NWbf4GyEnyZQ2iFK4hrcrkfbqHJv3Pv` |
-| Administrator | `3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7` |
-| Separate trader | `8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ` |
+| Аккаунт | Адрес |
+| --- | --- |
+| Программа Week 13 | `8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa` |
+| Vault PDA / полномочия над NFT | `CsFJDQv7vdBvXvDzEoSqvZQccFZLbYqAJcTeaSjZUfKN` |
+| Аккаунт TOKEN_A | `6ywuuHXGwoXxsMoUufL9BpeLkKGXzohPvrXgxpaLDAyi` |
+| Аккаунт TOKEN_B | `DveZCv2hMWqZ5UbdBQxyp4xC6aZPpofpkN2xTzgghHuZ` |
+| Mint долей | `GDoh9tMjfVzrUYH7PQxF8KYtfVNkMqay6ELpB8b4e8ET` |
+| PDA менеджера позиции | `H4VjkQSzC6fV9NWbf4GyEnyZQ2iFK4hrcrkfbqHJv3Pv` |
+| Администратор | `3jiQ6pVz6xZ4VqmDho41aPUgXFQns5KeorWyEgb3Qdq7` |
+| Отдельный трейдер | `8YYWcK5FA79Y9L3PMmWaukgEKbHLq9NXFm4TG5Pn1cgJ` |
 | Raydium CLMM | `DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH` |
-| Pool | `EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f` |
-| TOKEN_A / token_0 mint | `7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF` |
-| TOKEN_B / token_1 mint | `CwHVUNisByLqXM7mN47nhtcfG8AkYxeJ3tBdFB66yZAt` |
+| Пул | `EKwcP1HdZsti8ALXNvAUAduWfYLXH76DeJkcH39auM1f` |
+| Mint TOKEN_A / token_0 | `7bdCcN9agJ3TSSjTFctxM4TGFVecBRd6gLNYoWYyvawF` |
+| Mint TOKEN_B / token_1 | `CwHVUNisByLqXM7mN47nhtcfG8AkYxeJ3tBdFB66yZAt` |
 
-Both mints are ordinary SPL tokens with **six decimals**. Full derived addresses are in [addresses.json](evidence/week13/addresses.json). Deployment used a new 604,864-byte program and exact-size allocation; [deployment receipt](https://explorer.solana.com/tx/31oM1gN5Wjzxqd3CaPKpftoLEfXq5xEsEEwPj7NDMrN3SD24W8Cyn9Ypz36vP58NtrepPuCPpMCTYee9uLKJmqZW?cluster=devnet). The verifier compares the deployed ELF against SHA-256 `e6712608e22f254b87a2c48f881ce0502cc6cde62a79bd507d6eae9dd112f666` and checks the loader deployment, slot and upgrade authority.
+Оба mint относятся к обычным SPL-токенам с **шестью знаками после запятой**. Полный список производных адресов приведён в [addresses.json](evidence/week13/addresses.json). Развёрнута новая программа размером 604,864 байта с выделением памяти точно под её размер; [транзакция развёртывания](https://explorer.solana.com/tx/31oM1gN5Wjzxqd3CaPKpftoLEfXq5xEsEEwPj7NDMrN3SD24W8Cyn9Ypz36vP58NtrepPuCPpMCTYee9uLKJmqZW?cluster=devnet). Верификатор сравнивает развёрнутый ELF с SHA-256 `e6712608e22f254b87a2c48f881ce0502cc6cde62a79bd507d6eae9dd112f666` и проверяет инструкцию развёртывания загрузчика, слот и полномочия обновления.
 
-## Chosen ranges and opening amounts
+## Выбранные диапазоны и суммы при открытии
 
-Price is **TOKEN_B per TOKEN_A**. With equal decimals, a tick boundary is `1.0001^tick`, and execution price is `sqrt_price_x64^2 / 2^128`. Prices below are rounded to 12 decimal places; exact sqrt prices are preserved in the verification summary. Tick spacing is 60. The upper range boundary is exclusive.
+Цена выражается в **TOKEN_B за TOKEN_A**. При одинаковом числе знаков после запятой граница тика равна `1.0001^tick`, а цена исполнения — `sqrt_price_x64^2 / 2^128`. Цены ниже округлены до 12 знаков после запятой; точные значения квадратного корня цены сохранены в сводке проверки. Шаг тиков — 60. Верхняя граница диапазона не включается.
 
-| Position | Tick range | Price bounds | Actual opening price | Liquidity | A contributed | B contributed |
-|---|---|---|---|---|---|---|
-| Normal | `-720 .. 480` | 0.930534245505 .. 1.049168137486 | 0.989738741819 | `661942349` | 19.119261 | 20.000000 |
-| Old rebalance | `-180 .. -60` | 0.982161916245 .. 0.994018262239 | 0.989689211777 | `5276455704` | 11.562049 | 20.000000 |
-| Replacement | `-840 .. 360` | 0.919435117457 .. 1.036653980636 | 0.981611022806 | `627135103` | 17.033840 | 20.000000 |
+| Позиция | Диапазон тиков | Границы цены | Фактическая цена открытия | Ликвидность | Внесено A | Внесено B |
+| --- | --- | --- | --- | --- | --- | --- |
+| Обычная | `-720 .. 480` | 0.930534245505 .. 1.049168137486 | 0.989738741819 | `661942349` | 19.119261 | 20.000000 |
+| Старая для ребалансировки | `-180 .. -60` | 0.982161916245 .. 0.994018262239 | 0.989689211777 | `5276455704` | 11.562049 | 20.000000 |
+| Новая | `-840 .. 360` | 0.919435117457 .. 1.036653980636 | 0.981611022806 | `627135103` | 17.033840 | 20.000000 |
 
-Every opening capped contributions at **20.000000 A and 20.000000 B**. Normal and replacement ranges extend 600 ticks around an aligned center, approximately 6% on each side. The old rebalancing position uses a narrower 120-tick total range so a genuine crossing can be demonstrated with modest test-token swaps.
+При каждом открытии взносы ограничивались **20.000000 A и 20.000000 B**. Обычный и новый диапазоны простираются на 600 тиков в каждую сторону от выровненного центра, примерно на 6% с каждой стороны. Старая позиция для ребалансировки использует более узкий диапазон общей шириной 120 тиков, чтобы продемонстрировать реальное пересечение границы при умеренных объёмах обмена тестовых токенов.
 
-LP token composition changes with price because CLMM liquidity exchanges one asset for the other inside its range. Below the lower bound it holds token_0; above the upper bound it holds token_1. Rebalancing closes an inactive range and opens a new one around the changed price.
+Состав токенов LP меняется вместе с ценой, поскольку внутри диапазона ликвидность CLMM обменивает один актив на другой. Ниже нижней границы она целиком состоит из token_0, выше верхней — из token_1. При ребалансировке утративший активность диапазон закрывается, а новый открывается вокруг изменившейся цены.
 
-## Normal lifecycle and fees
+## Обычный жизненный цикл и комиссии
 
-Setup deposited **200.000000 A** with shares. A Vault-signed swap exchanged 100.000000 A for **98.981011 B**. The normal position then contributed the amounts above. The separate trader executed A-to-B, B-to-A and A-to-B swaps of one token each. All three swaps were finalized between opening and fee collection, and their signer, pool and exact token flows are independently checked.
+На этапе подготовки внесено **200.000000 A** с выпуском долей. Обмен с подписью Vault конвертировал 100.000000 A в **98.981011 B**. Затем в обычную позицию внесены суммы из таблицы выше. Отдельный трейдер выполнил обмены A→B, B→A и A→B по одному токену каждый. Все три обмена финализированы между открытием и сбором комиссий; подписант, пул и точные перемещения токенов проверяются независимо.
 
-The fee collection removed **zero liquidity** and retained the full **661,942,349** position liquidity until closure. Raydium's own events independently separate principal from trading fees:
+При сборе комиссий изъято **ноль ликвидности**; весь объём ликвидности позиции **661,942,349** сохранён до закрытия. Собственные события Raydium позволяют независимо отделить основной капитал от торговых комиссий:
 
-| Collection action | Fees A | Fees B |
-|---|---|---|
+| Операция сбора | Комиссии A | Комиссии B |
+| --- | --- | --- |
 | normal-collect | 0.000070 | 0.000035 |
 | normal-close | 0.000000 | 0.000000 |
 | rebalance-old-close | 0.042706 | 0.000000 |
 | rebalance-new-close | 0.000000 | 0.000000 |
-| **Total across Week 13 positions** | **0.042776** | **0.000035** |
+| **Итого по позициям Week 13** | **0.042776** | **0.000035** |
 
-The normal explicit collection earned **0.000070 A and 0.000035 B**. Additional rebalancing fees were collected as part of closing the old position; they are included in that close's returned amount, not counted again as principal. See [fee evidence](evidence/week13/fee-collection.json) and [verified deltas](evidence/week13/balance-deltas.json).
+При отдельном сборе комиссий обычной позиции получено **0.000070 A и 0.000035 B**. Дополнительные комиссии ребалансировки собраны при закрытии старой позиции; они включены в возвращённую при закрытии сумму и не учитываются повторно как основной капитал. См. [доказательства сбора комиссий](evidence/week13/fee-collection.json) и [проверенные изменения балансов](evidence/week13/balance-deltas.json).
 
-## Closing: exact returned amounts
+## Закрытие: точные возвращённые суммы
 
-All amounts are exact six-decimal token quantities. Returned amounts include any fees collected during the close; principal is listed separately. The minima apply to Raydium's principal withdrawal, with an additional Vault balance-delta check.
+Все суммы указаны точно, с шестью знаками после запятой. Возвращённые суммы включают комиссии, собранные при закрытии; основной капитал указан отдельно. Минимальные суммы применяются к выводу основного капитала из Raydium с дополнительной проверкой фактического изменения балансов Vault.
 
-| Close | A returned | B returned | Principal A | Principal B | Minimum A / B |
-|---|---|---|---|---|---|
+| Закрытие | Возвращено A | Возвращено B | Основной капитал A | Основной капитал B | Минимум A / B |
+| --- | --- | --- | --- | --- | --- |
 | [normal-close](https://explorer.solana.com/tx/3LX5jAqgy7aqNSjptmUTcJb3dNvybeBTPgFJi27JqmQp1zDbrQwngcAWQavukBETunAasFmAp8moxNxBTcv8U7fE?cluster=devnet) | 19.135909 | 19.983521 | 19.135909 | 19.983521 | 18.944549 / 19.783685 |
 | [rebalance-old-close](https://explorer.solana.com/tx/3EKyy91a98fXnxbFNuGaWhs66nwyDi4Hn9khnbQT4FdHFTrKsHMUygnqj5177YLqDaQBcG26U6V5f4Wa4n6Vt3r9?cluster=devnet) | 31.890409 | 0.000000 | 31.847703 | 0.000000 | 31.529225 / 0.000000 |
 | [rebalance-new-close](https://explorer.solana.com/tx/4A2AiSBY9wLRn5U9DLV8ETJbRLEjS9UvUEM4raBLoaWiFhSPEGVBibpAYYC2qBidFJTf8h8kzygpidJkb7mCcd8v?cluster=devnet) | 17.033839 | 19.999999 | 17.033839 | 19.999999 | 16.863500 / 19.799999 |
 
-After replacement cleanup, the transaction's observed Vault balances were **120.345077 A and 78.964566 B**. Both assets remain controlled by the Vault; single-token withdrawals remain locked.
+После окончательного закрытия новой позиции наблюдаемые в транзакции балансы Vault составили **120.345077 A и 78.964566 B**. Оба актива остаются под управлением Vault; вывод в одном токене остаётся заблокированным.
 
-| Position | NFT mint | Vault-owned NFT account | Independently verified final state |
-|---|---|---|---|
-| normal-open | `BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy` | `ECbfDWCnxMAZ86j49cYLMwECcN7YXFndcweCo5Yfx7Dr` | Supply 0; NFT account and position closed |
-| rebalance-old-open | `EVfhb1eYwmP8YAstSFUTmNMSSvFfzS58H6iSERrWVijd` | `6r3XmRtwcom6E84m18g7eN5SUMNfVBsNQeQU7fqVfK7U` | Supply 0; NFT account and position closed |
-| rebalance-new-open | `2wkmWUqhUHXqqsRxHHSYjXstS9DgD2fgi3qM7H5tWpUc` | `DJLMJNQXWMW8vDkD4wtqSvdU9aDRHukf6S9iq9t1sEvg` | Supply 0; NFT account and position closed |
+| Позиция | Mint NFT | Аккаунт NFT под управлением Vault | Независимо проверенное итоговое состояние |
+| --- | --- | --- | --- |
+| normal-open | `BGMmyTvtEzND3uR2ef5FQszHt82xjBhfEfXCytXJGAoy` | `ECbfDWCnxMAZ86j49cYLMwECcN7YXFndcweCo5Yfx7Dr` | Предложение 0; аккаунт NFT и позиция закрыты |
+| rebalance-old-open | `EVfhb1eYwmP8YAstSFUTmNMSSvFfzS58H6iSERrWVijd` | `6r3XmRtwcom6E84m18g7eN5SUMNfVBsNQeQU7fqVfK7U` | Предложение 0; аккаунт NFT и позиция закрыты |
+| rebalance-new-open | `2wkmWUqhUHXqqsRxHHSYjXstS9DgD2fgi3qM7H5tWpUc` | `DJLMJNQXWMW8vDkD4wtqSvdU9aDRHukf6S9iq9t1sEvg` | Предложение 0; аккаунт NFT и позиция закрыты |
 
-Ordinary SPL NFT mint accounts remain with supply zero after burning. Historical custody is established from finalized initialization/minting and Vault-authorized CPI; the verifier separately checks current closure. [NFT evidence](evidence/week13/position-nfts.json).
+После сжигания обычные SPL mint-аккаунты NFT сохраняются с нулевым предложением. Историческое владение подтверждается финализированными операциями инициализации и выпуска, а также CPI с полномочиями Vault; текущее закрытие верификатор проверяет отдельно. [Доказательства по NFT](evidence/week13/position-nfts.json).
 
-## Rebalancing proof
+## Подтверждение ребалансировки
 
-Nine real swaps of **20.000000 A each** moved the price outside the old range `[-180, -60)`. At the actual old-close instruction, Raydium and Vault events both recorded **tick -186**, price **0.981611022806**, below the lower bound. The old NFT was burned. The replacement opened at tick **-186** in range **[-840, 360)**, with a new Vault-owned NFT and positive contributions of both tokens. Its subsequent cleanup also withdrew everything and burned that NFT.
+Девять реальных обменов по **20.000000 A каждый** вывели цену за пределы старого диапазона `[-180, -60)`. При фактическом исполнении инструкции закрытия старой позиции события Raydium и Vault зафиксировали **тик -186**, цену **0.981611022806**, ниже нижней границы. Старый NFT сожжён. Новая позиция открыта на тике **-186** в диапазоне **[-840, 360)** с новым NFT во владении Vault и положительными взносами обоих токенов. При последующем окончательном закрытии вся ликвидность также выведена, а NFT сожжён.
 
-Out-of-range closing legitimately returned zero B because the old liquidity was entirely in A. Its B minimum was explicitly zero and its A minimum was positive. [Rebalancing evidence](evidence/week13/rebalancing.json).
+При закрытии вне диапазона обоснованно возвращено ноль B, поскольку старая ликвидность целиком состояла из A. Минимум для B явно равнялся нулю, а минимум для A был положительным. [Доказательства ребалансировки](evidence/week13/rebalancing.json).
 
-## Security, accounting and limits
+## Безопасность, учёт и ограничения
 
-- Every management operation checks the administrator signer, canonical Vault/config/manager PDAs, pool binding and Raydium program identity.
-- Mint pair, source/destination authorities, NFT mint and holder, canonical personal position and tick-array addresses are checked. NFT delegates and alternative close authorities are rejected.
-- Ticks must be ordered, in bounds and aligned. Opening requires an in-range price, positive bounded liquidity and positive actual contributions of both tokens.
-- Maximum inputs, minimum outputs, checked integer deltas, stored liquidity and duplicate/invalid lifecycle transitions are enforced. State advances only after successful CPIs and custody checks.
-- `strategy_active` stays true after collection and closure. `total_tokens` tracks idle A, not two-token portfolio NAV; share supply is preserved. Withdrawal restoration is not implemented: safe restoration requires closing positions, converting B back to A and reconciling accounting.
-- Supported scope is the selected ordinary SPL-token pool without reward emissions. It must remain without rewards while positions are live. Generic reward-bearing and Token-2022 asset support is outside this submission.
-- [Dependency audit](evidence/week13/dependency-audit.json) reports 19 inherited Node dependency advisories (9 moderate, 10 high). The Anchor/Raydium-compatible versions remain pinned. This is a Devnet academic submission; the audit is not a claim of production certification.
-- The independent verifier sends no transactions and reads no wallet. Standard RPC cannot retrieve arbitrary historical account bytes. Stored preflight/balance reads are labeled observations; finalized transaction metadata, CPI instructions and attributed events establish historical effects.
+- Каждая операция управления проверяет подпись администратора, канонические PDA Vault/config/manager, привязку к пулу и идентификатор программы Raydium.
+- Проверяются пара mint, полномочия над источником и получателем, mint и держатель NFT, каноническая персональная позиция и адреса массивов тиков. Делегаты NFT и альтернативные полномочия закрытия отклоняются.
+- Тики должны быть упорядочены, находиться в допустимых границах и соответствовать шагу. Открытие требует цены внутри диапазона, положительной ограниченной ликвидности и положительных фактических взносов обоих токенов.
+- Проверяются максимальные входные и минимальные выходные суммы, целочисленные изменения балансов, сохранённая ликвидность, повторные и недопустимые переходы жизненного цикла. Состояние меняется только после успешных CPI и проверок владения.
+- `strategy_active` остаётся true после сбора комиссий и закрытия. `total_tokens` учитывает свободный A, а не стоимость портфеля из двух токенов; предложение долей сохраняется. Восстановление вывода в этой исходной версии не реализовано: для безопасного восстановления необходимо закрыть позиции, обменять B обратно в A и сверить учёт.
+- Поддерживается выбранный пул обычных SPL-токенов без начисления вознаграждений. Пока позиции открыты, вознаграждения в нём должны оставаться отключёнными. Универсальная поддержка пулов с вознаграждениями и активов Token-2022 не входит в эту работу.
+- [Аудит зависимостей](evidence/week13/dependency-audit.json) сообщает о 19 унаследованных предупреждениях в зависимостях Node (9 умеренной, 10 высокой серьёзности). Совместимые с Anchor/Raydium версии сохранены зафиксированными. Это учебная работа в Devnet; аудит не означает сертификацию для промышленной эксплуатации.
+- Независимый верификатор не отправляет транзакции и не читает кошелёк. Стандартный RPC не позволяет получить произвольное историческое содержимое аккаунтов. Сохранённые предварительные чтения и балансы обозначены как наблюдения; исторические изменения подтверждаются метаданными финализированных транзакций, CPI-инструкциями и событиями с проверенным источником.
 
-## Fresh checks
+## Выполненные проверки
 
-| Command / check | Result | Evidence |
-|---|---|---|
-| `cargo fmt --check` | Passed | [log](evidence/week13/format.txt) |
-| `cargo check --workspace` | Passed | [log](evidence/week13/cargo-check.txt) |
-| `cargo test --workspace` | Passed (5) | [log](evidence/week13/rust-tests.txt) |
-| `anchor build` | Passed | [log](evidence/week13/anchor-build-recovered.txt) |
-| `npm run typecheck` | Passed | [log](evidence/week13/typecheck.txt) |
-| `npm run test:unit` | Passed (6) | [log](evidence/week13/slippage-unit.txt) |
-| `npm run test:week13` | Passed (8) | [log](evidence/week13/week13-unit.txt) |
-| `npm run test:local` | Passed (17) | [log](evidence/week13/local-tests.txt) |
-| `npm run test:week13:local` | Passed (11) | [log](evidence/week13/clmm-local-tests.txt) |
-| `Week 13 deployed-program negative RPC simulations` | Passed (44) | [log](evidence/week13/manifest.json) |
-| `npm run verify:week13 (invalid ANCHOR_WALLET)` | Passed (25) | [log](evidence/week13/verification.txt) |
+| Команда / проверка | Результат | Доказательства |
+| --- | --- | --- |
+| `cargo fmt --check` | Успешно | [лог](evidence/week13/format.txt) |
+| `cargo check --workspace` | Успешно | [лог](evidence/week13/cargo-check.txt) |
+| `cargo test --workspace` | Успешно (5) | [лог](evidence/week13/rust-tests.txt) |
+| `anchor build` | Успешно | [лог](evidence/week13/anchor-build-recovered.txt) |
+| `npm run typecheck` | Успешно | [лог](evidence/week13/typecheck.txt) |
+| `npm run test:unit` | Успешно (6) | [лог](evidence/week13/slippage-unit.txt) |
+| `npm run test:week13` | Успешно (8) | [лог](evidence/week13/week13-unit.txt) |
+| `npm run test:local` | Успешно (17) | [лог](evidence/week13/local-tests.txt) |
+| `npm run test:week13:local` | Успешно (11) | [лог](evidence/week13/clmm-local-tests.txt) |
+| `Отрицательные RPC-симуляции развёрнутой программы Week 13` | Успешно (44) | [лог](evidence/week13/manifest.json) |
+| `npm run verify:week13 (invalid ANCHOR_WALLET)` | Успешно (25) | [лог](evidence/week13/verification.txt) |
 
-The **44 negative checks are RPC simulations of the deployed Devnet program**, not 44 failed on-chain transactions. They cover unauthorized open/collect/close, invalid pool/position/ticks/NFT custody, maxima/minima, zero liquidity, duplicates and withdrawal locks. The 17 legacy integration tests and 11 genuine Raydium CPI integration tests ran on isolated local validators; their results are distinct from Devnet evidence.
+**44 отрицательные проверки — это RPC-симуляции развёрнутой программы Devnet**, а не 44 неудачные транзакции в блокчейне. Они охватывают неавторизованные открытие/сбор/закрытие, неверные пул/позицию/тики/владение NFT, максимальные и минимальные суммы, нулевую ликвидность, повторные операции и блокировку вывода. 17 прежних интеграционных тестов и 11 интеграционных тестов с реальными Raydium CPI выполнены на изолированных локальных валидаторах; их результаты отделены от доказательств Devnet.
 
-## Reproduce builds and tests
+## Воспроизведение сборки и тестов
 
-Use Node 22, Anchor 0.31.1, the Solana CLI and Rust; exact versions and source hashes are in [build-artifact.json](evidence/week13/build-artifact.json).
+Используйте Node 22, Anchor 0.31.1, Solana CLI и Rust; точные версии и хеши исходников приведены в [build-artifact.json](evidence/week13/build-artifact.json).
 
 ```bash
 npm ci
@@ -152,7 +152,7 @@ cargo fmt --check
 cargo check --workspace
 cargo test --workspace
 anchor build
-# Restore the public client IDL address for this recorded deployment.
+# Восстановление публичного адреса клиентского IDL для этого развёртывания.
 cp evidence/week13/program-idl.json target/idl/simple_vault.json
 npm run typecheck
 npm test
@@ -160,7 +160,7 @@ npm run preflight:week13
 npm run verify:week13
 ```
 
-For legacy local tests, load this branch's program into a separate validator and set `ANCHOR_PROVIDER_URL=http://127.0.0.1:18899` and `ANCHOR_WALLET` before `npm run test:local`. The CLMM fixture test clones public Devnet accounts; it never writes to Devnet:
+Для прежних локальных тестов загрузите программу этой ветки в отдельный валидатор и задайте `ANCHOR_PROVIDER_URL=http://127.0.0.1:18899` и `ANCHOR_WALLET` перед `npm run test:local`. Тестовая среда CLMM клонирует публичные аккаунты Devnet и ничего не записывает в Devnet:
 
 ```bash
 node --no-experimental-strip-types -r ts-node/register scripts/week13-local-fixture.ts
@@ -171,11 +171,11 @@ solana-test-validator --ledger /tmp/week13-clmm-reproduction --rpc-port 18899 \
   --bpf-program 8Fwjh2gQ9qAQFZ4jVPKPe8G6xEq2dQJatFDv4A6iw2Qa target/deploy/simple_vault.so \
   --clone-upgradeable-program DRayAUgENGQBKVaX8owNhgzkEDyoHTGVEGHVJT1E9pfH metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s \
   --clone "${CLONE_ACCOUNTS[@]}"
-# In a second terminal, using the matching source wallet for the cloned token accounts:
+# Во втором терминале, с исходным кошельком для клонированных токен-аккаунтов:
 ANCHOR_PROVIDER_URL=http://127.0.0.1:18899 WEEK13_CLMM_LOCAL=1 npm run test:week13:local
 ```
 
-The original deployment command used the ignored new Week 13 keypair and an explicit ignored buffer:
+Исходная команда развёртывания использовала новую пару ключей Week 13 и явно указанный буфер; оба файла исключены из Git:
 
 ```bash
 solana program deploy target/deploy/simple_vault.so \
@@ -184,9 +184,9 @@ solana program deploy target/deploy/simple_vault.so \
   --max-len 604864 --url devnet --use-tpu-client --output json
 ```
 
-Do not redeploy to reproduce verification. A fresh independent deployment needs a new program keypair, synchronized Anchor/Rust IDs and updated expected Week 13 IDs in the scripts; the recorded program is deliberately protected against accidental targeting of previous weeks.
+Для повторной проверки не нужно повторно развёртывать программу. Новое независимое развёртывание требует новой пары ключей программы, согласованных идентификаторов Anchor/Rust и обновлённых ожидаемых идентификаторов Week 13 в скриптах; зафиксированная программа намеренно защищена от случайного обращения к программам предыдущих недель.
 
-The actual scenario commands were:
+Фактически использованные команды сценария:
 
 ```bash
 npm run week13:run -- setup
@@ -195,15 +195,15 @@ npm run week13:run -- rebalance
 npm run week13:run -- cleanup
 ```
 
-The runner checkpoints each signed signature **before broadcast**, finalizes it before recording success and resumes completed phases. `npm run week13:run -- recover` resolves a pending checkpoint before any retry. LP contributions are capped at 20 tokens per side; rebalancing is capped at twelve 20-A swaps and needed nine. Private keys and caches remain ignored.
+Скрипт сохраняет каждую подписанную сигнатуру **до отправки**, дожидается финализации перед фиксацией успеха и возобновляет работу с учётом завершённых этапов. `npm run week13:run -- recover` обрабатывает ожидающую контрольную точку до повторной попытки. Взносы LP ограничены 20 токенами с каждой стороны; ребалансировка ограничена двенадцатью обменами по 20 A, потребовалось девять. Приватные ключи и кеши по-прежнему исключены из Git.
 
-## Finalized transaction links
+## Ссылки на финализированные транзакции
 
-All 24 scenario signatures and the deployment below were independently fetched at finalized commitment. Full signatures, instructions and compact results are in [manifest.json](evidence/week13/manifest.json) and [verification-summary.json](evidence/week13/verification-summary.json).
+Все 24 сигнатуры сценария и транзакция развёртывания ниже независимо получены с уровнем подтверждения finalized. Полные сигнатуры, инструкции и краткие результаты приведены в [manifest.json](evidence/week13/manifest.json) и [verification-summary.json](evidence/week13/verification-summary.json).
 
-| Action | Slot | Transaction |
-|---|---|---|
-| Deployment | `523896183` | [deployment](https://explorer.solana.com/tx/31oM1gN5Wjzxqd3CaPKpftoLEfXq5xEsEEwPj7NDMrN3SD24W8Cyn9Ypz36vP58NtrepPuCPpMCTYee9uLKJmqZW?cluster=devnet) |
+| Действие | Слот | Транзакция |
+| --- | --- | --- |
+| Развёртывание | `523896183` | [развёртывание](https://explorer.solana.com/tx/31oM1gN5Wjzxqd3CaPKpftoLEfXq5xEsEEwPj7NDMrN3SD24W8Cyn9Ypz36vP58NtrepPuCPpMCTYee9uLKJmqZW?cluster=devnet) |
 | initialize-vault | `523896854` | [Explorer](https://explorer.solana.com/tx/5ZzZHiiWuuKdFsYXyz6RNxGjqUpjj4HduWhtdSuBqnxXEnZMVvB9gCyGvazxcRrEvTBN1HDAywKUfXAfz86sMJ9w?cluster=devnet) |
 | initialize-swap | `523896861` | [Explorer](https://explorer.solana.com/tx/3Wt7hjkTN6LjExthmd8Uo2VooYRRzAHKeWgwEoEcKAB2WfJU8pCyqJZcbGf2przcqh5esFGoLBYJPeMxxDJmn3XD?cluster=devnet) |
 | fund-trader | `523896872` | [Explorer](https://explorer.solana.com/tx/3MYqsWrU52zu6ehUDnnpBYwgQRHgtzmxbJbSrybqanEmN5FsUYj4jfZFeAYJzgqRXydzipJKnL6kBA8os1MTCPYS?cluster=devnet) |
@@ -229,97 +229,99 @@ All 24 scenario signatures and the deployment below were independently fetched a
 | rebalance-new-open | `523897531` | [Explorer](https://explorer.solana.com/tx/63rFT7FahY3eJgTJsRZZgqJ5ZZRf3Tu9gRE6cewAunjTw259vRxBzJxpAAVskq2FJBvFJHnQLodYKc3S2Da3vgEP?cluster=devnet) |
 | rebalance-new-close | `523897643` | [Explorer](https://explorer.solana.com/tx/4A2AiSBY9wLRn5U9DLV8ETJbRLEjS9UvUEM4raBLoaWiFhSPEGVBibpAYYC2qBidFJTf8h8kzygpidJkb7mCcd8v?cluster=devnet) |
 
-## Requirements-to-evidence checklist
+## Соответствие требованиям и доказательства
 
-| Methodology requirement | Verified evidence |
-|---|---|
-| Administrator selects bounds; both tokens supplied with maxima | Three open transactions; exact range/input table; maximum-input rejection simulations |
-| Vault controls the NFT | Finalized SPL initialization/minting; Vault-signed increase/decrease CPIs; NFT custody evidence |
-| Collect trading fees | Normal collection plus Raydium fee events and exact verified deltas |
-| Withdraw all liquidity with minima; close NFT | Three closes; full matching liquidity; burn/close instructions and current supply-zero checks |
-| Administrator-only operations | Unauthorized open, collect and close simulations; local CPI tests |
-| Official compatible Raydium CPI | Pinned interface and actual nested CPI discriminators/account bindings |
-| Open ? other-wallet swaps ? collect ? close | Normal scenario with three signed trader swaps and ordered finalized slots |
-| Move price outside ? close ? reopen | Nine swaps; actual close tick -186 outside [-180,-60); replacement [-840,360) |
-| Document range, fees and exact token returns | Tables above; independent events and balance-deltas evidence |
-| Safe withdrawal accounting | Persistent strategy lock; share accounting tests; no unsafe restoration |
-| Independent wallet-free verification | Successful public-RPC verifier with invalid wallet path; ELF/hash/authority/transaction checks |
-| Preserve previous weeks | Isolated branch/directory and new program ID; original README in [README-WEEK12.md](README-WEEK12.md); isolation audit |
+| Требование методологии | Проверенные доказательства |
+| --- | --- |
+| Администратор выбирает границы; оба токена вносятся с ограничением максимальных сумм | Три транзакции открытия; точная таблица диапазонов/взносов; симуляции отклонения превышенных максимумов |
+| Vault управляет NFT | Финализированные SPL-инициализация/выпуск; CPI увеличения/уменьшения с подписью Vault; доказательства владения NFT |
+| Сбор торговых комиссий | Обычный сбор, события комиссий Raydium и точные проверенные изменения балансов |
+| Вывод всей ликвидности с минимумами; закрытие NFT | Три закрытия; совпадение всей ликвидности; инструкции сжигания/закрытия и текущие проверки нулевого предложения |
+| Операции только администратора | Симуляции неавторизованных открытия, сбора и закрытия; локальные CPI-тесты |
+| Официальный совместимый Raydium CPI | Зафиксированный интерфейс и реальные дискриминаторы/привязки аккаунтов вложенных CPI |
+| Открытие ? обмены другого кошелька ? сбор ? закрытие | Обычный сценарий с тремя подписанными обменами трейдера и упорядоченными финализированными слотами |
+| Выход цены за диапазон ? закрытие ? повторное открытие | Девять обменов; фактический тик закрытия -186 вне [-180,-60); новая позиция [-840,360) |
+| Документирование диапазонов, комиссий и точных возвращённых сумм | Таблицы выше; независимые события и доказательства изменений балансов |
+| Безопасный учёт вывода | Сохранение блокировки стратегии; тесты учёта долей; отсутствие небезопасного восстановления |
+| Независимая проверка без кошелька | Успешная проверка публичным RPC с неверным путём кошелька; проверки ELF/хеша/полномочий/транзакций |
+| Сохранение предыдущих недель | Изолированные ветка/каталог и новый ID программы; исходный README в [README-WEEK12.md](README-WEEK12.md); аудит изоляции |
 
-## Isolation and official sources
+## Изоляция и официальные источники
 
-The public [Anchor IDL](evidence/week13/program-idl.json) is included for clients and local reproduction. A fresh `anchor build` may generate a different local keypair and IDL address; restoring this public IDL preserves the recorded address without distributing any signing key. The independent verifier does not use this IDL. See the [final security/isolation audit](evidence/week13/security-audit.json).
+Публичный [Anchor IDL](evidence/week13/program-idl.json) включён для клиентов и локального воспроизведения. Новая команда `anchor build` может создать другую локальную пару ключей и другой адрес в IDL; восстановление этого публичного IDL сохраняет зафиксированный адрес без распространения ключа подписи. Независимый верификатор не использует этот IDL. См. [итоговый аудит безопасности и изоляции](evidence/week13/security-audit.json).
 
-This work starts at `origin/week-12-submission` commit `b3446244d017cd807dfc280eb0b8c4defd4729d7` on `week-13-submission`. Previous branches, programs and historical evidence are preserved. Required swaps intentionally change the shared test pool's price. All new evidence lives under `evidence/week13/`.
+Работа начата от коммита `b3446244d017cd807dfc280eb0b8c4defd4729d7` ветки `origin/week-12-submission` в ветке `week-13-submission`. Прежние ветки, программы и исторические доказательства сохранены. Требуемые обмены намеренно изменяют цену общего тестового пула. Все новые доказательства находятся в `evidence/week13/`.
 
-- [Official Raydium CPI examples](https://github.com/raydium-io/raydium-cpi-example/tree/master/clmm-cpi/programs/clmm-cpi/src/instructions).
-- [Pinned public program interface](https://github.com/raydium-io/raydium-clmm/blob/d4ec101534724a20e1eb38a9b997f8b391c5100f/programs/amm/src/lib.rs), revision `d4ec101534724a20e1eb38a9b997f8b391c5100f`.
-- [Pinned position opening implementation](https://github.com/raydium-io/raydium-clmm/blob/d4ec101534724a20e1eb38a9b997f8b391c5100f/programs/amm/src/instructions/open_position.rs).
-- [Pinned decrease/fee implementation](https://github.com/raydium-io/raydium-clmm/blob/d4ec101534724a20e1eb38a9b997f8b391c5100f/programs/amm/src/instructions/decrease_liquidity.rs).
+- [Официальные примеры Raydium CPI](https://github.com/raydium-io/raydium-cpi-example/tree/master/clmm-cpi/programs/clmm-cpi/src/instructions).
+- [Зафиксированный публичный интерфейс программы](https://github.com/raydium-io/raydium-clmm/blob/d4ec101534724a20e1eb38a9b997f8b391c5100f/programs/amm/src/lib.rs), ревизия `d4ec101534724a20e1eb38a9b997f8b391c5100f`.
+- [Зафиксированная реализация открытия позиции](https://github.com/raydium-io/raydium-clmm/blob/d4ec101534724a20e1eb38a9b997f8b391c5100f/programs/amm/src/instructions/open_position.rs).
+- [Зафиксированная реализация уменьшения ликвидности и сбора комиссий](https://github.com/raydium-io/raydium-clmm/blob/d4ec101534724a20e1eb38a9b997f8b391c5100f/programs/amm/src/instructions/decrease_liquidity.rs).
 
-The public CPI argument order is taken from the pinned `lib.rs`, which differs from its internal helper order. Wallet-owned SDK liquidity operations are not used as proof of Vault CPI functionality.
+Порядок аргументов публичного CPI взят из зафиксированного `lib.rs` и отличается от порядка во внутренней вспомогательной функции. Операции SDK с ликвидностью от имени кошелька не используются как доказательство функциональности Vault CPI.
 
-## Post-CLMM Settlement and User Withdrawal
+<a id="post-clmm-settlement-and-user-withdrawal"></a>
 
-### Accounting and deployment isolation
+## Расчёты после CLMM и вывод средств пользователем
 
-The original program tracks liquid TOKEN_A in `total_tokens` during strategy execution. It cannot use that amount to value shares while TOKEN_B or LP assets remain. Closing a position therefore keeps `strategy_active` true. The original forward swap binds A as input and B as output; it does not already provide a reverse path. The [accounting audit](evidence/week13/settlement/accounting-audit.md) records these findings and the original zero-asset issuance and idle-accounting gaps.
+### Учёт и изоляция развёртывания
 
-The new implementation is deployed separately at **`Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9`**, with Vault **`6YafwX7ujgJUrP1hQPeGRQCB2ZxbzcgWRphJjvgj92gD`**. The original Week 13 deployment and its locked Vault remain unchanged, and its 25 transactions remain independently verifiable. Weeks 8-12 branches and deployments are preserved. `Anchor.toml` retains the original identity; the `settlement-deployment` Cargo feature selects the isolated identity. The deployment helper verifies Devnet genesis, exact artifact hash, signer identity and funding, and refuses to upgrade any existing program. Do not use `anchor deploy` to reproduce this addendum.
+Исходная программа во время выполнения стратегии учитывает свободный TOKEN_A в `total_tokens`. Эта сумма не может использоваться для оценки долей, пока остаются TOKEN_B или активы LP. Поэтому закрытие позиции сохраняет `strategy_active` равным true. Исходный прямой обмен закрепляет A как вход, а B как выход и не предоставляет обратного пути. В [аудите учёта](evidence/week13/settlement/accounting-audit.md) зафиксированы эти выводы, а также исходные пробелы при выпуске долей с нулевыми активами и учёте вне активной стратегии.
 
-### Settlement state machine
+Новая реализация развёрнута отдельно по адресу **`Cm1i9GJUXXvZPA1cDeZ62FjCsmz8w8LJXe91drJYWYx9`**, Vault — **`6YafwX7ujgJUrP1hQPeGRQCB2ZxbzcgWRphJjvgj92gD`**. Исходное развёртывание Week 13 и его заблокированный Vault не изменены, а 25 транзакций по-прежнему проверяются независимо. Ветки и развёртывания Weeks 8–12 сохранены. `Anchor.toml` сохраняет исходный идентификатор; Cargo-функция `settlement-deployment` выбирает изолированный идентификатор. Скрипт развёртывания проверяет genesis Devnet, точный хеш артефакта, личность подписанта и наличие средств и отказывается обновлять существующую программу. Для воспроизведения этого дополнения не используйте `anchor deploy`.
 
-1. Users deposit A and receive SPL shares. Deposit and withdrawal reject an active strategy, residual B, mismatched share supply or stale A accounting. The appended canonical `strategy_token_account` client account is required by both instructions in the new IDL.
-2. The administrator opens and manages the existing Vault-controlled Raydium position. Closing removes all tracked liquidity, burns the NFT and closes its token account and personal position; the strategy remains locked.
-3. `reverse_swap_via_raydium(amount_in, minimum_amount_out)` is administrator-only and requires an inactive position with zero liquidity. It reverses the existing `swap_v2` CPI account orientation. The input must equal the entire canonical B balance and the minimum must be positive. Checked actual deltas must show the exact input spent, minimum A received and zero B remaining. Failure rolls back atomically; success retains the lock.
-4. `settle_strategy` validates canonical Vault/config/pool/mints/token accounts, administrator, zero liquidity, inactive manager, burned NFT mint with no mint authority, and closed canonical NFT and personal-position accounts. B must be zero, outstanding shares positive and SPL supply equal to recorded shares. It assigns actual A to `total_tokens`, preserves all shares and unlocks. The unchanged repeated operation returns `AlreadySettled`.
-5. A user signs `withdraw(shares)` and receives `floor(shares * total_tokens / total_shares)` raw A units, using checked integer arithmetic. The same transaction burns those shares and updates both totals. UserCard records history; SPL balances and supply determine ownership. The final holder receives every remaining A unit.
+### Состояния и переходы при завершении стратегии
 
-Idle A donations require explicit administrator reconciliation. B donations also block redemption after unlock; the administrator can fully reverse that B and settle again. Share supply mismatches fail closed. If B dust cannot be converted with a positive minimum, the Vault remains locked. Settlement performs no transfer, share mint or share burn.
+1. Пользователи вносят A и получают SPL-доли. Внесение и вывод отклоняются при активной стратегии, остатке B, несовпадении предложения долей или устаревшем учёте A. Добавленный канонический клиентский аккаунт `strategy_token_account` обязателен для обеих инструкций в новом IDL.
+2. Администратор открывает и управляет существующей позицией Raydium под контролем Vault. Закрытие удаляет всю учитываемую ликвидность, сжигает NFT и закрывает его токен-аккаунт и персональную позицию; стратегия остаётся заблокированной.
+3. `reverse_swap_via_raydium(amount_in, minimum_amount_out)` доступна только администратору и требует неактивной позиции с нулевой ликвидностью. Она меняет направление аккаунтов существующего CPI `swap_v2`. Входная сумма должна равняться всему каноническому балансу B, а минимум должен быть положительным. Проверенные фактические изменения должны подтвердить списание точной входной суммы, получение не менее минимального A и нулевой остаток B. Ошибка атомарно откатывает операцию; успех сохраняет блокировку.
+4. `settle_strategy` проверяет канонические Vault/config/pool/mint/токен-аккаунты, администратора, нулевую ликвидность, неактивный менеджер, mint сожжённого NFT без полномочий выпуска, а также закрытие канонических аккаунтов NFT и персональной позиции. B должен равняться нулю, количество непогашенных долей должно быть положительным, а предложение SPL — совпадать с учтёнными долями. Инструкция записывает фактический A в `total_tokens`, сохраняет все доли и снимает блокировку. Повтор без изменения состояния возвращает `AlreadySettled`.
+5. Пользователь подписывает `withdraw(shares)` и получает `floor(shares * total_tokens / total_shares)` минимальных единиц A с использованием проверяемой целочисленной арифметики. Эта же транзакция сжигает доли и обновляет оба итога. UserCard хранит историю; владение определяется SPL-балансами и предложением. Последний держатель получает весь оставшийся A.
 
-### Finalized Devnet results
+Прямые переводы A вне активной стратегии требуют явной сверки администратором. Прямые переводы B блокируют погашение даже после разблокировки; администратор может полностью обменять этот B обратно и снова завершить расчёты. При несовпадении предложения долей операции блокируются. Если минимальный остаток B нельзя обменять с положительным минимумом, Vault остаётся заблокированным. Завершение расчётов не выполняет переводов, выпуска или сжигания долей.
 
-All 15 successful scenario transactions plus the new deployment are listed below. The user `98SVWHgDL6rWLJBEE4zozMUGBpukcnULhmq4aqAZ4w2H` differs from the administrator and fee-generating trader. The public [manifest](evidence/week13/settlement/manifest.json), [balance and share snapshots](evidence/week13/settlement/balance-and-share-snapshots.json), [negative results](evidence/week13/settlement/negative-test-results.json), [public IDL](evidence/week13/settlement/program-idl.json) and [independent verification summary](evidence/week13/settlement/verification-summary.json) contain exact raw values.
+### Финализированные результаты Devnet
 
-| Checkpoint | Vault A raw | Vault B raw | Share supply raw | Strategy locked |
-|---|---:|---:|---:|---|
+Все 15 успешных транзакций сценария и новое развёртывание перечислены ниже. Пользователь `98SVWHgDL6rWLJBEE4zozMUGBpukcnULhmq4aqAZ4w2H` отличается от администратора и трейдера, создающего комиссии. Публичные [манифест](evidence/week13/settlement/manifest.json), [снимки балансов и долей](evidence/week13/settlement/balance-and-share-snapshots.json), [отрицательные результаты](evidence/week13/settlement/negative-test-results.json), [публичный IDL](evidence/week13/settlement/program-idl.json) и [сводка независимой проверки](evidence/week13/settlement/verification-summary.json) содержат точные значения в минимальных единицах.
+
+| Контрольная точка | A в Vault, минимальные единицы | B в Vault, минимальные единицы | Предложение долей, минимальные единицы | Стратегия заблокирована |
+| --- | ---: | ---: | ---: | --- |
 | deposit | 200000000 | 0 | 200000000 | false |
 | normal-close | 100016745 | 97649294 | 200000000 | true |
 | reverse-all-b | 199506361 | 0 | 200000000 | true |
 | settle-strategy | 199506361 | 0 | 200000000 | false |
 | user-withdraw | 0 | 0 | 0 | false |
 
-The user deposited **200.000000 A** and received **200,000,000 raw shares**. Closure left 100,016,745 raw A and 97,649,294 raw B. The full B conversion returned 99,489,616 raw A with a minimum of 98,494,719. Settlement reconciled 199,506,361 raw A against the unchanged 200,000,000 raw shares. Redeeming all shares returned **199.506361 A** (six decimals). This test includes fees, price movement, trading fees and slippage; it does not assert a profit or a guaranteed exchange rate. Final Vault A, B, recorded totals, user share balance and SPL share supply are all zero; no tracked LP is active.
+Пользователь внёс **200.000000 A** и получил **200,000,000 минимальных единиц долей**. После закрытия осталось 100,016,745 минимальных единиц A и 97,649,294 минимальных единиц B. Полная конвертация B вернула 99,489,616 минимальных единиц A при минимуме 98,494,719. При завершении расчётов сверено 199,506,361 минимальных единиц A с неизменными 200,000,000 минимальных единиц долей. Погашение всех долей вернуло **199.506361 A** (шесть знаков после запятой). Тест учитывает комиссии, движение цены, торговые комиссии и проскальзывание; он не подтверждает прибыль или гарантированный курс. Итоговые балансы A и B в Vault, учтённые итоги, пользовательский баланс долей и предложение SPL-долей равны нулю; активной учитываемой LP нет.
 
-| Action | Finalized slot | Explorer |
-|---|---:|---|
-| settlement-deployment | 524343232 | [transaction](https://explorer.solana.com/tx/XD1vSBiLE94esqjaLxEEw8r9wGT3krRtQa6LaxPxWNPPsPA5jiWjejj6XRR6TiUMi7GVDzvxeB9abHmqB58HWv8?cluster=devnet) |
-| initialize-vault | 524345494 | [transaction](https://explorer.solana.com/tx/3HMe3E9isJ2KjPxT9x4VmrtXNCbWEfaeJjMNAu6fEXM5zi9P5Y2mz2NkdzX6ANK6MkCdZLisusCNUeQYKc9zDWpa?cluster=devnet) |
-| initialize-swap | 524345504 | [transaction](https://explorer.solana.com/tx/3jzF1ghdxvqcQWadpLB8KcDqZgfRwfaZCvdMkCKt4yQfkbzkWR1YppamaTGoZSc3QAHb6cbW13okQuNN3ngzQqGZ?cluster=devnet) |
-| fund-trader | 524345515 | [transaction](https://explorer.solana.com/tx/4wB978qbNCmUg2TZ4FUp4KZVHZfj1QH34j712obcB7pDXoxsEetu4b7JMjAyzeNaF7NSAgHRhfsmCoaNK1CotSty?cluster=devnet) |
-| fund-user | 524345524 | [transaction](https://explorer.solana.com/tx/42iCveVce4jqoSaFGDuCyvQxNCdJ6eWWEWkvsNEiRdKcu9h25QXWUpiR4XPrzafKN7Dvdx2hSfD7R7meNZ7M6jSt?cluster=devnet) |
-| deposit | 524345534 | [transaction](https://explorer.solana.com/tx/43rdydZWa5UxgGVR5UAxS98Gd6gwwmVvD3VyFRnfcu7aSLXjU9RfAz88WJid19Qc7CmJ3hmxxB9uN3xR4hUtcbKd?cluster=devnet) |
-| prepare-vault-token-b | 524345547 | [transaction](https://explorer.solana.com/tx/cGBC6VUzZDmdkBjEmUgbRHEtaZV8KtguWjWnzeTzYTUV1qQYYbjWjdeXacCvZvjf4ni62na187ENN467yhx3MeR?cluster=devnet) |
-| normal-open | 524346047 | [transaction](https://explorer.solana.com/tx/2agtZPSEuymGtbskrTmi9KuEi97U8MwUXnpjkQvKfaK1HWs6jVum1iyUXMrj4bPFwXBsGixRSBxeKmPiPX7tgBYL?cluster=devnet) |
-| normal-swap-1 | 524346074 | [transaction](https://explorer.solana.com/tx/4d19viMD8s82cbZRtsskeMPoPW6T7s2ZtfzCJRMfkfiC5txoB5QNGT1JbNkVxUpg86ki6DBb8FWNBNAKnRad9GB7?cluster=devnet) |
-| normal-swap-2 | 524346087 | [transaction](https://explorer.solana.com/tx/4Pu15jVqKSvRbFXBE86u6pT5URhCijW6N8ukpdbHco8vZyRPw37nYfddnPukKDwFxomjZkktyF4Dahxvgvcv4cpD?cluster=devnet) |
-| normal-swap-3 | 524346108 | [transaction](https://explorer.solana.com/tx/5uprc62qgcWqjbzXUXT98ofzezLjQnrzxpBx5S5mJ7YiJUtmBS4SFAC62xM5UWA7ar9BkPpvmnYtXoDPZCKRCWWn?cluster=devnet) |
-| normal-collect | 524346120 | [transaction](https://explorer.solana.com/tx/2bHY9czX1sWgArAZNffKC6f191yB42TrEEPapX5H5r59FmR1axNgWqdtkQKcgxYdZVurQTgTcqfyVcDtMWVReFcR?cluster=devnet) |
-| normal-close | 524346139 | [transaction](https://explorer.solana.com/tx/2HTpH3wufCRfLfJZf9SUu5H8He2DDz1adcbUiu3NagrQuQ6JJRXpxVe5N23s7WMp75K6SEh5vB1kZthKMVbYWAYD?cluster=devnet) |
-| reverse-all-b | 524346461 | [transaction](https://explorer.solana.com/tx/3LEsdAgF3K3i9FuTVPoLDpUwBNRxo9Bs8J8cPyMCeEPQgAnYopbg9vQHmNFRWS6MNbB4VUAV5kqRX2t4hAGEAgta?cluster=devnet) |
-| settle-strategy | 524346471 | [transaction](https://explorer.solana.com/tx/2qjqX14uHSrjDCdRY7zfmRSuDwrVxccNepLQCpizPWLGLo15165SsbvdTaiBa6xXLgqGRmSeQu2URvsw6XbfqJoX?cluster=devnet) |
-| user-withdraw | 524346684 | [transaction](https://explorer.solana.com/tx/4sf9KKiUdA7nKtkESYzymfMRiyWX9wUDuKxiM3d2Gxzwe8YR76ptasrJWtxwEvpm8KJrTQYcrr7Sz5dc8zdiuYWc?cluster=devnet) |
+| Действие | Финализированный слот | Explorer |
+| --- | ---: | --- |
+| settlement-deployment | 524343232 | [транзакция](https://explorer.solana.com/tx/XD1vSBiLE94esqjaLxEEw8r9wGT3krRtQa6LaxPxWNPPsPA5jiWjejj6XRR6TiUMi7GVDzvxeB9abHmqB58HWv8?cluster=devnet) |
+| initialize-vault | 524345494 | [транзакция](https://explorer.solana.com/tx/3HMe3E9isJ2KjPxT9x4VmrtXNCbWEfaeJjMNAu6fEXM5zi9P5Y2mz2NkdzX6ANK6MkCdZLisusCNUeQYKc9zDWpa?cluster=devnet) |
+| initialize-swap | 524345504 | [транзакция](https://explorer.solana.com/tx/3jzF1ghdxvqcQWadpLB8KcDqZgfRwfaZCvdMkCKt4yQfkbzkWR1YppamaTGoZSc3QAHb6cbW13okQuNN3ngzQqGZ?cluster=devnet) |
+| fund-trader | 524345515 | [транзакция](https://explorer.solana.com/tx/4wB978qbNCmUg2TZ4FUp4KZVHZfj1QH34j712obcB7pDXoxsEetu4b7JMjAyzeNaF7NSAgHRhfsmCoaNK1CotSty?cluster=devnet) |
+| fund-user | 524345524 | [транзакция](https://explorer.solana.com/tx/42iCveVce4jqoSaFGDuCyvQxNCdJ6eWWEWkvsNEiRdKcu9h25QXWUpiR4XPrzafKN7Dvdx2hSfD7R7meNZ7M6jSt?cluster=devnet) |
+| deposit | 524345534 | [транзакция](https://explorer.solana.com/tx/43rdydZWa5UxgGVR5UAxS98Gd6gwwmVvD3VyFRnfcu7aSLXjU9RfAz88WJid19Qc7CmJ3hmxxB9uN3xR4hUtcbKd?cluster=devnet) |
+| prepare-vault-token-b | 524345547 | [транзакция](https://explorer.solana.com/tx/cGBC6VUzZDmdkBjEmUgbRHEtaZV8KtguWjWnzeTzYTUV1qQYYbjWjdeXacCvZvjf4ni62na187ENN467yhx3MeR?cluster=devnet) |
+| normal-open | 524346047 | [транзакция](https://explorer.solana.com/tx/2agtZPSEuymGtbskrTmi9KuEi97U8MwUXnpjkQvKfaK1HWs6jVum1iyUXMrj4bPFwXBsGixRSBxeKmPiPX7tgBYL?cluster=devnet) |
+| normal-swap-1 | 524346074 | [транзакция](https://explorer.solana.com/tx/4d19viMD8s82cbZRtsskeMPoPW6T7s2ZtfzCJRMfkfiC5txoB5QNGT1JbNkVxUpg86ki6DBb8FWNBNAKnRad9GB7?cluster=devnet) |
+| normal-swap-2 | 524346087 | [транзакция](https://explorer.solana.com/tx/4Pu15jVqKSvRbFXBE86u6pT5URhCijW6N8ukpdbHco8vZyRPw37nYfddnPukKDwFxomjZkktyF4Dahxvgvcv4cpD?cluster=devnet) |
+| normal-swap-3 | 524346108 | [транзакция](https://explorer.solana.com/tx/5uprc62qgcWqjbzXUXT98ofzezLjQnrzxpBx5S5mJ7YiJUtmBS4SFAC62xM5UWA7ar9BkPpvmnYtXoDPZCKRCWWn?cluster=devnet) |
+| normal-collect | 524346120 | [транзакция](https://explorer.solana.com/tx/2bHY9czX1sWgArAZNffKC6f191yB42TrEEPapX5H5r59FmR1axNgWqdtkQKcgxYdZVurQTgTcqfyVcDtMWVReFcR?cluster=devnet) |
+| normal-close | 524346139 | [транзакция](https://explorer.solana.com/tx/2HTpH3wufCRfLfJZf9SUu5H8He2DDz1adcbUiu3NagrQuQ6JJRXpxVe5N23s7WMp75K6SEh5vB1kZthKMVbYWAYD?cluster=devnet) |
+| reverse-all-b | 524346461 | [транзакция](https://explorer.solana.com/tx/3LEsdAgF3K3i9FuTVPoLDpUwBNRxo9Bs8J8cPyMCeEPQgAnYopbg9vQHmNFRWS6MNbB4VUAV5kqRX2t4hAGEAgta?cluster=devnet) |
+| settle-strategy | 524346471 | [транзакция](https://explorer.solana.com/tx/2qjqX14uHSrjDCdRY7zfmRSuDwrVxccNepLQCpizPWLGLo15165SsbvdTaiBa6xXLgqGRmSeQu2URvsw6XbfqJoX?cluster=devnet) |
+| user-withdraw | 524346684 | [транзакция](https://explorer.solana.com/tx/4sf9KKiUdA7nKtkESYzymfMRiyWX9wUDuKxiM3d2Gxzwe8YR76ptasrJWtxwEvpm8KJrTQYcrr7Sz5dc8zdiuYWc?cluster=devnet) |
 
-Two deliberately failed transactions are also finalized; each has the required error and unchanged token/share balances:
+Две намеренно неудачные транзакции также финализированы; каждая завершилась требуемой ошибкой без изменения балансов токенов и долей:
 
 - [withdraw-while-active](https://explorer.solana.com/tx/4XMXuL5TcNstk2WLXZZ1ZWc1Lb4qZd2EbxRQoCfeti4Mt2LDHK8xDzXPkGm7hDmstRyWcChq81wRVGebz5WSZBBr?cluster=devnet): `StrategyActive`.
 - [reverse-slippage-failure](https://explorer.solana.com/tx/2bfdW9KDeZxwLuWUedGmyhCFVbKjyRq4B71JPsE2V4o49hguLy1uEvjqjsroBQjAQt9g2y3FyQmDJRnUg8fA5gu?cluster=devnet): `TooLittleOutputReceived`.
 
-### Tests and reproduction
+### Тесты и воспроизведение
 
-Fresh results are in [test-results.json](evidence/week13/settlement/test-results.json): Rust 8 passed; existing TypeScript suites 6 slippage plus 8 verifier-integrity tests passed; settlement arithmetic 7 passed; local validator legacy 17 and real Raydium CPI 11 passed. The local settlement workflow completed 15 success transactions, 34 explicit-error simulations and two expected failed transactions; it is labeled **LOCAL**, separately from the real Devnet evidence. The real Devnet run also records 34 explicit expected-error simulations and two finalized failed transactions. [Negative-test results](evidence/week13/settlement/negative-test-results.json) state each expected error and matching logs, including active-position settlement, residual B, unauthorized signer, wrong pool/mint/PDA/account, invalid amount, partial conversion, slippage, premature withdrawal, repeated settlement, excessive shares, invalid share account, rounding, stale assets and mismatched supply.
+Свежие результаты приведены в [test-results.json](evidence/week13/settlement/test-results.json): пройдено 8 Rust-тестов; существующие наборы TypeScript — 6 проверок проскальзывания и 8 проверок целостности верификатора; 7 проверок арифметики расчётов; на локальном валидаторе — 17 прежних тестов и 11 тестов реальных Raydium CPI. Локальный сценарий завершения стратегии выполнил 15 успешных транзакций, 34 симуляции с конкретной ожидаемой ошибкой и две ожидаемо неудачные транзакции; он обозначен как **LOCAL** и отделён от реальных доказательств Devnet. Реальный запуск Devnet также содержит 34 симуляции с конкретной ожидаемой ошибкой и две финализированные неудачные транзакции. [Результаты отрицательных тестов](evidence/week13/settlement/negative-test-results.json) указывают каждую ожидаемую ошибку и соответствующие логи, включая расчёты при активной позиции, остаток B, неавторизованного подписанта, неверные пул/mint/PDA/аккаунт, недопустимую сумму, частичную конвертацию, проскальзывание, преждевременный вывод, повторные расчёты, превышение числа долей, неверный аккаунт долей, округление, устаревший учёт активов и несовпадение предложения.
 
-With Rust, Solana/Agave, Anchor 0.31.1, Node 22 and the unchanged dependency lockfiles:
+При установленных Rust, Solana/Agave, Anchor 0.31.1, Node 22 и неизменённых lock-файлах зависимостей:
 
 ```bash
 npm ci
@@ -330,33 +332,33 @@ anchor build
 npm run typecheck
 npm test
 npm run test:settlement
-# Builds default identity and isolated settlement feature; sends no transactions:
+# Сборка исходного и изолированного вариантов; без отправки транзакций:
 npm run build:settlement
-# Clones public Devnet accounts into an isolated local validator; runs old and new suites:
+# Клонирование публичных аккаунтов Devnet в изолированный локальный валидатор; старые и новые тесты:
 npm run test:settlement:local
-# Public RPC only, no wallet and no build:
+# Только публичный RPC, без кошелька и сборки:
 ANCHOR_WALLET=/nonexistent/no-wallet.json npm run verify:week13
 ANCHOR_WALLET=/nonexistent/no-wallet.json npm run verify:week13:settlement
 ```
 
-The new verifier paces public RPC reads. An RPC rate limit may require retrying; the unchanged historical verifier was run with a temporary 1.8-second fetch pacing wrapper, recorded in its fresh [verification summary](evidence/week13/settlement/historical-verification-summary.json). It retains every original check. Both verifiers reject a changed deployed ELF or upgrade slot. The settlement verifier independently retrieves finalized transaction metadata, share mint/burn and transfers, Vault-signed Raydium CPIs, LP/NFT closure, full B conversion, settlement event, user proceeds and current zero balances/supply. Stored snapshots are observations, not archival account-byte proofs.
+Новый верификатор делает паузы между чтениями публичного RPC. При ограничении частоты RPC может потребоваться повтор; неизменённый исторический верификатор запущен с временной обёрткой, добавляющей паузу 1.8 секунды между запросами, что зафиксировано в его свежей [сводке проверки](evidence/week13/settlement/historical-verification-summary.json). Все исходные проверки сохранены. Оба верификатора отклоняют изменённый развёрнутый ELF или слот обновления. Верификатор завершения стратегии независимо получает метаданные финализированных транзакций, выпуск/сжигание долей и переводы, Raydium CPI с подписью Vault, закрытие LP/NFT, полную конвертацию B, событие завершения расчётов, полученные пользователем средства и текущие нулевые балансы/предложение. Сохранённые снимки — наблюдения, а не архивные доказательства содержимого аккаунтов.
 
-Local clone tests use the configured test administrator key matching `sourceAdmin` in the public fixture; signing keys are not distributed. Public verification requires no signing key. The existing Devnet run is complete and should be verified read-only. The signed runner phases used were `npm run week13:settlement -- setup`, `-- normal`, `-- settle`, `-- withdraw`, in that order. They require the authorized administrator and ignored local user/trader keys, and checkpoint signatures before broadcast. `-- recover` inspects a pending submission before a retry. A fresh public demonstration requires a separately planned identity/vault and its own manifest; the deployment helper refuses reuse of an existing program. Build and local-test reproduction write scratch outputs under ignored `.tools/`; recording modes refuse to overwrite deployment evidence.
+Локальные тесты клонированной среды используют настроенный тестовый ключ администратора, соответствующий `sourceAdmin` в публичной конфигурации; ключи подписи не распространяются. Публичная проверка не требует ключа подписи. Существующий запуск Devnet завершён и должен проверяться только чтением. Подписанные этапы сценария выполнялись в порядке `npm run week13:settlement -- setup`, `-- normal`, `-- settle`, `-- withdraw`. Они требуют авторизованного администратора и исключённых из Git локальных ключей пользователя/трейдера; сигнатуры сохраняются до отправки. `-- recover` проверяет ожидающую отправку перед повтором. Новая публичная демонстрация требует отдельно спланированных идентификатора/Vault и собственного манифеста; скрипт развёртывания отказывается повторно использовать существующую программу. Воспроизведение сборки и локальных тестов записывает временные результаты в исключённый из Git каталог `.tools/`; режимы записи доказательств отказываются перезаписывать доказательства развёртывания.
 
-### Combined methodology evidence
+### Сводное соответствие методологии
 
-| Requirement | Evidence |
-|---|---|
-| Administrator-selected range; both-token maxima; genuine Raydium CPI | Original 25-transaction evidence above; new `normal-open`, local CPI regression tests |
-| Vault-controlled NFT and liquidity; fees; full close with minima | Original normal and rebalance runs; new open/collect/close CPI and NFT checks |
-| Separate-wallet fee-generating swaps | Three new trader-signed swaps between open and collection |
-| Out-of-range close and reopen | Preserved original rebalancing evidence; unchanged `position.rs` and passing regressions |
-| Deposited A and correct issued shares | New user-signed `deposit`; parsed Vault-authorized SPL mint and token deltas |
-| Lock throughout active LP and before settlement | `withdraw-while-active` finalized failure; explicit strategy/active-position/residual-B negative tests |
-| Close before converting the entire B balance; positive slippage minimum | Ordered `normal-close` then `reverse-all-b`; exact Raydium CPI bindings and token deltas |
-| Reconcile actual A without changing shares; authorized unlock | `settle-strategy` event, unchanged supply, no mint/burn/transfers; account/NFT and negative checks |
-| Correct user redemption and share burn | Finalized `user-withdraw`, integer floor formula, exact user A increase and SPL burn |
-| No remaining tracked LP, B, A or user shares | Current RPC checks in settlement verifier and final snapshots |
-| Read-only verification, builds, security tests, earlier-week preservation | Both verifier logs, fresh test logs and final audit under the settlement evidence directory |
+| Требование | Доказательства |
+| --- | --- |
+| Диапазон выбирает администратор; максимумы обоих токенов; реальный Raydium CPI | Исходные доказательства по 25 транзакциям выше; новый `normal-open`, локальные регрессионные CPI-тесты |
+| NFT и ликвидность под контролем Vault; комиссии; полное закрытие с минимумами | Исходные обычный сценарий и ребалансировка; новые проверки CPI открытия/сбора/закрытия и NFT |
+| Обмены отдельного кошелька для создания комиссий | Три новых обмена с подписью трейдера между открытием и сбором |
+| Закрытие вне диапазона и повторное открытие | Сохранённые исходные доказательства ребалансировки; неизменённый `position.rs` и пройденные регрессионные тесты |
+| Внесённый A и корректный выпуск долей | Новый `deposit` с подписью пользователя; разобранный SPL-выпуск с полномочиями Vault и изменения балансов |
+| Блокировка при активной LP и до завершения расчётов | Финализированная ошибка `withdraw-while-active`; явные отрицательные тесты стратегии/активной позиции/остатка B |
+| Закрытие до полной конвертации B; положительный минимум с учётом проскальзывания | Последовательно `normal-close`, затем `reverse-all-b`; точные привязки Raydium CPI и изменения балансов |
+| Сверка фактического A без изменения долей; авторизованная разблокировка | Событие `settle-strategy`, неизменное предложение, отсутствие выпуска/сжигания/переводов; проверки аккаунтов/NFT и отрицательные тесты |
+| Корректное погашение пользователем и сжигание долей | Финализированный `user-withdraw`, целочисленное округление вниз, точное увеличение A пользователя и SPL-сжигание |
+| Отсутствие оставшихся учитываемых LP, B, A и долей пользователя | Текущие RPC-проверки верификатора завершения стратегии и итоговые снимки |
+| Проверка только чтением, сборки, тесты безопасности, сохранение прежних недель | Логи обоих верификаторов, свежих тестов и итоговый аудит в каталоге доказательств завершения стратегии |
 
-The final [audit](evidence/week13/settlement/final-audit.json) records preserved historical hashes, earlier branch/deployment checks and the exact [changed-file list](evidence/week13/settlement/changed-files.json). Dependencies were not changed to silence the original 19 audit advisories (9 moderate, 10 high). The scope remains SPL Token test assets and the tracked non-reward pool; Token-2022/reward-bearing pools and external economic security certification are outside this demonstration.
+Итоговый [аудит](evidence/week13/settlement/final-audit.json) фиксирует сохранность исторических хешей, проверки прежних веток/развёртываний и точный [список изменённых файлов](evidence/week13/settlement/changed-files.json). Зависимости не менялись ради устранения исходных 19 предупреждений аудита (9 умеренной, 10 высокой серьёзности). Область работы — тестовые активы SPL Token и учитываемый пул без вознаграждений; Token-2022/пулы с вознаграждениями и внешняя сертификация экономической безопасности не входят в эту демонстрацию.
